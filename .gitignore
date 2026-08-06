@@ -1,0 +1,8 @@
+# macOS / editor metadata
+.DS_Store
+Thumbs.db
+*.swp
+*~
+
+# Node artifacts (none used but future-proof)
+node_modules/

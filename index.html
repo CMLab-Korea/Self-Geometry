@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Self-Geometry: GT-Free and Plug-and-Play TTA for Geometrically Consistent 3D Vision Foundation Models</title>
+    <link rel="stylesheet" href="styles.css">
+    <link rel="stylesheet" href="styles-selfgeom.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+</head>
+<body>
+    <style>
+        iframe {
+        border-radius: 0.5em;
+        width: 100%;
+        height: 100%;
+        border: none;
+        box-shadow: 0 0 1em 0em rgba(0, 0, 0, 0.15);
+        }
+    </style>
+
+    <!-- Navbar -->
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="nav-logo">
+                <h2>Self-Geometry</h2>
+            </div>
+            <div class="nav-links">
+                <a href="#overview">Overview</a>
+                <a href="#interactive-examples">Demo</a>
+                <a href="#citation">Citation</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Banner -->
+    <section class="banner">
+        <div class="banner-content">
+            <div class="banner-text">
+                <h2 class="banner-title">Self-Geometry</h2>
+                <h3 class="banner-subtitle" style="margin-bottom: 10px;">GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models</h3>
+                <div class="authors">
+                    <a href="mailto:hisn16@cau.ac.kr">Seokhyun Youn<sup>1</sup></a>,
+                    <a href="mailto:rpekgus@cau.ac.kr">Dahyeon Kye<sup>1</sup></a>,
+                    <a href="mailto:shbae@khu.ac.kr">Sung-Ho Bae<sup>2,&dagger;</sup></a>,
+                    <a href="mailto:jihyongoh@cau.ac.kr">Jihyong Oh<sup>1,&dagger;</sup></a>
+                    <br><br>
+                    <sup>1</sup>Chung-Ang University &nbsp;&nbsp; <sup>2</sup>Kyung Hee University
+                    <br>
+                    <sup>&dagger;</sup>Corresponding authors
+                </div>
+
+                <div class="banner-links">
+                    <a href="https://arxiv.org/abs/XXXX.XXXXX" target="_blank" class="link-btn">
+                        <i class="fas fa-graduation-cap"></i> arXiv
+                    </a>
+                    <a href="https://github.com/CMLab-Korea/Self-Geometry" target="_blank" class="link-btn">
+                        <i class="fab fa-github"></i> Code
+                    </a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Main demo video (placeholder = DA3 teaser video) -->
+    <section class="main-demo">
+        <div class="container">
+            <div class="tldr-content">
+                <p>
+                    <i class="fas fa-bolt"></i> <strong>TL;DR:</strong>
+                    <em>Self-Geometry</em> is a plug-and-play test-time adaptation pipeline that imposes
+                    <strong>explicit multi-view geometric constraints</strong> on pretrained 3D VFMs
+                    (VGGT, &pi;<sup>3</sup>, DA3) via 2D pixel correspondences as pseudo GT
+                    &mdash; delivering consistent pose and geometry improvements across six VFMs and four benchmarks.
+                </p>
+            </div>
+            <div class="demo-video-container">
+                <div class="video-loader" id="mainVideoLoader">
+                    <div class="loader-spinner"></div>
+                    <div class="loader-text">Loading video...</div>
+                    <div class="loader-progress">
+                        <div class="progress-bar" id="mainVideoProgress"></div>
+                    </div>
+                </div>
+                <video
+                    class="main-video lazy-video"
+                    id="mainVideo"
+                    playsinline muted autoplay loop
+                    preload="metadata"
+                    data-src="./assets/teaser_compress.mp4">
+                    <source data-src="./assets/teaser_compress.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
+            </div>
+        </div>
+    </section>
+
+    <!-- Abstract -->
+    <section id="overview" class="abstract" style="text-align: left;">
+        <div class="container">
+            <div class="abstract-content" style="text-align: left;">
+                <h3><i class="fas fa-file-alt"></i> Abstract</h3>
+                <p>Recent Vision Foundation Models (VFMs) predict depth, camera pose, and pointmap in a single forward pass without per-scene optimization, achieving strong generalization. However, enforcing explicit multi-view geometric consistency, e.g., through bundle adjustment, is computationally costly and is thus not imposed during VFM pretraining, so such inconsistency can arise. To address this, implicit self-consistency derived from model outputs (e.g., pointmaps, features), though enforced at test-time in prior work, delivers inherently limited performance gain, especially on scenes where the pretrained VFM is highly inaccurate. In contrast to this implicit signal, we propose <em>Self-Geometry</em>, a plug-and-play test-time adaptation pipeline that directly imposes explicit multi-view geometric constraints using 2D pixel correspondences as pseudo ground-truth. Our proposed <em>Self-Geometry</em> consists of <strong>Geometric Disentanglement Optimization</strong>, which combines Multi-View Consistency and Epipolar Consistency losses with Gradient Disentanglement to prevent gradient conflict; <strong>Frame Angular-Neighbor</strong>, a view sampler based on SO(3) geodesic distances for lightly imposing these constraints; and <strong>Lightweight TTA</strong>, which adapts VFMs via LoRA. Our method achieves consistent improvements in both pose and geometry estimation across six VFMs (VGGT, &pi;<sup>3</sup>, DA3-Giant/Large/Base/Small) and four benchmarks (7Scenes, ETH3D, ScanNet++, HiRoom).</p>
+                <img src="assets/teaser.png" alt="Self-Geometry Teaser" style="width: 100%; height: auto; margin-top: 12px; border-radius: 8px;">
+            </div>
+        </div>
+    </section>
+
+    <!-- Interactive Examples: baseline vs Self-Geometry slider comparison -->
+    <section id="interactive-examples" class="interactive-results">
+        <div class="container">
+            <h2 class="section-title">Interactive Examples</h2>
+            <p class="sg-section-desc">
+                Drag the slider to compare each pretrained VFM's <strong>baseline</strong> reconstruction
+                with the one adapted by our <strong>Self-Geometry</strong>. The two point clouds
+                share the same camera &mdash; rotating one rotates the other. Each pair shows the
+                top scenes by geometry F-score improvement on the corresponding benchmark.
+            </p>
+
+            <!-- Tabs: backbones -->
+            <div class="sg-tabs sg-tabs-bb" role="tablist" aria-label="Backbone">
+                <button class="sg-tab"        role="tab" data-backbone="vggt">VGGT</button>
+                <button class="sg-tab active" role="tab" data-backbone="pi3">&pi;<sup>3</sup></button>
+                <button class="sg-tab"        role="tab" data-backbone="da3">DA3-Giant</button>
+                <button class="sg-tab"        role="tab" data-backbone="da3l">DA3-Large</button>
+                <button class="sg-tab"        role="tab" data-backbone="da3b">DA3-Base</button>
+                <button class="sg-tab"        role="tab" data-backbone="da3sm">DA3-Small</button>
+            </div>
+
+            <!-- Sub-tabs: datasets (rebuilt when backbone changes) -->
+            <div class="sg-tabs sg-tabs-ds" role="tablist" aria-label="Dataset" id="sgDatasetTabs"></div>
+
+            <!-- Toggle: raw-prediction vs threshold-error map (applies to both rows) -->
+            <div class="sg-tabs sg-tabs-mode" role="tablist" aria-label="Coloring mode">
+                <button class="sg-tab active" role="tab" data-mode="rgb">Predicted map</button>
+                <button class="sg-tab"        role="tab" data-mode="error">Error map</button>
+            </div>
+
+            <!-- Slider grid (rebuilt when dataset changes) -->
+            <div class="sg-slider-grid" id="sgSliderGrid"></div>
+        </div>
+    </section>
+
+    <!-- Citation -->
+    <section id="citation" class="citation">
+        <div class="container">
+            <h2 class="section-title">Citation</h2>
+            <div class="citation-box">
+                <pre><code>@article{youn2026selfgeometry,
+  title   = {Self-Geometry: GT-Free and Plug-and-Play Test-Time Adaptation
+             for Geometrically Consistent 3D Vision Foundation Models},
+  author  = {Youn, Seokhyun and Kye, Dahyeon and Bae, Sung-Ho and Oh, Jihyong},
+  journal = {arXiv preprint arXiv:XXXX.XXXXX},
+  year    = {2026}
+}</code></pre>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2026 CMLab, Chung-Ang University. Page adapted from the Depth Anything 3 template.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="selfgeom.js" defer></script>
+</body>
+</html>

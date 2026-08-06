@@ -1,0 +1,177 @@
+/* Self-Geometry — Interactive Examples additions. */
+
+.sg-section-desc {
+    max-width: 900px;
+    margin: 0 auto 24px;
+    text-align: center;
+    color: #444;
+    line-height: 1.6;
+    font-size: 0.95rem;
+}
+
+.sg-tabs {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 8px;
+    margin: 0 auto 16px;
+    max-width: 900px;
+}
+.sg-tabs-ds { margin-bottom: 24px; }
+
+.sg-tab {
+    appearance: none;
+    border: 1px solid #d0d3dc;
+    background: #f6f7fb;
+    color: #333;
+    font: 500 0.9rem/1.2 inherit;
+    padding: 8px 16px;
+    border-radius: 999px;
+    cursor: pointer;
+    transition: background 0.15s, color 0.15s, border-color 0.15s;
+}
+.sg-tab:hover {
+    background: #e6e9f5;
+}
+.sg-tab.active {
+    background: #0D207F;
+    color: #fff;
+    border-color: #0D207F;
+}
+
+.sg-slider-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    gap: 20px;
+    margin-top: 8px;
+}
+
+.sg-slider-card {
+    position: relative;
+    background: #ffffff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    display: flex;
+    flex-direction: column;
+}
+
+
+.sg-slider-card .sg-slider-frame {
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1 / 1;
+    background: #fafafa;
+}
+
+.sg-slider-card iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 0;
+    box-shadow: none;
+    background: #ffffff;
+}
+
+.sg-slider-card .sg-card-meta {
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    padding: 10px 14px 12px;
+    font: 400 0.85rem/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+    color: #444;
+    border-top: 1px solid #eef0f5;
+}
+.sg-card-meta .sg-scene-label {
+    font-weight: 600;
+    color: #0D207F;
+    font-size: 0.92rem;
+}
+.sg-card-meta .sg-metric-row {
+    display: flex;
+    justify-content: space-between;
+    color: #666;
+    font-variant-numeric: tabular-nums;
+}
+.sg-card-meta .sg-delta {
+    color: #0a7a0a;
+    font-weight: 600;
+}
+
+.sg-loading-placeholder {
+    position: absolute;
+    inset: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #999;
+    font-size: 0.85rem;
+    background: #fafafa;
+}
+
+/* --- Depth-card frame carousel controls ---------------------------------- */
+.sg-nav {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    z-index: 7;                     /* above slider handle */
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: rgba(255, 255, 255, 0.9);
+    color: #0D207F;
+    border: 1px solid rgba(0, 0, 0, 0.15);
+    border-radius: 50%;
+    font-size: 14px;
+    line-height: 1;
+    cursor: pointer;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
+    padding: 0;
+    transition: background 0.15s, transform 0.1s;
+}
+.sg-nav:hover  { background: #ffffff; }
+.sg-nav:active { transform: translateY(-50%) scale(0.94); }
+.sg-nav-prev   { left:  8px; }
+.sg-nav-next   { right: 8px; }
+
+.sg-dots {
+    position: absolute;
+    left: 50%;
+    bottom: 8px;
+    transform: translateX(-50%);
+    z-index: 7;
+    display: flex;
+    gap: 6px;
+    padding: 4px 8px;
+    background: rgba(255, 255, 255, 0.75);
+    border-radius: 12px;
+}
+.sg-dot {
+    width: 8px;
+    height: 8px;
+    padding: 0;
+    border: 0;
+    border-radius: 50%;
+    background: rgba(60, 60, 60, 0.35);
+    cursor: pointer;
+    transition: background 0.15s, transform 0.1s;
+}
+.sg-dot:hover        { background: rgba(13, 32, 127, 0.6); }
+.sg-dot.active       { background: #0D207F; transform: scale(1.2); }
+
+.sg-frame-idx {
+    color: #888;
+    font-weight: 400;
+    font-size: 0.82rem;
+}
+
+@media (max-width: 640px) {
+    .sg-slider-grid {
+        grid-template-columns: 1fr;
+    }
+    .sg-tab { padding: 6px 12px; font-size: 0.85rem; }
+}

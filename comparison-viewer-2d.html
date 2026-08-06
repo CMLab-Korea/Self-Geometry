@@ -1,0 +1,156 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Baseline vs Self-Geometry — 2D Slider Viewer</title>
+    <style>
+      html, body { margin: 0; height: 100%; background: #f6f6f6; overflow: hidden; }
+
+      .cv-wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        background: #ffffff;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      #right, #left {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        object-fit: contain;
+        object-position: center;
+        background: #ffffff;
+      }
+      #right { z-index: 1; }
+      #left  {
+        z-index: 2;
+        pointer-events: none;   /* visual-only, matches 3D viewer's routing */
+      }
+
+      .cv-label {
+        position: absolute;
+        top: 12px;
+        z-index: 5;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font: 600 12px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #fff;
+        pointer-events: none;
+      }
+      .cv-label.left  { left: 12px;  background: rgba(30, 30, 30, 0.85); }
+      .cv-label.right { right: 12px; background: rgba(13, 32, 127, 0.85); }
+
+      .cv-divider {
+        position: absolute;
+        top: 0; bottom: 0;
+        width: 2px;
+        background: #ffffff;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
+        transform: translateX(-1px);
+        z-index: 4;
+        pointer-events: none;
+      }
+
+      .cv-handle {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid rgba(0,0,0,0.35);
+        transform: translate(-50%, -50%);
+        z-index: 6;
+        cursor: ew-resize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        touch-action: none;
+      }
+      .cv-handle::before,
+      .cv-handle::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+      .cv-handle::before { border-right: 6px solid #0D207F; margin-right: 3px; }
+      .cv-handle::after  { border-left:  6px solid #0D207F; margin-left:  3px; }
+    </style>
+  </head>
+  <body>
+    <div class="cv-wrap" id="wrap">
+      <img id="right" alt="Self-Geometry (right)" draggable="false">
+      <img id="left"  alt="Baseline (left)"       draggable="false">
+      <div class="cv-label left"  id="labelLeft">Baseline</div>
+      <div class="cv-label right" id="labelRight">Self-Geometry</div>
+      <div class="cv-divider" id="divider"></div>
+      <div class="cv-handle"  id="handle" role="slider"
+           aria-label="Comparison slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+    </div>
+
+    <script>
+      const p = new URLSearchParams(location.search);
+      const leftSrc  = p.get('left');
+      const rightSrc = p.get('right');
+      document.getElementById('labelLeft').textContent  = p.get('labelLeft')  || 'Baseline';
+      document.getElementById('labelRight').textContent = p.get('labelRight') || 'Self-Geometry';
+
+      const wrap    = document.getElementById('wrap');
+      const imgLeft = document.getElementById('left');
+      const imgRight= document.getElementById('right');
+      const handle  = document.getElementById('handle');
+      const divider = document.getElementById('divider');
+
+      if (leftSrc)  imgLeft.src  = leftSrc;
+      if (rightSrc) imgRight.src = rightSrc;
+
+      let exposure = 50;
+      const setExposure = (pct) => {
+        exposure = Math.max(0, Math.min(100, pct));
+        imgLeft.style.clipPath = `inset(0 ${100 - exposure}% 0 0)`;
+        divider.style.left = `${exposure}%`;
+        handle.style.left  = `${exposure}%`;
+        handle.setAttribute('aria-valuenow', Math.round(exposure).toString());
+      };
+      setExposure(exposure);
+
+      // Drag handle
+      let dragging = false;
+      handle.addEventListener('pointerdown', (e) => {
+        dragging = true;
+        handle.setPointerCapture?.(e.pointerId);
+        e.preventDefault();
+      });
+      const end = (e) => {
+        dragging = false;
+        handle.releasePointerCapture?.(e.pointerId);
+      };
+      window.addEventListener('pointerup',   end);
+      window.addEventListener('pointercancel', end);
+      window.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        const r = wrap.getBoundingClientRect();
+        setExposure(((e.clientX - r.left) / r.width) * 100);
+      });
+
+      handle.tabIndex = 0;
+      handle.addEventListener('keydown', (e) => {
+        const step = e.shiftKey ? 10 : 2;
+        if (e.key === 'ArrowLeft')  { setExposure(exposure - step); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { setExposure(exposure + step); e.preventDefault(); }
+      });
+
+      [imgLeft, imgRight].forEach((im) => {
+        im.addEventListener('error', () => {
+          console.error('[comparison-viewer-2d] image load error:', im.src);
+        });
+      });
+    </script>
+  </body>
+</html>

@@ -1,0 +1,210 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Baseline vs Self-Geometry — Slider Viewer</title>
+    <script type="module" src="https://unpkg.com/@google/model-viewer/dist/model-viewer.min.js"></script>
+    <style>
+      html, body { margin: 0; height: 100%; background: #f6f6f6; overflow: hidden; }
+
+      .cv-wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      /* Both viewers are full-size and overlaid. Only the BOTTOM one owns pointer
+         events; the TOP one is purely a visual layer, clipped via clip-path.
+         Whichever side the user drags, #right rotates and sync propagates to
+         #left, so both viewers stay aligned. This avoids the two-viewer
+         event-competition problem entirely. */
+      #right, #left {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        background-color: #ffffff;
+      }
+      #right { z-index: 1; }
+      #left  {
+        z-index: 2;
+        pointer-events: none;   /* visual only — events fall through to #right */
+      }
+
+      .cv-label {
+        position: absolute;
+        top: 12px;
+        z-index: 5;
+        padding: 4px 10px;
+        border-radius: 4px;
+        font: 600 12px/1.2 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #fff;
+        pointer-events: none;
+      }
+      /* Baseline (left) = dark; Self-Geometry (right) = brand navy */
+      .cv-label.left  { left: 12px;  background: rgba(30, 30, 30, 0.85); }
+      .cv-label.right { right: 12px; background: rgba(13, 32, 127, 0.85); }
+
+      .cv-divider {
+        position: absolute;
+        top: 0; bottom: 0;
+        width: 2px;
+        background: #ffffff;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
+        transform: translateX(-1px);
+        z-index: 4;
+        pointer-events: none;
+      }
+
+      .cv-handle {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid rgba(0,0,0,0.35);
+        transform: translate(-50%, -50%);
+        z-index: 6;
+        cursor: ew-resize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        touch-action: none;
+      }
+      .cv-handle::before,
+      .cv-handle::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+      .cv-handle::before { border-right: 6px solid #0D207F; margin-right: 3px; }
+      .cv-handle::after  { border-left:  6px solid #0D207F; margin-left:  3px; }
+    </style>
+  </head>
+  <body>
+    <div class="cv-wrap" id="wrap">
+      <model-viewer id="right"
+        camera-controls
+        interaction-prompt="none"
+        disable-tap
+        exposure="1.0"
+        shadow-intensity="0"
+        environment-image="neutral"></model-viewer>
+      <model-viewer id="left"
+        camera-controls
+        interaction-prompt="none"
+        disable-tap
+        exposure="1.0"
+        shadow-intensity="0"
+        environment-image="neutral"></model-viewer>
+      <div class="cv-label left"  id="labelLeft">Baseline</div>
+      <div class="cv-label right" id="labelRight">Self-Geometry</div>
+      <div class="cv-divider" id="divider"></div>
+      <div class="cv-handle"  id="handle" role="slider"
+           aria-label="Comparison slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+    </div>
+
+    <script>
+      const p = new URLSearchParams(location.search);
+      const leftSrc  = p.get('left');
+      const rightSrc = p.get('right');
+      const labelLeft  = p.get('labelLeft')  || 'Baseline';
+      const labelRight = p.get('labelRight') || 'Self-Geometry';
+      document.getElementById('labelLeft').textContent  = labelLeft;
+      document.getElementById('labelRight').textContent = labelRight;
+
+      const wrap    = document.getElementById('wrap');
+      const mvLeft  = document.getElementById('left');
+      const mvRight = document.getElementById('right');
+      const handle  = document.getElementById('handle');
+      const divider = document.getElementById('divider');
+
+      if (leftSrc)  mvLeft.src  = leftSrc;
+      if (rightSrc) mvRight.src = rightSrc;
+
+      let exposure = 50;
+      const setExposure = (pct) => {
+        exposure = Math.max(0, Math.min(100, pct));
+        // Reveal only the LEFT `exposure%` of #left; the rest exposes #right
+        // underneath. Since #left has pointer-events: none, this is purely
+        // visual — all drags still go to #right.
+        mvLeft.style.clipPath = `inset(0 ${100 - exposure}% 0 0)`;
+        divider.style.left = `${exposure}%`;
+        handle.style.left  = `${exposure}%`;
+        handle.setAttribute('aria-valuenow', Math.round(exposure).toString());
+      };
+      setExposure(exposure);
+
+      // Drag handle
+      let dragging = false;
+      const startDrag = (e) => {
+        dragging = true;
+        handle.setPointerCapture?.(e.pointerId);
+        e.preventDefault();
+      };
+      const endDrag = (e) => {
+        dragging = false;
+        handle.releasePointerCapture?.(e.pointerId);
+      };
+      const moveDrag = (e) => {
+        if (!dragging) return;
+        const r = wrap.getBoundingClientRect();
+        const x = (e.clientX - r.left);
+        setExposure((x / r.width) * 100);
+      };
+      handle.addEventListener('pointerdown', startDrag);
+      window.addEventListener('pointerup',   endDrag);
+      window.addEventListener('pointercancel', endDrag);
+      window.addEventListener('pointermove', moveDrag);
+
+      // Keyboard
+      handle.tabIndex = 0;
+      handle.addEventListener('keydown', (e) => {
+        const step = e.shiftKey ? 10 : 2;
+        if (e.key === 'ArrowLeft')  { setExposure(exposure - step); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { setExposure(exposure + step); e.preventDefault(); }
+      });
+
+      // Camera sync
+      let syncing = false;
+      const copyCamera = (src, dst) => {
+        if (syncing) return;
+        syncing = true;
+        try {
+          const orbit  = src.getCameraOrbit();
+          const target = src.getCameraTarget();
+          const fov    = src.getFieldOfView();
+          dst.cameraOrbit  = `${orbit.theta}rad ${orbit.phi}rad ${orbit.radius}m`;
+          dst.cameraTarget = `${target.x}m ${target.y}m ${target.z}m`;
+          dst.fieldOfView  = `${fov}deg`;
+        } finally {
+          Promise.resolve().then(() => { syncing = false; });
+        }
+      };
+      // Surface model-viewer errors to the console so failing glbs are
+      // debuggable directly from the browser devtools.
+      [mvLeft, mvRight].forEach((mv) => {
+        mv.addEventListener('error', (ev) => {
+          console.error('[model-viewer] load error', {src: mv.src, detail: ev.detail});
+        });
+      });
+
+      Promise.all([
+        new Promise((r) => mvLeft.addEventListener('load',  r, { once: true })),
+        new Promise((r) => mvRight.addEventListener('load', r, { once: true })),
+      ]).then(() => {
+        // Rotation always originates from the bottom viewer (which owns pointer
+        // events); we only need a one-way sync from right → left.
+        const push = () => copyCamera(mvRight, mvLeft);
+        push();
+        mvRight.addEventListener('camera-change', push);
+      });
+    </script>
+  </body>
+</html>
