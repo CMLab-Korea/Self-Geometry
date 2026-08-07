@@ -31,9 +31,9 @@
             <div class="nav-links">
                 <a href="#tldr">TL;DR</a>
                 <a href="#overview">Overview</a>
+                <a href="#interactive-examples">Demo</a>
                 <a href="#method">Method</a>
                 <a href="#quantitative">Results</a>
-                <a href="#interactive-examples">Demo</a>
                 <a href="#citation">Citation</a>
             </div>
         </div>
@@ -50,10 +50,10 @@
                 <h3 class="banner-subtitle" style="margin-bottom: 14px;">GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models</h3>
 
                 <div class="authors">
-                    <a href="#" target="_blank">Seokhyun Youn<sup>1</sup></a>,
-                    <a href="#" target="_blank">Dahyeon Kye<sup>1</sup></a>,
-                    <a href="#" target="_blank">Sung-Ho Bae<sup>2,&dagger;</sup></a>,
-                    <a href="https://cmlab-korea.github.io/" target="_blank">Jihyong Oh<sup>1,&dagger;</sup></a>
+                    <a href="https://github.com/sh25youn2" target="_blank">Seokhyun Youn<sup>1</sup></a>,
+                    <a href="https://github.com/rpdahxn" target="_blank">Dahyeon Kye<sup>1</sup></a>,
+                    <a href="https://scholar.google.com/citations?user=EULut5oAAAAJ&amp;hl=ko" target="_blank">Sung-Ho Bae<sup>2,&dagger;</sup></a>,
+                    <a href="https://github.com/JihyongOh" target="_blank">Jihyong Oh<sup>1,&dagger;</sup></a>
                     <br><br>
                     <sup>1</sup><img src="assets/cmlab_logo.png" alt="CMLab" class="sg-affil-inline-logo">
                     Creative Vision and Multimedia Lab (CMLab),
@@ -117,6 +117,38 @@
                     </figcaption>
                 </figure>
             </div>
+        </div>
+    </section>
+
+    <!-- Interactive Examples: baseline vs Self-Geometry slider comparison -->
+    <section id="interactive-examples" class="interactive-results">
+        <div class="container">
+            <h2 class="section-title">Interactive Examples</h2>
+            <p class="sg-section-desc">
+                Drag the slider to compare each pretrained VFM's <strong>baseline</strong> reconstruction
+                with the one adapted by our <strong>Self-Geometry</strong>.
+            </p>
+
+            <!-- Tabs: backbones -->
+            <div class="sg-tabs sg-tabs-bb" role="tablist" aria-label="Backbone">
+                <button class="sg-tab"        role="tab" data-backbone="vggt">VGGT</button>
+                <button class="sg-tab active" role="tab" data-backbone="pi3">&pi;<sup>3</sup></button>
+                <button class="sg-tab"        role="tab" data-backbone="da3">DA3-Giant</button>
+                <button class="sg-tab"        role="tab" data-backbone="da3l">DA3-Large</button>
+                <button class="sg-tab"        role="tab" data-backbone="da3b">DA3-Base</button>
+            </div>
+
+            <!-- Sub-tabs: datasets (rebuilt when backbone changes) -->
+            <div class="sg-tabs sg-tabs-ds" role="tablist" aria-label="Dataset" id="sgDatasetTabs"></div>
+
+            <!-- Toggle: raw-prediction vs threshold-error map (applies to both rows) -->
+            <div class="sg-tabs sg-tabs-mode" role="tablist" aria-label="Coloring mode">
+                <button class="sg-tab"        role="tab" data-mode="rgb">Predicted map</button>
+                <button class="sg-tab active" role="tab" data-mode="error">Error map</button>
+            </div>
+
+            <!-- Slider grid (rebuilt when dataset changes) -->
+            <div class="sg-slider-grid" id="sgSliderGrid"></div>
         </div>
     </section>
 
@@ -240,38 +272,6 @@
                     and posed (w/ p.) modes on the same four benchmarks. Same row layout and color coding as Table II.
                 </figcaption>
             </figure>
-        </div>
-    </section>
-
-    <!-- Interactive Examples: baseline vs Self-Geometry slider comparison -->
-    <section id="interactive-examples" class="interactive-results">
-        <div class="container">
-            <h2 class="section-title">Interactive Examples</h2>
-            <p class="sg-section-desc">
-                Drag the slider to compare each pretrained VFM's <strong>baseline</strong> reconstruction
-                with the one adapted by our <strong>Self-Geometry</strong>.
-            </p>
-
-            <!-- Tabs: backbones -->
-            <div class="sg-tabs sg-tabs-bb" role="tablist" aria-label="Backbone">
-                <button class="sg-tab"        role="tab" data-backbone="vggt">VGGT</button>
-                <button class="sg-tab active" role="tab" data-backbone="pi3">&pi;<sup>3</sup></button>
-                <button class="sg-tab"        role="tab" data-backbone="da3">DA3-Giant</button>
-                <button class="sg-tab"        role="tab" data-backbone="da3l">DA3-Large</button>
-                <button class="sg-tab"        role="tab" data-backbone="da3b">DA3-Base</button>
-            </div>
-
-            <!-- Sub-tabs: datasets (rebuilt when backbone changes) -->
-            <div class="sg-tabs sg-tabs-ds" role="tablist" aria-label="Dataset" id="sgDatasetTabs"></div>
-
-            <!-- Toggle: raw-prediction vs threshold-error map (applies to both rows) -->
-            <div class="sg-tabs sg-tabs-mode" role="tablist" aria-label="Coloring mode">
-                <button class="sg-tab"        role="tab" data-mode="rgb">Predicted map</button>
-                <button class="sg-tab active" role="tab" data-mode="error">Error map</button>
-            </div>
-
-            <!-- Slider grid (rebuilt when dataset changes) -->
-            <div class="sg-slider-grid" id="sgSliderGrid"></div>
         </div>
     </section>
 
