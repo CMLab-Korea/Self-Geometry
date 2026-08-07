@@ -1,5 +1,188 @@
-/* Self-Geometry — Interactive Examples additions. */
+/* Self-Geometry — additions on top of DA3 base styles (styles.css). */
+/* Palette: CMLab navy #0D207F; keep DA3 typography / .container / .navbar / .banner. */
 
+/* ---------- Hero: icon + wordmark alignment, affiliation logos ---------- */
+.sg-hero-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+}
+.sg-hero-icon {
+    width: 72px;
+    height: 72px;
+    object-fit: contain;
+    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
+}
+.sg-hero-wordmark {
+    margin: 0;
+    background: linear-gradient(120deg, #0D207F 0%, #3350c9 55%, #6b7dd6 100%);
+    background-clip: text;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    letter-spacing: -0.02em;
+}
+.sg-affil-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 22px 34px;
+    margin: 18px auto 0;
+    max-width: 800px;
+    font-size: 0.95rem;
+    line-height: 1.4;
+    color: #ffffffcc;
+}
+.sg-affil {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    color: inherit;
+    text-decoration: none;
+    transition: color 0.15s;
+}
+.sg-affil:hover { color: #ffffff; }
+.sg-affil-logo {
+    height: 34px;
+    width: auto;
+    background: #ffffff;
+    padding: 4px 8px;
+    border-radius: 6px;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+}
+
+.link-btn-disabled {
+    opacity: 0.55;
+    pointer-events: none;
+}
+
+/* ---------- TL;DR (MIVE-style: isolated by hr) ---------- */
+.sg-tldr-section { padding: 40px 0 20px; }
+.sg-tldr-hr {
+    max-width: 900px;
+    margin: 0 auto;
+    border: none;
+    border-top: 1px solid #d5d9e3;
+}
+.sg-tldr-text {
+    max-width: 900px;
+    margin: 22px auto;
+    padding: 0 24px;
+    text-align: center;
+    line-height: 1.7;
+    font-size: 1.03rem;
+    color: #333;
+}
+.sg-tldr-text strong { color: #0D207F; }
+
+/* ---------- Generic content sections (Motivation / Method / Results / etc.) ---------- */
+.sg-content-section {
+    padding: 60px 0;
+    background: #ffffff;
+}
+.sg-content-section:nth-of-type(even) {
+    background: #f6f7fb;
+}
+
+.sg-figure {
+    max-width: 1100px;
+    margin: 24px auto 0;
+    text-align: center;
+}
+.sg-figure img {
+    width: 100%;
+    height: auto;
+    border-radius: 8px;
+    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    background: #ffffff;
+}
+.sg-figure figcaption {
+    max-width: 900px;
+    margin: 12px auto 0;
+    color: #555;
+    font-size: 0.9rem;
+    line-height: 1.55;
+    text-align: left;
+}
+.sg-figure figcaption strong { color: #0D207F; }
+
+/* ---------- Method: 3 core-module cards ---------- */
+.sg-modules-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 20px;
+    margin-top: 28px;
+    max-width: 1100px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.sg-module-card {
+    background: #ffffff;
+    border: 1px solid #eaecef;
+    border-radius: 12px;
+    padding: 22px;
+    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.sg-module-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    padding-bottom: 12px;
+    border-bottom: 2px solid #f0f2f6;
+}
+.sg-module-header i {
+    color: #0D207F;
+    font-size: 1.6rem;
+    margin-top: 4px;
+}
+.sg-module-header h3 {
+    margin: 0;
+    color: #0D207F;
+    font-size: 1.1rem;
+    font-weight: 700;
+    line-height: 1.25;
+}
+.sg-module-header h3 span {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 500;
+    color: #666;
+    margin-top: 2px;
+}
+.sg-module-card p {
+    margin: 0;
+    color: #444;
+    font-size: 0.92rem;
+    line-height: 1.6;
+}
+.sg-module-card strong { color: #0D207F; }
+
+/* ---------- Footer additions: affiliation-logo row + pageviews ---------- */
+.sg-footer-affils {
+    display: flex;
+    justify-content: center;
+    gap: 40px;
+    margin-bottom: 18px;
+}
+.sg-footer-affils img {
+    height: 44px;
+    width: auto;
+    background: #ffffff;
+    padding: 6px 10px;
+    border-radius: 6px;
+}
+.sg-footer-counter {
+    text-align: center;
+    color: #ccc;
+    font-size: 0.9rem;
+    margin-top: 4px;
+}
+
+/* ---------- Original Interactive Examples helper (unchanged) ---------- */
 .sg-section-desc {
     max-width: 900px;
     margin: 0 auto 24px;

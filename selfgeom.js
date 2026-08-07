@@ -24,14 +24,14 @@
         'hiroom':    'HiRoom',
         'scannetpp': 'ScanNet++',
     };
-    const HIDDEN_DATASETS = new Set(['eth3d']);
+    const HIDDEN_DATASETS = new Set(['eth3d', '7scenes']);
     const TYPES = ['depth', 'pointmap'];   // grid row order
 
     let manifest   = null;
     let activeBB   = null;
     let activeDS   = 'scannetpp';  // preferred initial dataset; falls back to
                                    // the backbone's first available if absent
-    let activeMode = 'rgb';        // 'rgb' | 'error'   (predicted map | error map)
+    let activeMode = 'error';      // 'rgb' | 'error'   (predicted map | error map)
 
     const $ = (sel, root = document) => root.querySelector(sel);
 
@@ -237,17 +237,22 @@
         return false;
     };
 
+    // Cap on scenes to render per (backbone, dataset) combo.
+    // Manifest holds the top-3 by absolute Δfscore; we display the top-2 here.
+    const MAX_SCENES_PER_COMBO = 2;
+
     const renderGrid = () => {
         const grid = $('#sgSliderGrid');
         grid.innerHTML = '';
         if (!manifest || !activeBB || !activeDS) return;
-        const scenes = manifest.backbones[activeBB]?.scenes?.[activeDS] || [];
+        const allScenes = manifest.backbones[activeBB]?.scenes?.[activeDS] || [];
+        const scenes = allScenes.slice(0, MAX_SCENES_PER_COMBO);
         if (scenes.length === 0) {
             grid.innerHTML = `<p style="text-align:center;color:#888;grid-column:1/-1;">No scenes for ${activeBB} × ${activeDS}.</p>`;
             return;
         }
         // Depth row: skip scenes without improvement frames entirely.
-        // Pointmap row: always full 3 scenes.
+        // Pointmap row: always the same top-N scenes.
         for (const type of TYPES) {
             for (const s of scenes) {
                 if (!hasDataFor(s, type)) continue;
