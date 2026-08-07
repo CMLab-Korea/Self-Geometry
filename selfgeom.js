@@ -238,8 +238,8 @@
     };
 
     // Cap on scenes to render per (backbone, dataset) combo.
-    // Manifest holds the top-3 by absolute Δfscore; we display the top-2 here.
-    const MAX_SCENES_PER_COMBO = 2;
+    // Manifest holds the top-3 by absolute Δfscore.
+    const MAX_SCENES_PER_COMBO = 3;
 
     const renderGrid = () => {
         const grid = $('#sgSliderGrid');

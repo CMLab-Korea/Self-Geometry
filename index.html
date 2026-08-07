@@ -45,7 +45,7 @@
             <div class="banner-text">
                 <div class="sg-hero-title">
                     <img src="assets/icon.png" alt="Self-Geometry icon" class="sg-hero-icon">
-                    <h2 class="banner-title sg-hero-wordmark">Self-Geometry</h2>
+                    <h2 class="banner-title">Self-Geometry</h2>
                 </div>
                 <h3 class="banner-subtitle" style="margin-bottom: 14px;">GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models</h3>
 
@@ -55,19 +55,17 @@
                     <a href="#" target="_blank">Sung-Ho Bae<sup>2,&dagger;</sup></a>,
                     <a href="https://cmlab-korea.github.io/" target="_blank">Jihyong Oh<sup>1,&dagger;</sup></a>
                     <br><br>
+                    <sup>1</sup><img src="assets/cmlab_logo.png" alt="CMLab" class="sg-affil-inline-logo">
+                    Creative Vision and Multimedia Lab (CMLab),
+                    <img src="assets/cau_logo.png" alt="Chung-Ang University" class="sg-affil-inline-logo sg-affil-inline-logo--uni">
+                    Chung-Ang University
+                    &nbsp;&nbsp;
+                    <sup>2</sup><img src="assets/enclab_logo.png" alt="ENC Lab" class="sg-affil-inline-logo sg-affil-inline-logo--enc">
+                    Efficient Neural Computing Lab (ENC Lab),
+                    <img src="assets/khu_logo.png" alt="Kyung Hee University" class="sg-affil-inline-logo sg-affil-inline-logo--uni">
+                    Kyung Hee University
+                    <br>
                     <sup>&dagger;</sup>Corresponding authors
-                </div>
-
-                <!-- Affiliation logos row -->
-                <div class="sg-affil-row">
-                    <a href="https://cmlab-korea.github.io/" target="_blank" class="sg-affil">
-                        <img src="assets/cmlab_logo.png" alt="CMLab" class="sg-affil-logo">
-                        <span><sup>1</sup>Creative Vision and Multimedia Lab (CMLab)</span>
-                    </a>
-                    <a href="#" target="_blank" class="sg-affil">
-                        <img src="assets/enclab_logo.png" alt="ENC Lab" class="sg-affil-logo">
-                        <span><sup>2</sup>Efficient Neural Computing Lab (ENC Lab)</span>
-                    </a>
                 </div>
 
                 <div class="banner-links">
@@ -94,8 +92,9 @@
                 <em>Self-Geometry</em> is a <strong>GT-free</strong> and <strong>plug-and-play</strong> test-time
                 adaptation pipeline that imposes explicit multi-view geometric constraints on pretrained 3D VFMs
                 (VGGT, &pi;<sup>3</sup>, DA3) by using 2D pixel correspondences as pseudo GT
-                &mdash; delivering consistent pose and geometry gains across <strong>six VFMs</strong> and
-                <strong>four benchmarks</strong> within <strong>two minutes per scene</strong>.
+                &mdash; delivering <strong>consistent improvements in both Pose Estimation and Geometry Estimation</strong>
+                across <strong>six VFMs</strong> and <strong>four benchmarks</strong> within
+                <strong>two minutes per scene</strong>.
             </p>
             <hr class="sg-tldr-hr">
         </div>
@@ -179,8 +178,8 @@
                     <p>
                         Combines the <strong>point-to-point MVC Loss</strong> (supervises pose &amp; depth jointly)
                         and the <strong>depth-independent point-to-line EC Loss</strong> (supervises pose alone),
-                        then applies <strong>Gradient Disentanglement</strong> to prevent the two losses from conflicting
-                        on the shared camera-pose parameters.
+                        then applies <strong>Gradient Disentanglement</strong> to prevent the gradient conflict
+                        that can arise between the two losses on the camera poses.
                     </p>
                 </div>
 
@@ -191,9 +190,8 @@
                     </div>
                     <p>
                         An <strong>SO(3)-guided view sampler</strong> that selects the target view maximizing
-                        SO(3)-bin entropy (<em>Geometry-Rich View Selection</em>) and samples source views from each
-                        angular bin (<em>Angular-Neighbor Sampling</em>) &mdash; achieving uniform scene coverage
-                        without scene-scale normalization.
+                        SO(3)-bin entropy (<em>Geometry-Rich View Selection</em>) using
+                        <strong>scene-scale-invariant</strong> SO(3) geodesic distances, achieving uniform scene coverage.
                     </p>
                 </div>
 
@@ -251,9 +249,7 @@
             <h2 class="section-title">Interactive Examples</h2>
             <p class="sg-section-desc">
                 Drag the slider to compare each pretrained VFM's <strong>baseline</strong> reconstruction
-                with the one adapted by our <strong>Self-Geometry</strong>. The two point clouds
-                share the same camera &mdash; rotating one rotates the other. Each pair shows the
-                top scenes by geometry F1-score improvement on the corresponding benchmark.
+                with the one adapted by our <strong>Self-Geometry</strong>.
             </p>
 
             <!-- Tabs: backbones -->
@@ -307,11 +303,10 @@
     <section id="acknowledgment" class="sg-content-section">
         <div class="container">
             <h2 class="section-title">Acknowledgment</h2>
-            <p class="sg-section-desc" style="max-width:820px;">
-                This research was supported by the Creative Vision and Multimedia Lab (CMLab) at Chung-Ang University
-                and the Efficient Neural Computing Lab (ENC Lab) at Kyung Hee University. We thank the authors of
-                VGGT, &pi;<sup>3</sup>, and Depth Anything 3 for releasing their pretrained models, and the authors of
-                Free-Geometry and TCO for their public baselines.
+            <p class="sg-section-desc" style="max-width:900px; text-align: justify;">
+                This work was supported by the National Research Foundation of Korea (NRF) grant funded by the Korea government (MSIT) (RS-2025-23524035, 25%).
+                This research was supported by the MSIT (Ministry of Science and ICT), Korea, under the Graduate School of Virtual Convergence support program (RS-2024-00418847, 50%) supervised by the IITP (Institute for Information &amp; Communications Technology Planning &amp; Evaluation).
+                This work was partly supported by Institute of Information &amp; Communications Technology Planning &amp; Evaluation (IITP, AI Computing Support Project for R&amp;D) grant funded by the Korea government (MSIT) (RS-2026-25505492, High-Performance Research AI Computing Infrastructure Support at the 2 PFLOPS Scale, 25%).
             </p>
         </div>
     </section>
@@ -332,25 +327,10 @@
         </div>
     </section>
 
-    <!-- Footer: affiliations + pageviews -->
+    <!-- Footer -->
     <footer class="footer">
         <div class="container">
-            <div class="sg-footer-affils">
-                <a href="https://cmlab-korea.github.io/" target="_blank">
-                    <img src="assets/cmlab_logo.png" alt="CMLab">
-                </a>
-                <a href="#" target="_blank">
-                    <img src="assets/enclab_logo.png" alt="ENC Lab">
-                </a>
-            </div>
-            <div class="sg-footer-counter">
-                Pageviews:
-                <a href="https://www.hitwebcounter.com" target="_blank" rel="noopener">
-                    <img src="https://hitwebcounter.com/counter/counter.php?page=20716823&style=0006&nbdigits=6&type=page&initCount=0"
-                         alt="Web Counter" style="vertical-align:middle;">
-                </a>
-            </div>
-            <p style="margin-top:14px;">&copy; 2026 CMLab &middot; Chung-Ang University. Page template adapted from Depth Anything 3.</p>
+            <p>&copy; 2026 CMLab &middot; Chung-Ang University. Page template adapted from Depth Anything 3.</p>
         </div>
     </footer>
 

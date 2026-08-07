@@ -15,14 +15,8 @@
     object-fit: contain;
     filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
 }
-.sg-hero-wordmark {
-    margin: 0;
-    background: linear-gradient(120deg, #0D207F 0%, #3350c9 55%, #6b7dd6 100%);
-    background-clip: text;
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
-    letter-spacing: -0.02em;
-}
+/* Note: .sg-hero-wordmark deprecated. Banner title now uses DA3's default
+   .banner-title (plain white text + text-shadow), matching the original template. */
 .sg-affil-row {
     display: flex;
     flex-wrap: wrap;
@@ -55,6 +49,29 @@
 .link-btn-disabled {
     opacity: 0.55;
     pointer-events: none;
+}
+
+/* Inline lab logos inside the affiliation line (hero) */
+.sg-affil-inline-logo {
+    height: 22px;
+    width: auto;
+    vertical-align: -6px;
+    margin: 0 6px 0 2px;
+    background: #ffffff;
+    padding: 2px 4px;
+    border-radius: 3px;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+/* ENC Lab bitmap has no built-in bleed padding, so give it extra breathing room. */
+.sg-affil-inline-logo--enc {
+    padding: 4px 8px;
+}
+/* University crests: same white-box treatment as lab logos, slightly taller. */
+.sg-affil-inline-logo--uni {
+    height: 26px;
+    padding: 4px 6px;
+    vertical-align: -8px;
+    margin: 0 4px 0 4px;
 }
 
 /* ---------- TL;DR (MIVE-style: isolated by hr) ---------- */
@@ -222,11 +239,16 @@
     border-color: #0D207F;
 }
 
+/* 2 (types) × 3 (scenes) grid: depth row on top, pointmap row on bottom.
+   Fixed 3 columns on wide viewports; collapses on narrower screens. */
 .sg-slider-grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(360px, 1fr));
+    grid-template-columns: repeat(3, minmax(0, 1fr));
     gap: 20px;
     margin-top: 8px;
+}
+@media (max-width: 900px) {
+    .sg-slider-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 .sg-slider-card {
@@ -353,8 +375,6 @@
 }
 
 @media (max-width: 640px) {
-    .sg-slider-grid {
-        grid-template-columns: 1fr;
-    }
+    .sg-slider-grid { grid-template-columns: 1fr; }
     .sg-tab { padding: 6px 12px; font-size: 0.85rem; }
 }
