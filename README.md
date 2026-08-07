@@ -44,7 +44,7 @@ In contrast to this implicit signal, we propose **Self-Geometry**, a **plug-and-
 - **Frame Angular-Neighbor (FAN)**, a view sampler based on *scene-scale-invariant* SO(3) geodesic distances for lightly imposing these constraints;
 - **Lightweight TTA**, which adapts VFMs via **LoRA**.
 
-Our method achieves consistent improvements in both Pose Estimation and Geometry Estimation across **six VFMs** (VGGT, π³, DA3-Giant/Large/Base/Small) and **four benchmarks** (7Scenes, ETH3D, ScanNet++, HiRoom), completing scene-wise adaptation within **two minutes per scene** on a single NVIDIA RTX PRO 6000.
+Our method achieves consistent improvements in both Pose Estimation and Geometry Estimation across **six VFMs** (VGGT, π³, DA3-Giant/Large/Base/Small) and **four benchmarks** (7Scenes, ETH3D, ScanNet++, HiRoom), completing scene-wise adaptation within **two minutes per-scene** on a single NVIDIA RTX PRO 6000.
 
 </details>
 
