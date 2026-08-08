@@ -1,5 +1,5 @@
 <h1>
-  [Under Review]  <img src="assets/icon.png" width="30" align="absmiddle">
+  <img src="assets/icon.png" width="30" align="absmiddle">
   Self-Geometry: GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models
 </h1>
 
@@ -70,7 +70,7 @@ Together, these components operate as a **GT-free**, **Teacher-free**, **Plug-an
 
 ## Code Release
 
-**Code will be released upon paper acceptance.** In the meantime, please visit our
+**Code will be released soon.** In the meantime, please visit our
 [project page](https://cmlab-korea.github.io/Self-Geometry/) for interactive pointmap /
 depth-map comparisons, quantitative and qualitative results.
 
