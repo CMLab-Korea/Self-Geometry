@@ -13,3 +13,42 @@ build_tables.py
 render_*.py
 serve.py
 *.log
+
+# IDE
+.vscode/
+.idea/
+*.iml
+
+# Python
+__pycache__/
+*.py[cod]
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+.venv/
+venv/
+env/
+
+# JS lockfiles / build (project ships static HTML/JS only)
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+dist/
+build/
+.cache/
+
+# Editor / patch leftovers
+*.bak
+*.orig
+*.tmp
+*.rej
+*.swo
+.#*
+.history/
+
+# Secrets
+.env
+.env.local
+.envrc
+*.pem
+*.key
