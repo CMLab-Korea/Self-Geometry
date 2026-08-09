@@ -6,3 +6,10 @@ Thumbs.db
 
 # Node artifacts (none used but future-proof)
 node_modules/
+
+scratchpad/
+select_*.py
+build_tables.py
+render_*.py
+serve.py
+*.log

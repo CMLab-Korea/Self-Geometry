@@ -1,49 +1,97 @@
-/* Self-Geometry — additions on top of DA3 base styles (styles.css). */
-/* Palette: CMLab navy #0D207F; keep DA3 typography / .container / .navbar / .banner. */
+/* Self-Geometry-specific additions on top of styles.css.
+   Palette: CMLab navy #0D207F. */
 
-/* ---------- Hero: icon + wordmark alignment, affiliation logos ---------- */
+:root {
+    --sg-navy:       #0D207F;
+    --sg-navy-2:     #1a2fa0;
+    --sg-navy-soft:  #4a5bc3;
+    --sg-ink:        #1e293b;
+    --sg-ink-soft:   #5a6377;
+    --sg-line:       #e6e9f2;
+    --sg-panel:      #ffffff;
+    --sg-panel-2:    #f6f7fb;
+    --sg-navy-50:    #eef1ff;
+    --sg-navy-100:   #e2e7fb;
+    --sg-navy-grad:  linear-gradient(110deg, #4a5bc3 0%, #1a2fa0 55%, #0D207F 100%);
+    --sg-good:       #0a7a0a;
+    --sg-bad:        #c8282a;
+}
+
+/* ---------- Global body gradient ---------- */
+body {
+    background:
+        radial-gradient(1200px 600px at 82% -10%, #edf0ff 0%, rgba(237,240,255,0) 60%),
+        radial-gradient(1000px 500px at -8% 8%,  #f0f3ff 0%, rgba(240,243,255,0) 55%),
+        var(--bg-primary, #ffffff);
+}
+
+/* ---------- Divider between big sections ---------- */
+.sg-divider-soft {
+    height: 1px;
+    background: linear-gradient(90deg, transparent, var(--sg-line), transparent);
+    margin: 0 auto;
+    max-width: 1080px;
+}
+
+/* ---------- Eyebrow label (uppercase small caps above section titles) ---------- */
+.sg-eyebrow {
+    text-transform: uppercase;
+    letter-spacing: 0.18em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--sg-navy-soft);
+    text-align: center;
+    display: block;
+    margin-bottom: 0.35rem;
+}
+
+/* Override base .section-title so we can host the underline + tighten spacing.
+   Keep the base display:block + text-align:center (title text centers inside its
+   own full-width box); attach the underline as an absolutely-positioned ::after
+   inside a relative parent, and center THAT with 50%/translateX(-50%).
+   (Do NOT use display:inline-block here — parents like .interactive-results and
+   .citation have no text-align:center, so shrink-wrapped titles would left-align.) */
+.sg-content-section .section-title,
+.interactive-results .section-title,
+.citation .section-title {
+    margin-bottom: 0.6rem;
+    padding-bottom: 12px;
+    position: relative;
+}
+.sg-content-section .section-title::after,
+.interactive-results .section-title::after,
+.citation .section-title::after {
+    content: '';
+    position: absolute;
+    width: 54px;
+    height: 4px;
+    border-radius: 4px;
+    background: var(--sg-navy-grad);
+    bottom: 0;
+    left: 50%;
+    transform: translateX(-50%);
+}
+
+/* ---------- Hero: icon (Option C: large + float) + affiliation logos ---------- */
 .sg-hero-title {
     display: flex;
     align-items: center;
     justify-content: center;
-    gap: 18px;
+    gap: 22px;
     flex-wrap: wrap;
 }
 .sg-hero-icon {
-    width: 72px;
-    height: 72px;
+    width: 180px;
+    height: 180px;
     object-fit: contain;
-    filter: drop-shadow(0 4px 12px rgba(0,0,0,0.18));
+    filter: drop-shadow(0 24px 40px rgba(13, 32, 127, 0.32));
+    animation: sg-float 6s ease-in-out infinite;
+    display: block;
+    margin: 0 auto 6px;
 }
-/* Note: .sg-hero-wordmark deprecated. Banner title now uses DA3's default
-   .banner-title (plain white text + text-shadow), matching the original template. */
-.sg-affil-row {
-    display: flex;
-    flex-wrap: wrap;
-    justify-content: center;
-    gap: 22px 34px;
-    margin: 18px auto 0;
-    max-width: 800px;
-    font-size: 0.95rem;
-    line-height: 1.4;
-    color: #ffffffcc;
-}
-.sg-affil {
-    display: inline-flex;
-    align-items: center;
-    gap: 10px;
-    color: inherit;
-    text-decoration: none;
-    transition: color 0.15s;
-}
-.sg-affil:hover { color: #ffffff; }
-.sg-affil-logo {
-    height: 34px;
-    width: auto;
-    background: #ffffff;
-    padding: 4px 8px;
-    border-radius: 6px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+@keyframes sg-float {
+    0%, 100% { transform: translateY(0); }
+    50%      { transform: translateY(-12px); }
 }
 
 .link-btn-disabled {
@@ -62,11 +110,9 @@
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
-/* ENC Lab bitmap has no built-in bleed padding, so give it extra breathing room. */
 .sg-affil-inline-logo--enc {
     padding: 4px 8px;
 }
-/* University crests: same white-box treatment as lab logos, slightly taller. */
 .sg-affil-inline-logo--uni {
     height: 26px;
     padding: 4px 6px;
@@ -74,32 +120,79 @@
     margin: 0 4px 0 4px;
 }
 
-/* ---------- TL;DR (MIVE-style: isolated by hr) ---------- */
-.sg-tldr-section { padding: 40px 0 20px; }
-.sg-tldr-hr {
+/* ---------- Hero stat pills (three big numbers) ---------- */
+.sg-stat-row {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 18px;
+    justify-content: center;
+    margin: 28px auto 0;
+    max-width: 900px;
+}
+.sg-stat {
+    flex: 1 1 220px;
+    max-width: 260px;
+    background: rgba(255, 255, 255, 0.9);
+    border: 1px solid rgba(255, 255, 255, 0.6);
+    border-radius: 18px;
+    padding: 18px 20px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(13, 32, 127, 0.16);
+    backdrop-filter: blur(6px);
+}
+.sg-stat .sg-stat-big {
+    font-weight: 800;
+    font-size: 2.2rem;
+    color: var(--sg-navy);
+    line-height: 1;
+    letter-spacing: -0.02em;
+}
+.sg-stat .sg-stat-label {
+    color: var(--sg-ink-soft);
+    font-size: 0.86rem;
+    margin-top: 8px;
+    line-height: 1.35;
+}
+
+/* ---------- TL;DR box (left navy border) ---------- */
+.sg-tldr-section {
+    padding: 48px 0 24px;
+    scroll-margin-top: 80px;
+}
+.sg-tldr-box {
     max-width: 900px;
     margin: 0 auto;
-    border: none;
-    border-top: 1px solid #d5d9e3;
+    background: linear-gradient(180deg, #fbfcff, #f2f5ff);
+    border: 1px solid var(--sg-navy-100);
+    border-left: 5px solid var(--sg-navy);
+    padding: 22px 26px 24px;
+    border-radius: 16px;
+    box-shadow: 0 12px 36px rgba(13, 32, 127, 0.08);
+}
+.sg-tldr-title {
+    color: var(--sg-navy);
+    font-size: 1.05rem;
+    font-weight: 800;
+    letter-spacing: 0.06em;
+    text-transform: uppercase;
+    margin: 0 0 8px;
 }
 .sg-tldr-text {
-    max-width: 900px;
-    margin: 22px auto;
-    padding: 0 24px;
-    text-align: center;
+    margin: 0;
     line-height: 1.7;
-    font-size: 1.03rem;
-    color: #333;
+    font-size: 1.02rem;
+    color: var(--sg-ink);
 }
-.sg-tldr-text strong { color: #0D207F; }
+.sg-tldr-text strong { color: var(--sg-navy); }
 
 /* ---------- Generic content sections (Motivation / Method / Results / etc.) ---------- */
 .sg-content-section {
     padding: 60px 0;
-    background: #ffffff;
+    background: transparent;
+    text-align: center;
 }
 .sg-content-section:nth-of-type(even) {
-    background: #f6f7fb;
+    background: rgba(255, 255, 255, 0.6);
 }
 
 .sg-figure {
@@ -110,101 +203,97 @@
 .sg-figure img {
     width: 100%;
     height: auto;
-    border-radius: 8px;
-    box-shadow: 0 4px 20px rgba(0,0,0,0.08);
+    border-radius: 12px;
+    box-shadow: 0 14px 40px rgba(13, 32, 127, 0.08);
     background: #ffffff;
+    border: 1px solid var(--sg-line);
 }
 .sg-figure figcaption {
     max-width: 900px;
     margin: 12px auto 0;
-    color: #555;
+    color: var(--sg-ink-soft);
     font-size: 0.9rem;
     line-height: 1.55;
     text-align: left;
 }
-.sg-figure figcaption strong { color: #0D207F; }
+.sg-figure figcaption strong { color: var(--sg-navy); }
 
 /* ---------- Method: 3 core-module cards ---------- */
 .sg-modules-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    margin-top: 28px;
+    gap: 22px;
+    margin: 32px auto 0;
     max-width: 1100px;
-    margin-left: auto;
-    margin-right: auto;
 }
 .sg-module-card {
-    background: #ffffff;
-    border: 1px solid #eaecef;
-    border-radius: 12px;
-    padding: 22px;
-    box-shadow: 0 2px 12px rgba(0,0,0,0.05);
+    background: var(--sg-panel);
+    border: 1px solid var(--sg-line);
+    border-radius: 20px;
+    padding: 24px;
+    box-shadow: 0 14px 40px rgba(13, 32, 127, 0.06);
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 12px;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+.sg-module-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 22px 48px rgba(13, 32, 127, 0.12);
 }
 .sg-module-header {
     display: flex;
     align-items: flex-start;
     gap: 14px;
     padding-bottom: 12px;
-    border-bottom: 2px solid #f0f2f6;
+    border-bottom: 2px solid var(--sg-navy-50);
 }
 .sg-module-header i {
-    color: #0D207F;
+    color: var(--sg-navy);
     font-size: 1.6rem;
     margin-top: 4px;
 }
 .sg-module-header h3 {
     margin: 0;
-    color: #0D207F;
+    color: var(--sg-navy);
     font-size: 1.1rem;
-    font-weight: 700;
+    font-weight: 800;
     line-height: 1.25;
 }
 .sg-module-header h3 span {
     display: block;
     font-size: 0.82rem;
     font-weight: 500;
-    color: #666;
+    color: var(--sg-ink-soft);
     margin-top: 2px;
 }
 .sg-module-card p {
     margin: 0;
-    color: #444;
-    font-size: 0.92rem;
+    color: var(--sg-ink);
+    font-size: 0.94rem;
     line-height: 1.6;
+    text-align: left;
 }
-.sg-module-card strong { color: #0D207F; }
-
-/* ---------- Footer additions: affiliation-logo row + pageviews ---------- */
-.sg-footer-affils {
-    display: flex;
-    justify-content: center;
-    gap: 40px;
-    margin-bottom: 18px;
-}
-.sg-footer-affils img {
-    height: 44px;
-    width: auto;
-    background: #ffffff;
-    padding: 6px 10px;
-    border-radius: 6px;
-}
-.sg-footer-counter {
-    text-align: center;
-    color: #ccc;
-    font-size: 0.9rem;
-    margin-top: 4px;
+.sg-module-card strong { color: var(--sg-navy); }
+.sg-module-pill {
+    display: inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    letter-spacing: 0.05em;
+    padding: 2px 10px;
+    border-radius: 999px;
+    background: var(--sg-navy-100);
+    color: var(--sg-navy);
+    margin-left: 6px;
+    vertical-align: 3px;
 }
 
-/* ---------- Original Interactive Examples helper (unchanged) ---------- */
+/* ---------- Interactive Examples helper ---------- */
 .sg-section-desc {
     max-width: 900px;
     margin: 0 auto 24px;
     text-align: center;
-    color: #444;
+    color: var(--sg-ink-soft);
     line-height: 1.6;
     font-size: 0.95rem;
 }
@@ -214,53 +303,101 @@
     flex-wrap: wrap;
     justify-content: center;
     gap: 8px;
-    margin: 0 auto 16px;
+    margin: 0 auto 20px;
     max-width: 900px;
 }
-.sg-tabs-ds { margin-bottom: 24px; }
-
 .sg-tab {
     appearance: none;
-    border: 1px solid #d0d3dc;
-    background: #f6f7fb;
-    color: #333;
+    border: 1px solid var(--sg-line);
+    background: var(--sg-panel-2);
+    color: var(--sg-ink);
     font: 500 0.9rem/1.2 inherit;
     padding: 8px 16px;
     border-radius: 999px;
     cursor: pointer;
-    transition: background 0.15s, color 0.15s, border-color 0.15s;
+    transition: background 0.15s, color 0.15s, border-color 0.15s, transform 0.1s;
 }
-.sg-tab:hover {
-    background: #e6e9f5;
-}
+.sg-tab:hover { background: var(--sg-navy-50); }
 .sg-tab.active {
-    background: #0D207F;
+    background: var(--sg-navy-grad);
     color: #fff;
-    border-color: #0D207F;
+    border-color: transparent;
+    box-shadow: 0 6px 16px rgba(13, 32, 127, 0.25);
 }
+.sg-tab:active { transform: scale(0.97); }
 
-/* 2 (types) × 3 (scenes) grid: depth row on top, pointmap row on bottom.
-   Fixed 3 columns on wide viewports; collapses on narrower screens. */
+/* --- Row headers between the pointmap row and depth row --- */
+.sg-row-label {
+    text-transform: uppercase;
+    letter-spacing: 0.16em;
+    font-size: 0.78rem;
+    font-weight: 700;
+    color: var(--sg-navy-soft);
+    text-align: center;
+    display: block;
+    margin: 28px 0 12px;
+}
+.sg-row-label:first-of-type { margin-top: 0; }
+
+/* --- 5-col grid (Backbone Reel), collapses on narrower viewports --- */
 .sg-slider-grid {
     display: grid;
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-    gap: 20px;
-    margin-top: 8px;
+    grid-template-columns: repeat(5, minmax(0, 1fr));
+    gap: 18px;
 }
-@media (max-width: 900px) {
+@media (max-width: 1200px) {
+    .sg-slider-grid { grid-template-columns: repeat(3, minmax(0, 1fr)); }
+}
+@media (max-width:  760px) {
     .sg-slider-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+}
+@media (max-width:  480px) {
+    .sg-slider-grid { grid-template-columns: 1fr; }
 }
 
 .sg-slider-card {
-    position: relative;
-    background: #ffffff;
-    border-radius: 10px;
+    background: var(--sg-panel);
+    border-radius: 14px;
     overflow: hidden;
-    box-shadow: 0 2px 12px rgba(0, 0, 0, 0.08);
+    box-shadow: 0 6px 20px rgba(13, 32, 127, 0.08);
+    border: 1px solid var(--sg-line);
     display: flex;
     flex-direction: column;
 }
 
+.sg-card-header {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-between;
+    gap: 6px;
+    padding: 10px 12px 8px;
+    border-bottom: 1px solid var(--sg-navy-50);
+    background: var(--sg-panel-2);
+}
+.sg-badge {
+    display: inline-flex;
+    align-items: center;
+    padding: 3px 9px;
+    border-radius: 999px;
+    font-size: 0.72rem;
+    font-weight: 700;
+    letter-spacing: 0.02em;
+    line-height: 1.2;
+}
+.sg-badge-bb {
+    background: var(--sg-navy);
+    color: #fff;
+}
+.sg-badge-ds {
+    background: var(--sg-navy-100);
+    color: var(--sg-navy);
+}
+.sg-badge-delta {
+    background: #e6f7ea;
+    color: var(--sg-good);
+    font-variant-numeric: tabular-nums;
+}
 
 .sg-slider-card .sg-slider-frame {
     position: relative;
@@ -268,7 +405,6 @@
     aspect-ratio: 1 / 1;
     background: #fafafa;
 }
-
 .sg-slider-card iframe {
     position: absolute;
     inset: 0;
@@ -283,26 +419,28 @@
 .sg-slider-card .sg-card-meta {
     display: flex;
     flex-direction: column;
-    gap: 4px;
-    padding: 10px 14px 12px;
-    font: 400 0.85rem/1.35 -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
-    color: #444;
-    border-top: 1px solid #eef0f5;
+    gap: 3px;
+    padding: 8px 12px 10px;
+    font: 400 0.82rem/1.35 inherit;
+    color: var(--sg-ink);
+    border-top: 1px solid var(--sg-line);
 }
 .sg-card-meta .sg-scene-label {
     font-weight: 600;
-    color: #0D207F;
-    font-size: 0.92rem;
+    color: var(--sg-navy);
+    font-size: 0.86rem;
+    word-break: break-all;
 }
 .sg-card-meta .sg-metric-row {
     display: flex;
     justify-content: space-between;
-    color: #666;
+    color: var(--sg-ink-soft);
     font-variant-numeric: tabular-nums;
+    gap: 6px;
 }
 .sg-card-meta .sg-delta {
-    color: #0a7a0a;
-    font-weight: 600;
+    color: var(--sg-good);
+    font-weight: 700;
 }
 
 .sg-loading-placeholder {
@@ -315,66 +453,105 @@
     font-size: 0.85rem;
     background: #fafafa;
 }
-
-/* --- Depth-card frame carousel controls ---------------------------------- */
-.sg-nav {
-    position: absolute;
-    top: 50%;
-    transform: translateY(-50%);
-    z-index: 7;                     /* above slider handle */
-    width: 32px;
-    height: 32px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: rgba(255, 255, 255, 0.9);
-    color: #0D207F;
-    border: 1px solid rgba(0, 0, 0, 0.15);
-    border-radius: 50%;
-    font-size: 14px;
-    line-height: 1;
-    cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.18);
-    padding: 0;
-    transition: background 0.15s, transform 0.1s;
-}
-.sg-nav:hover  { background: #ffffff; }
-.sg-nav:active { transform: translateY(-50%) scale(0.94); }
-.sg-nav-prev   { left:  8px; }
-.sg-nav-next   { right: 8px; }
-
-.sg-dots {
-    position: absolute;
-    left: 50%;
-    bottom: 8px;
-    transform: translateX(-50%);
-    z-index: 7;
-    display: flex;
-    gap: 6px;
-    padding: 4px 8px;
-    background: rgba(255, 255, 255, 0.75);
-    border-radius: 12px;
-}
-.sg-dot {
-    width: 8px;
-    height: 8px;
-    padding: 0;
-    border: 0;
-    border-radius: 50%;
-    background: rgba(60, 60, 60, 0.35);
-    cursor: pointer;
-    transition: background 0.15s, transform 0.1s;
-}
-.sg-dot:hover        { background: rgba(13, 32, 127, 0.6); }
-.sg-dot.active       { background: #0D207F; transform: scale(1.2); }
-
-.sg-frame-idx {
+.sg-empty {
+    grid-column: 1 / -1;
+    text-align: center;
     color: #888;
-    font-weight: 400;
-    font-size: 0.82rem;
+    padding: 24px 0;
 }
 
-@media (max-width: 640px) {
-    .sg-slider-grid { grid-template-columns: 1fr; }
-    .sg-tab { padding: 6px 12px; font-size: 0.85rem; }
+/* ---------- Quantitative Results tables ---------- */
+.sg-tbl-wrap {
+    overflow-x: auto;
+    border-radius: 16px;
+    border: 1px solid var(--sg-line);
+    box-shadow: 0 12px 32px rgba(13, 32, 127, 0.06);
+    background: var(--sg-panel);
+    max-width: 1200px;
+    margin: 32px auto 0;
+}
+.sg-tbl-caption {
+    max-width: 1100px;
+    margin: 14px auto 0;
+    color: var(--sg-ink-soft);
+    font-size: 0.85rem;
+    line-height: 1.55;
+    text-align: left;
+    padding: 0 8px;
+}
+.sg-tbl-caption strong { color: var(--sg-navy); }
+table.sg-results {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 0.82rem;
+    background: var(--sg-panel);
+    min-width: 900px;
+}
+table.sg-results th,
+table.sg-results td {
+    padding: 8px 10px;
+    text-align: center;
+    border-bottom: 1px solid var(--sg-line);
+    font-variant-numeric: tabular-nums;
+}
+table.sg-results thead th {
+    background: var(--sg-navy-50);
+    color: var(--sg-navy);
+    font-weight: 700;
+    position: sticky;
+    top: 0;
+    z-index: 1;
+    white-space: nowrap;
+}
+table.sg-results thead th.sg-mean {
+    background: var(--sg-navy-100);
+    color: var(--sg-navy);
+}
+table.sg-results td:first-child,
+table.sg-results th:first-child {
+    text-align: left;
+    font-weight: 600;
+    white-space: nowrap;
+    padding-left: 14px;
+}
+table.sg-results tr.sg-group td {
+    background: var(--sg-panel-2);
+    color: var(--sg-navy-soft);
+    font-weight: 700;
+    text-align: left;
+    letter-spacing: 0.04em;
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    padding: 6px 14px;
+}
+table.sg-results tr.sg-baseline td { font-weight: 600; }
+table.sg-results tr.sg-ours {
+    background: linear-gradient(90deg, #f2f5ff, #fbfcff);
+}
+table.sg-results tr.sg-ours td:first-child {
+    color: var(--sg-navy);
+    font-weight: 800;
+}
+.sg-delta-cell     { color: var(--sg-ink-soft); font-size: 0.72rem; }
+.sg-delta-cell.pos { color: var(--sg-good); font-weight: 700; }
+.sg-delta-cell.neg { color: var(--sg-bad);  font-weight: 700; }
+.sg-mean-col       { background: rgba(13, 32, 127, 0.03); }
+
+/* ---------- Footer additions ---------- */
+.sg-visitor-bar {
+    text-align: center;
+    padding: 14px 12px 4px;
+}
+.sg-visitor-bar .sg-vlabel {
+    display: block;
+    color: var(--sg-ink-soft);
+    font-size: 0.72rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 700;
+    margin-bottom: 8px;
+}
+.sg-visitor-bar img {
+    vertical-align: middle;
+    height: 26px;
 }

@@ -7,18 +7,18 @@
     <meta name="description" content="Self-Geometry: a GT-free and plug-and-play test-time adaptation pipeline that imposes explicit multi-view geometric constraints on pretrained 3D Vision Foundation Models (VGGT, pi^3, DA3-G/L/B/S).">
     <link rel="icon" type="image/png" href="assets/icon.png">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles-selfgeom.css">
+    <link rel="stylesheet" href="styles-selfgeom.css?v=2">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
 <body>
     <style>
         iframe {
-        border-radius: 0.5em;
-        width: 100%;
-        height: 100%;
-        border: none;
-        box-shadow: 0 0 1em 0em rgba(0, 0, 0, 0.15);
+            border-radius: 0.5em;
+            width: 100%;
+            height: 100%;
+            border: none;
+            box-shadow: 0 0 1em 0em rgba(0, 0, 0, 0.15);
         }
     </style>
 
@@ -43,10 +43,8 @@
     <section class="banner">
         <div class="banner-content">
             <div class="banner-text">
-                <div class="sg-hero-title">
-                    <img src="assets/icon.png" alt="Self-Geometry icon" class="sg-hero-icon">
-                    <h2 class="banner-title">Self-Geometry</h2>
-                </div>
+                <img src="assets/icon.png" alt="Self-Geometry icon" class="sg-hero-icon">
+                <h2 class="banner-title">Self-Geometry</h2>
                 <h3 class="banner-subtitle" style="margin-bottom: 14px;">GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models</h3>
 
                 <div class="authors">
@@ -79,82 +77,97 @@
                         <i class="fab fa-github"></i> Code
                     </a>
                 </div>
+
             </div>
         </div>
     </section>
 
-    <!-- TL;DR (MIVE-style: isolated with horizontal separators) -->
+    <!-- TL;DR -->
     <section id="tldr" class="sg-tldr-section">
         <div class="container">
-            <hr class="sg-tldr-hr">
-            <p class="sg-tldr-text">
-                <strong>TL;DR:</strong>
-                <em>Self-Geometry</em> is a <strong>GT-free</strong> and <strong>plug-and-play</strong> test-time
-                adaptation pipeline that imposes explicit multi-view geometric constraints on pretrained 3D VFMs
-                (VGGT, &pi;<sup>3</sup>, DA3) by using 2D pixel correspondences as pseudo GT
-                &mdash; delivering <strong>consistent improvements in both Pose Estimation and Geometry Estimation</strong>
-                across <strong>six VFMs</strong> and <strong>four benchmarks</strong> within
-                <strong>two minutes per-scene</strong>.
-            </p>
-            <hr class="sg-tldr-hr">
-        </div>
-    </section>
-
-    <!-- Abstract + Teaser (Fig. 1) -->
-    <section id="overview" class="abstract" style="text-align: left;">
-        <div class="container">
-            <div class="abstract-content" style="text-align: left;">
-                <h3><i class="fas fa-file-alt"></i> Abstract</h3>
-                <p>Recent Vision Foundation Models (VFMs) predict depth, camera pose, and pointmap in a single forward pass without per-scene optimization, achieving strong generalization. However, enforcing explicit multi-view geometric consistency, e.g., through bundle adjustment, is computationally costly and is thus not imposed during VFM pretraining, so such inconsistency can arise. To address this, implicit self-consistency derived from model outputs (e.g., pointmaps, features), though enforced at test-time in prior work, delivers inherently limited performance gain, especially on scenes where the pretrained VFM is highly inaccurate. In contrast to this implicit signal, we propose <em>Self-Geometry</em>, a plug-and-play test-time adaptation pipeline that directly imposes explicit multi-view geometric constraints using 2D pixel correspondences as pseudo ground-truth. Our proposed <em>Self-Geometry</em> consists of <strong>Geometric Disentanglement Optimization</strong>, which combines Multi-View Consistency and Epipolar Consistency losses with Gradient Disentanglement to prevent gradient conflict; <strong>Frame Angular-Neighbor</strong>, a view sampler based on SO(3) geodesic distances for lightly imposing these constraints; and <strong>Lightweight TTA</strong>, which adapts VFMs via LoRA. Our method achieves consistent improvements in both pose and geometry estimation across six VFMs (VGGT, &pi;<sup>3</sup>, DA3-Giant/Large/Base/Small) and four benchmarks (7Scenes, ETH3D, ScanNet++, HiRoom).</p>
-                <figure class="sg-figure">
-                    <img src="assets/teaser.png" alt="Self-Geometry teaser: Frozen VFM vs Self-Geometry across VGGT, pi^3, DA3">
-                    <figcaption>
-                        <strong>Fig. 1.</strong> Overview and representative results of our proposed <em>Self-Geometry</em>,
-                        a <em>plug-and-play</em> TTA pipeline that imposes explicit multi-view geometric constraints
-                        on pretrained VFMs, yielding consistent Pose and Geometry Estimation gains across
-                        diverse pretrained VFMs (VGGT, &pi;<sup>3</sup>, DA3-Giant/Large/Base/Small) and
-                        four benchmarks (7Scenes, ETH3D, ScanNet++, HiRoom).
-                    </figcaption>
-                </figure>
+            <div class="sg-tldr-box">
+                <h3 class="sg-tldr-title">TL;DR</h3>
+                <p class="sg-tldr-text">
+                    <em>Self-Geometry</em> is a <strong>GT-free</strong> and <strong>plug-and-play</strong>
+                    test-time adaptation pipeline that imposes explicit multi-view geometric constraints on pretrained
+                    3D VFMs (VGGT, &pi;<sup>3</sup>, DA3) by using 2D pixel correspondences as pseudo GT. It delivers
+                    <strong>consistent improvements in both Pose Estimation and Geometry Estimation</strong>
+                    across <strong>six VFMs</strong> and <strong>four benchmarks</strong> within
+                    <strong>two minutes per-scene</strong>.
+                </p>
             </div>
         </div>
     </section>
 
-    <!-- Interactive Examples: baseline vs Self-Geometry slider comparison -->
+    <div class="sg-divider-soft"></div>
+
+    <!-- Overview: Abstract + Teaser (Fig. 1) -->
+    <section id="overview" class="sg-content-section" style="text-align: left;">
+        <div class="container">
+            <span class="sg-eyebrow">Overview</span>
+            <h2 class="section-title" style="display:block; text-align:center;">Abstract</h2>
+            <p style="max-width:900px; margin:0 auto; line-height:1.7;">
+                Recent Vision Foundation Models (VFMs) predict depth, camera pose, and pointmap in a single forward
+                pass without per-scene optimization, achieving strong generalization. However, enforcing explicit
+                multi-view geometric consistency, e.g., through bundle adjustment, is computationally costly and is
+                thus not imposed during VFM pretraining, so such inconsistency can arise. To address this, implicit
+                self-consistency derived from model outputs (e.g., pointmaps, features), though enforced at test-time
+                in prior work, delivers inherently limited performance gain, especially on scenes where the pretrained
+                VFM is highly inaccurate. In contrast to this implicit signal, we propose <em>Self-Geometry</em>, a
+                plug-and-play test-time adaptation pipeline that directly imposes explicit multi-view geometric
+                constraints using 2D pixel correspondences as pseudo ground-truth. Our proposed <em>Self-Geometry</em>
+                consists of <strong>Geometric Disentanglement Optimization</strong>, which combines Multi-View
+                Consistency and Epipolar Consistency losses with Gradient Disentanglement to prevent gradient
+                conflict; <strong>Frame Angular-Neighbor</strong>, a view sampler based on SO(3) geodesic distances
+                for lightly imposing these constraints; and <strong>Lightweight TTA</strong>, which adapts VFMs via
+                LoRA. Our method achieves consistent improvements in both pose and geometry estimation across six
+                VFMs (VGGT, &pi;<sup>3</sup>, DA3-Giant/Large/Base/Small) and four benchmarks (7Scenes, ETH3D,
+                ScanNet++, HiRoom).
+            </p>
+            <figure class="sg-figure">
+                <img src="assets/teaser.png" alt="Self-Geometry teaser: Frozen VFM vs Self-Geometry across VGGT, pi^3, DA3">
+                <figcaption>
+                    <strong>Fig. 1.</strong> Overview and representative results of our proposed <em>Self-Geometry</em>,
+                    a <em>plug-and-play</em> TTA pipeline that imposes explicit multi-view geometric constraints
+                    on pretrained VFMs, yielding consistent Pose and Geometry Estimation gains across
+                    diverse pretrained VFMs (VGGT, &pi;<sup>3</sup>, DA3-Giant/Large/Base/Small) and
+                    four benchmarks (7Scenes, ETH3D, ScanNet++, HiRoom).
+                </figcaption>
+            </figure>
+        </div>
+    </section>
+
+    <div class="sg-divider-soft"></div>
+
+    <!-- Interactive Examples: baseline vs Self-Geometry sliders -->
     <section id="interactive-examples" class="interactive-results">
         <div class="container">
+            <span class="sg-eyebrow">Interactive Demo</span>
             <h2 class="section-title">Interactive Examples</h2>
             <p class="sg-section-desc">
                 Drag the slider to compare each pretrained VFM's <strong>baseline</strong> reconstruction
-                with the one adapted by our <strong>Self-Geometry</strong>.
+                against the one adapted by our <strong>Self-Geometry</strong>.
+                Top row: pointmaps. Bottom row: depth maps.
             </p>
 
-            <!-- Tabs: backbones -->
-            <div class="sg-tabs sg-tabs-bb" role="tablist" aria-label="Backbone">
-                <button class="sg-tab"        role="tab" data-backbone="vggt">VGGT</button>
-                <button class="sg-tab active" role="tab" data-backbone="pi3">&pi;<sup>3</sup></button>
-                <button class="sg-tab"        role="tab" data-backbone="da3">DA3-Giant</button>
-                <button class="sg-tab"        role="tab" data-backbone="da3l">DA3-Large</button>
-                <button class="sg-tab"        role="tab" data-backbone="da3b">DA3-Base</button>
-            </div>
-
-            <!-- Sub-tabs: datasets (rebuilt when backbone changes) -->
-            <div class="sg-tabs sg-tabs-ds" role="tablist" aria-label="Dataset" id="sgDatasetTabs"></div>
-
-            <!-- Toggle: raw-prediction vs threshold-error map (applies to both rows) -->
+            <!-- Mode toggle: Predicted vs Error map, applies to both rows -->
             <div class="sg-tabs sg-tabs-mode" role="tablist" aria-label="Coloring mode">
                 <button class="sg-tab"        role="tab" data-mode="rgb">Predicted map</button>
                 <button class="sg-tab active" role="tab" data-mode="error">Error map</button>
             </div>
 
-            <!-- Slider grid (rebuilt when dataset changes) -->
-            <div class="sg-slider-grid" id="sgSliderGrid"></div>
+            <div class="sg-slider-grid" id="sgPointmapGrid"></div>
+
+            <div class="sg-slider-grid" id="sgDepthGrid" style="margin-top: 20px;"></div>
         </div>
     </section>
+
+    <div class="sg-divider-soft"></div>
 
     <!-- Motivation: Failure case (Fig. 2) -->
     <section id="motivation" class="sg-content-section">
         <div class="container">
+            <span class="sg-eyebrow">Motivation</span>
             <h2 class="section-title">Why Explicit Geometry?</h2>
             <p class="sg-section-desc">
                 Existing implicit self-consistency methods barely improve where the pretrained VFM is most inaccurate.
@@ -164,8 +177,8 @@
                 <img src="assets/figures/failure.png" alt="Failure case of Free-Geometry vs Self-Geometry">
                 <figcaption>
                     <strong>Fig. 2.</strong> Comparison on a HiRoom scene (<em>828786</em>), decomposed along
-                    camera pose error, depth error, and the resulting pointmap. Free-Geometry &mdash; a representative
-                    implicit self-consistency method &mdash; fails to substantially improve pose and depth, giving
+                    camera pose error, depth error, and the resulting pointmap. Free-Geometry, a representative
+                    implicit self-consistency method, fails to substantially improve pose and depth, giving
                     only limited pointmap improvement. Our proposed <em>Self-Geometry</em>, which directly imposes
                     explicit multi-view geometric constraints, delivers consistent improvements across all three.
                     <span style="color:#c8282a;">Red</span> = errors above the benchmark threshold;
@@ -175,32 +188,33 @@
         </div>
     </section>
 
+    <div class="sg-divider-soft"></div>
+
     <!-- Method: Pipeline + Core Modules -->
     <section id="method" class="sg-content-section">
         <div class="container">
-            <h2 class="section-title">Method</h2>
+            <span class="sg-eyebrow">Method</span>
+            <h2 class="section-title">Self-Geometry Pipeline</h2>
             <p class="sg-section-desc">
                 <em>Self-Geometry</em> adapts a frozen pretrained VFM to a target scene through three
                 complementary components: <strong>GDO</strong>, <strong>FAN</strong>, and
                 <strong>Lightweight TTA</strong>.
             </p>
 
-            <!-- Pipeline figure -->
             <figure class="sg-figure">
                 <img src="assets/figures/pipeline.png" alt="Self-Geometry pipeline overview">
                 <figcaption>
-                    <strong>Fig. 3.</strong> Overview of Our Proposed <em>Self-Geometry</em> Pipeline.
+                    <strong>Fig. 3.</strong> Overview of our proposed <em>Self-Geometry</em> pipeline.
                     <em>Self-Geometry</em> adapts a frozen pretrained VFM to a target scene through three
                     complementary components. (i) <em>GDO</em> formulates two GT-free correspondence-guided
                     losses (<em>point-to-point</em> MVC Loss and <em>point-to-line</em> EC Loss) and applies
-                    <em>Gradient Disentanglement</em> (GD) to prevent the gradient conflict that can arise between them.
-                    (ii) <em>FAN</em> samples angularly diverse views via <em>scene-scale-invariant</em>
-                    SO(3) geodesic distances. (iii) <em>Lightweight TTA</em> updates only LoRA parameters inserted
-                    into the attention blocks of the pretrained VFM.
+                    <em>Gradient Disentanglement</em> (GD) to prevent the gradient conflict that can arise
+                    between them. (ii) <em>FAN</em> samples angularly diverse views via
+                    <em>scene-scale-invariant</em> SO(3) geodesic distances. (iii) <em>Lightweight TTA</em>
+                    updates only LoRA parameters inserted into the attention blocks of the pretrained VFM.
                 </figcaption>
             </figure>
 
-            <!-- Core modules: 3 cards -->
             <div class="sg-modules-grid">
                 <div class="sg-module-card">
                     <div class="sg-module-header">
@@ -242,43 +256,151 @@
         </div>
     </section>
 
-    <!-- Quantitative Results -->
+    <div class="sg-divider-soft"></div>
+
+    <!-- Quantitative Results: Table II (Pose) + Table III (Geometry), HTML native -->
     <section id="quantitative" class="sg-content-section">
         <div class="container">
-            <h2 class="section-title">Quantitative Results</h2>
+            <span class="sg-eyebrow">Quantitative Results</span>
+            <h2 class="section-title">Pose &amp; Geometry Estimation</h2>
             <p class="sg-section-desc">
                 Across six pretrained VFMs (VGGT, &pi;<sup>3</sup>, DA3-Giant/Large/Base/Small) and four benchmarks
                 (7Scenes, ETH3D, ScanNet++, HiRoom), our proposed <em>Self-Geometry</em> outperforms
-                <em>Free-Geometry</em> and <em>TCO</em> on most Mean columns and achieves the largest Mean improvements
-                over the frozen baselines in both Pose and Geometry Estimation.
+                <em>Free-Geometry</em> and <em>TCO</em> on most Mean columns and achieves the largest Mean
+                improvements over the frozen baselines in both Pose and Geometry Estimation.
             </p>
 
-            <figure class="sg-figure">
-                <img src="assets/figures/tab_pose.png" alt="Table II — Pose Estimation results">
-                <figcaption>
-                    <strong>Table II.</strong> Pose Estimation results (AUC@3, AUC@30 &uarr;) on 7Scenes, ETH3D,
-                    ScanNet++, HiRoom, and Mean. Each pretrained model appears in four consecutive rows: the baseline
-                    and three adapted variants with suffix &ldquo;-TCO&rdquo;, &ldquo;-Fr&rdquo; (Free-Geometry),
-                    and &ldquo;-Ours&rdquo;. &Delta;% vs. baseline in parentheses; per column,
-                    <span style="color:#1e90ff;">blue</span> / <span style="color:#c8282a;">red</span>
-                    marks the largest gain / degradation among the three adaptation methods.
-                </figcaption>
-            </figure>
+            <div class="sg-tbl-wrap">
+    <table class="sg-results">
+      <thead>
+        <tr>
+          <th rowspan="2">Method</th>
+          <th colspan="2">7Scenes</th>
+          <th colspan="2">ETH3D</th>
+          <th colspan="2">ScanNet++</th>
+          <th colspan="2">HiRoom</th>
+          <th colspan="2" class="sg-mean">Mean</th>
+        </tr>
+        <tr>
+          <th>AUC@3 &uarr;</th><th>AUC@30 &uarr;</th>
+          <th>AUC@3 &uarr;</th><th>AUC@30 &uarr;</th>
+          <th>AUC@3 &uarr;</th><th>AUC@30 &uarr;</th>
+          <th>AUC@3 &uarr;</th><th>AUC@30 &uarr;</th>
+          <th class="sg-mean">AUC@3 &uarr;</th><th class="sg-mean">AUC@30 &uarr;</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr class="sg-group"><td colspan="11">VGGT</td></tr>
+      <tr class="sg-baseline"><td>VGGT</td><td>0.25</td><td>0.86</td><td>0.20</td><td>0.76</td><td>0.56</td><td>0.94</td><td>0.51</td><td>0.88</td><td class="sg-mean-col">0.38</td><td class="sg-mean-col">0.86</td></tr>
+      <tr><td>VGGT-TCO</td><td>0.26 <span class="sg-delta-cell pos">+4.3%</span></td><td>0.86 <span class="sg-delta-cell pos">+0.3%</span></td><td>0.17 <span class="sg-delta-cell neg">-12.2%</span></td><td>0.72 <span class="sg-delta-cell neg">-5.4%</span></td><td>0.43 <span class="sg-delta-cell neg">-21.9%</span></td><td>0.92 <span class="sg-delta-cell neg">-1.7%</span></td><td>0.42 <span class="sg-delta-cell neg">-18.4%</span></td><td>0.86 <span class="sg-delta-cell neg">-1.7%</span></td><td class="sg-mean-col">0.32 <span class="sg-delta-cell neg">-15.2%</span></td><td class="sg-mean-col">0.84 <span class="sg-delta-cell neg">-2.0%</span></td></tr>
+      <tr><td>VGGT-Fr</td><td>0.25 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.86 <span class="sg-delta-cell">0.0%</span></td><td>0.20 <span class="sg-delta-cell pos">+3.9%</span></td><td>0.77 <span class="sg-delta-cell pos">+1.1%</span></td><td>0.56 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.94 <span class="sg-delta-cell">0.0%</span></td><td>0.54 <span class="sg-delta-cell pos">+4.8%</span></td><td>0.89 <span class="sg-delta-cell pos">+1.8%</span></td><td class="sg-mean-col">0.39 <span class="sg-delta-cell pos">+2.1%</span></td><td class="sg-mean-col">0.86 <span class="sg-delta-cell pos">+0.7%</span></td></tr>
+      <tr class="sg-ours"><td>VGGT-Ours</td><td>0.28 <span class="sg-delta-cell pos">+13.9%</span></td><td>0.87 <span class="sg-delta-cell pos">+1.1%</span></td><td>0.27 <span class="sg-delta-cell pos">+37.3%</span></td><td>0.83 <span class="sg-delta-cell pos">+9.2%</span></td><td>0.54 <span class="sg-delta-cell neg">-2.9%</span></td><td>0.94 <span class="sg-delta-cell">0.0%</span></td><td>0.47 <span class="sg-delta-cell neg">-8.2%</span></td><td>0.85 <span class="sg-delta-cell neg">-3.4%</span></td><td class="sg-mean-col">0.39 <span class="sg-delta-cell pos">+3.3%</span></td><td class="sg-mean-col">0.87 <span class="sg-delta-cell pos">+1.4%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">&pi;<sup>3</sup></td></tr>
+      <tr class="sg-baseline"><td>&pi;<sup>3</sup></td><td>0.26</td><td>0.86</td><td>0.33</td><td>0.86</td><td>0.55</td><td>0.94</td><td>0.65</td><td>0.94</td><td class="sg-mean-col">0.45</td><td class="sg-mean-col">0.90</td></tr>
+      <tr><td>&pi;<sup>3</sup>-TCO</td><td>0.02 <span class="sg-delta-cell neg">-90.5%</span></td><td>0.42 <span class="sg-delta-cell neg">-51.3%</span></td><td>0.09 <span class="sg-delta-cell neg">-72.0%</span></td><td>0.60 <span class="sg-delta-cell neg">-30.2%</span></td><td>0.02 <span class="sg-delta-cell neg">-96.0%</span></td><td>0.63 <span class="sg-delta-cell neg">-32.5%</span></td><td>0.01 <span class="sg-delta-cell neg">-97.8%</span></td><td>0.51 <span class="sg-delta-cell neg">-46.1%</span></td><td class="sg-mean-col">0.04 <span class="sg-delta-cell neg">-91.5%</span></td><td class="sg-mean-col">0.54 <span class="sg-delta-cell neg">-40.0%</span></td></tr>
+      <tr><td>&pi;<sup>3</sup>-Fr</td><td>0.26 <span class="sg-delta-cell neg">-0.3%</span></td><td>0.86 <span class="sg-delta-cell">0.0%</span></td><td>0.32 <span class="sg-delta-cell neg">-3.4%</span></td><td>0.85 <span class="sg-delta-cell neg">-0.1%</span></td><td>0.45 <span class="sg-delta-cell neg">-18.4%</span></td><td>0.93 <span class="sg-delta-cell neg">-1.3%</span></td><td>0.63 <span class="sg-delta-cell neg">-2.1%</span></td><td>0.95 <span class="sg-delta-cell pos">+0.6%</span></td><td class="sg-mean-col">0.41 <span class="sg-delta-cell neg">-7.1%</span></td><td class="sg-mean-col">0.90 <span class="sg-delta-cell neg">-0.2%</span></td></tr>
+      <tr class="sg-ours"><td>&pi;<sup>3</sup>-Ours</td><td>0.26 <span class="sg-delta-cell neg">-1.5%</span></td><td>0.86 <span class="sg-delta-cell pos">+0.3%</span></td><td>0.41 <span class="sg-delta-cell pos">+25.1%</span></td><td>0.90 <span class="sg-delta-cell pos">+5.0%</span></td><td>0.60 <span class="sg-delta-cell pos">+8.8%</span></td><td>0.95 <span class="sg-delta-cell pos">+1.6%</span></td><td>0.67 <span class="sg-delta-cell pos">+3.4%</span></td><td>0.95 <span class="sg-delta-cell pos">+0.8%</span></td><td class="sg-mean-col">0.48 <span class="sg-delta-cell pos">+8.3%</span></td><td class="sg-mean-col">0.92 <span class="sg-delta-cell pos">+1.9%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">DA3-Giant</td></tr>
+      <tr class="sg-baseline"><td>DA3-G</td><td>0.27</td><td>0.87</td><td>0.49</td><td>0.91</td><td>0.85</td><td>0.98</td><td>0.80</td><td>0.96</td><td class="sg-mean-col">0.60</td><td class="sg-mean-col">0.93</td></tr>
+      <tr><td>DA3-G-TCO</td><td>0.28 <span class="sg-delta-cell pos">+1.6%</span></td><td>0.87 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.50 <span class="sg-delta-cell pos">+2.5%</span></td><td>0.92 <span class="sg-delta-cell pos">+1.0%</span></td><td>0.84 <span class="sg-delta-cell neg">-1.3%</span></td><td>0.98 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.81 <span class="sg-delta-cell pos">+1.6%</span></td><td>0.96 <span class="sg-delta-cell pos">+0.1%</span></td><td class="sg-mean-col">0.61 <span class="sg-delta-cell pos">+0.8%</span></td><td class="sg-mean-col">0.93 <span class="sg-delta-cell pos">+0.2%</span></td></tr>
+      <tr><td>DA3-G-Fr</td><td>0.28 <span class="sg-delta-cell pos">+0.8%</span></td><td>0.87 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.52 <span class="sg-delta-cell pos">+7.9%</span></td><td>0.92 <span class="sg-delta-cell pos">+1.1%</span></td><td>0.85 <span class="sg-delta-cell pos">+0.2%</span></td><td>0.98 <span class="sg-delta-cell">0.0%</span></td><td>0.82 <span class="sg-delta-cell pos">+1.9%</span></td><td>0.98 <span class="sg-delta-cell pos">+1.7%</span></td><td class="sg-mean-col">0.62 <span class="sg-delta-cell pos">+2.4%</span></td><td class="sg-mean-col">0.94 <span class="sg-delta-cell pos">+0.7%</span></td></tr>
+      <tr class="sg-ours"><td>DA3-G-Ours</td><td>0.27 <span class="sg-delta-cell">0.0%</span></td><td>0.87 <span class="sg-delta-cell">0.0%</span></td><td>0.50 <span class="sg-delta-cell pos">+3.4%</span></td><td>0.91 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.84 <span class="sg-delta-cell neg">-1.0%</span></td><td>0.98 <span class="sg-delta-cell neg">-0.1%</span></td><td>0.83 <span class="sg-delta-cell pos">+3.5%</span></td><td>0.96 <span class="sg-delta-cell pos">+0.4%</span></td><td class="sg-mean-col">0.61 <span class="sg-delta-cell pos">+1.5%</span></td><td class="sg-mean-col">0.93 <span class="sg-delta-cell pos">+0.1%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">DA3-Large</td></tr>
+      <tr class="sg-baseline"><td>DA3-L</td><td>0.29</td><td>0.86</td><td>0.32</td><td>0.87</td><td>0.56</td><td>0.94</td><td>0.59</td><td>0.94</td><td class="sg-mean-col">0.44</td><td class="sg-mean-col">0.90</td></tr>
+      <tr><td>DA3-L-TCO</td><td>0.30 <span class="sg-delta-cell pos">+2.6%</span></td><td>0.86 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.31 <span class="sg-delta-cell neg">-3.7%</span></td><td>0.87 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.54 <span class="sg-delta-cell neg">-2.9%</span></td><td>0.94 <span class="sg-delta-cell neg">-0.3%</span></td><td>0.62 <span class="sg-delta-cell pos">+5.0%</span></td><td>0.95 <span class="sg-delta-cell pos">+0.6%</span></td><td class="sg-mean-col">0.44 <span class="sg-delta-cell pos">+0.5%</span></td><td class="sg-mean-col">0.90 <span class="sg-delta-cell pos">+0.1%</span></td></tr>
+      <tr><td>DA3-L-Fr</td><td>0.29 <span class="sg-delta-cell pos">+0.4%</span></td><td>0.86 <span class="sg-delta-cell neg">-0.1%</span></td><td>0.36 <span class="sg-delta-cell pos">+13.3%</span></td><td>0.88 <span class="sg-delta-cell pos">+1.6%</span></td><td>0.56 <span class="sg-delta-cell pos">+0.9%</span></td><td>0.94 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.58 <span class="sg-delta-cell neg">-1.0%</span></td><td>0.94 <span class="sg-delta-cell pos">+0.1%</span></td><td class="sg-mean-col">0.45 <span class="sg-delta-cell pos">+2.5%</span></td><td class="sg-mean-col">0.91 <span class="sg-delta-cell pos">+0.4%</span></td></tr>
+      <tr class="sg-ours"><td>DA3-L-Ours</td><td>0.29 <span class="sg-delta-cell neg">-0.3%</span></td><td>0.86 <span class="sg-delta-cell neg">-0.1%</span></td><td>0.32 <span class="sg-delta-cell neg">-1.5%</span></td><td>0.87 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.56 <span class="sg-delta-cell">0.0%</span></td><td>0.94 <span class="sg-delta-cell">0.0%</span></td><td>0.62 <span class="sg-delta-cell pos">+5.6%</span></td><td>0.94 <span class="sg-delta-cell pos">+0.4%</span></td><td class="sg-mean-col">0.45 <span class="sg-delta-cell pos">+1.6%</span></td><td class="sg-mean-col">0.90 <span class="sg-delta-cell">0.0%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">DA3-Base</td></tr>
+      <tr class="sg-baseline"><td>DA3-B</td><td>0.21</td><td>0.82</td><td>0.15</td><td>0.75</td><td>0.20</td><td>0.81</td><td>0.19</td><td>0.83</td><td class="sg-mean-col">0.19</td><td class="sg-mean-col">0.80</td></tr>
+      <tr><td>DA3-B-TCO</td><td>0.22 <span class="sg-delta-cell pos">+1.0%</span></td><td>0.83 <span class="sg-delta-cell pos">+0.7%</span></td><td>0.16 <span class="sg-delta-cell pos">+5.0%</span></td><td>0.76 <span class="sg-delta-cell pos">+1.4%</span></td><td>0.20 <span class="sg-delta-cell pos">+0.8%</span></td><td>0.81 <span class="sg-delta-cell neg">-0.4%</span></td><td>0.20 <span class="sg-delta-cell pos">+3.9%</span></td><td>0.84 <span class="sg-delta-cell pos">+0.6%</span></td><td class="sg-mean-col">0.19 <span class="sg-delta-cell pos">+2.5%</span></td><td class="sg-mean-col">0.81 <span class="sg-delta-cell pos">+0.6%</span></td></tr>
+      <tr><td>DA3-B-Fr</td><td>0.21 <span class="sg-delta-cell neg">-2.0%</span></td><td>0.82 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.18 <span class="sg-delta-cell pos">+19.9%</span></td><td>0.77 <span class="sg-delta-cell pos">+2.9%</span></td><td>0.21 <span class="sg-delta-cell pos">+1.7%</span></td><td>0.81 <span class="sg-delta-cell pos">+0.8%</span></td><td>0.17 <span class="sg-delta-cell neg">-12.3%</span></td><td>0.83 <span class="sg-delta-cell neg">-0.8%</span></td><td class="sg-mean-col">0.19 <span class="sg-delta-cell pos">+0.8%</span></td><td class="sg-mean-col">0.81 <span class="sg-delta-cell pos">+0.6%</span></td></tr>
+      <tr class="sg-ours"><td>DA3-B-Ours</td><td>0.22 <span class="sg-delta-cell pos">+1.2%</span></td><td>0.83 <span class="sg-delta-cell pos">+0.4%</span></td><td>0.16 <span class="sg-delta-cell pos">+9.8%</span></td><td>0.75 <span class="sg-delta-cell pos">+0.9%</span></td><td>0.21 <span class="sg-delta-cell pos">+2.2%</span></td><td>0.81 <span class="sg-delta-cell pos">+0.2%</span></td><td>0.29 <span class="sg-delta-cell pos">+54.8%</span></td><td>0.87 <span class="sg-delta-cell pos">+4.4%</span></td><td class="sg-mean-col">0.22 <span class="sg-delta-cell pos">+16.6%</span></td><td class="sg-mean-col">0.81 <span class="sg-delta-cell pos">+1.5%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">DA3-Small</td></tr>
+      <tr class="sg-baseline"><td>DA3-S</td><td>0.15</td><td>0.78</td><td>0.09</td><td>0.62</td><td>0.09</td><td>0.68</td><td>0.09</td><td>0.75</td><td class="sg-mean-col">0.10</td><td class="sg-mean-col">0.71</td></tr>
+      <tr><td>DA3-S-TCO</td><td>0.15 <span class="sg-delta-cell pos">+5.6%</span></td><td>0.79 <span class="sg-delta-cell pos">+0.4%</span></td><td>0.09 <span class="sg-delta-cell pos">+2.4%</span></td><td>0.62 <span class="sg-delta-cell neg">-0.3%</span></td><td>0.08 <span class="sg-delta-cell neg">-9.0%</span></td><td>0.66 <span class="sg-delta-cell neg">-3.1%</span></td><td>0.10 <span class="sg-delta-cell pos">+4.4%</span></td><td>0.76 <span class="sg-delta-cell pos">+0.9%</span></td><td class="sg-mean-col">0.11 <span class="sg-delta-cell pos">+1.5%</span></td><td class="sg-mean-col">0.71 <span class="sg-delta-cell neg">-0.5%</span></td></tr>
+      <tr><td>DA3-S-Fr</td><td>0.15 <span class="sg-delta-cell pos">+2.4%</span></td><td>0.78 <span class="sg-delta-cell">0.0%</span></td><td>0.10 <span class="sg-delta-cell pos">+19.5%</span></td><td>0.66 <span class="sg-delta-cell pos">+6.4%</span></td><td>0.09 <span class="sg-delta-cell pos">+1.9%</span></td><td>0.70 <span class="sg-delta-cell pos">+1.9%</span></td><td>0.09 <span class="sg-delta-cell neg">-5.6%</span></td><td>0.74 <span class="sg-delta-cell neg">-1.3%</span></td><td class="sg-mean-col">0.11 <span class="sg-delta-cell pos">+4.0%</span></td><td class="sg-mean-col">0.72 <span class="sg-delta-cell pos">+1.5%</span></td></tr>
+      <tr class="sg-ours"><td>DA3-S-Ours</td><td>0.14 <span class="sg-delta-cell neg">-2.4%</span></td><td>0.79 <span class="sg-delta-cell pos">+1.0%</span></td><td>0.09 <span class="sg-delta-cell pos">+8.3%</span></td><td>0.64 <span class="sg-delta-cell pos">+3.6%</span></td><td>0.09 <span class="sg-delta-cell">0.0%</span></td><td>0.69 <span class="sg-delta-cell pos">+0.3%</span></td><td>0.16 <span class="sg-delta-cell pos">+64.8%</span></td><td>0.79 <span class="sg-delta-cell pos">+5.6%</span></td><td class="sg-mean-col">0.12 <span class="sg-delta-cell pos">+15.6%</span></td><td class="sg-mean-col">0.73 <span class="sg-delta-cell pos">+2.6%</span></td></tr>
+      </tbody>
+    </table>
+            </div>
+            <p class="sg-tbl-caption">
+                <strong>Table II.</strong> Pose Estimation results (AUC@3, AUC@30 &uarr;) on 7Scenes, ETH3D,
+                ScanNet++, HiRoom, and Mean. Each pretrained model appears in four consecutive rows: the
+                <strong>baseline</strong> and three adapted variants with suffix &ldquo;-TCO&rdquo;
+                (<em>TCO</em>), &ldquo;-Fr&rdquo; (<em>Free-Geometry</em>), and
+                <strong>&ldquo;-Ours&rdquo;</strong> (<em>Self-Geometry</em>).
+                &Delta;% vs. baseline in parentheses; <span class="sg-delta-cell pos">green</span> = gain,
+                <span class="sg-delta-cell neg">red</span> = degradation.
+            </p>
 
-            <figure class="sg-figure">
-                <img src="assets/figures/tab_geom.png" alt="Table III — Geometry Estimation results">
-                <figcaption>
-                    <strong>Table III.</strong> Geometry Estimation results (F1-score &uarr;) under unposed (w/o p.)
-                    and posed (w/ p.) modes on the same four benchmarks. Same row layout and color coding as Table II.
-                </figcaption>
-            </figure>
+            <div class="sg-tbl-wrap" style="margin-top: 40px;">
+    <table class="sg-results">
+      <thead>
+        <tr>
+          <th rowspan="2">Method</th>
+          <th colspan="2">7Scenes</th>
+          <th colspan="2">ETH3D</th>
+          <th colspan="2">ScanNet++</th>
+          <th colspan="2">HiRoom</th>
+          <th colspan="2" class="sg-mean">Mean</th>
+        </tr>
+        <tr>
+          <th>w/o&nbsp;p. &uarr;</th><th>w/&nbsp;p. &uarr;</th>
+          <th>w/o&nbsp;p. &uarr;</th><th>w/&nbsp;p. &uarr;</th>
+          <th>w/o&nbsp;p. &uarr;</th><th>w/&nbsp;p. &uarr;</th>
+          <th>w/o&nbsp;p. &uarr;</th><th>w/&nbsp;p. &uarr;</th>
+          <th class="sg-mean">w/o&nbsp;p. &uarr;</th><th class="sg-mean">w/&nbsp;p. &uarr;</th>
+        </tr>
+      </thead>
+      <tbody>
+      <tr class="sg-group"><td colspan="11">VGGT</td></tr>
+      <tr class="sg-baseline"><td>VGGT</td><td>0.43</td><td>0.37</td><td>0.52</td><td>0.43</td><td>0.60</td><td>0.40</td><td>0.60</td><td>0.68</td><td class="sg-mean-col">0.54</td><td class="sg-mean-col">0.47</td></tr>
+      <tr><td>VGGT-TCO</td><td>0.44 <span class="sg-delta-cell pos">+3.1%</span></td><td>0.39 <span class="sg-delta-cell pos">+4.9%</span></td><td>0.49 <span class="sg-delta-cell neg">-4.6%</span></td><td>0.40 <span class="sg-delta-cell neg">-7.9%</span></td><td>0.48 <span class="sg-delta-cell neg">-19.8%</span></td><td>0.36 <span class="sg-delta-cell neg">-10.1%</span></td><td>0.44 <span class="sg-delta-cell neg">-26.5%</span></td><td>0.51 <span class="sg-delta-cell neg">-24.8%</span></td><td class="sg-mean-col">0.46 <span class="sg-delta-cell neg">-13.4%</span></td><td class="sg-mean-col">0.41 <span class="sg-delta-cell neg">-12.0%</span></td></tr>
+      <tr><td>VGGT-Fr</td><td>0.43 <span class="sg-delta-cell pos">+0.4%</span></td><td>0.37 <span class="sg-delta-cell pos">+1.1%</span></td><td>0.50 <span class="sg-delta-cell neg">-4.3%</span></td><td>0.44 <span class="sg-delta-cell pos">+1.1%</span></td><td>0.59 <span class="sg-delta-cell neg">-1.0%</span></td><td>0.41 <span class="sg-delta-cell pos">+1.2%</span></td><td>0.63 <span class="sg-delta-cell pos">+6.0%</span></td><td>0.67 <span class="sg-delta-cell neg">-0.6%</span></td><td class="sg-mean-col">0.54 <span class="sg-delta-cell pos">+0.4%</span></td><td class="sg-mean-col">0.47 <span class="sg-delta-cell pos">+0.5%</span></td></tr>
+      <tr class="sg-ours"><td>VGGT-Ours</td><td>0.44 <span class="sg-delta-cell pos">+3.3%</span></td><td>0.38 <span class="sg-delta-cell pos">+4.6%</span></td><td>0.60 <span class="sg-delta-cell pos">+16.5%</span></td><td>0.47 <span class="sg-delta-cell pos">+9.3%</span></td><td>0.54 <span class="sg-delta-cell neg">-10.6%</span></td><td>0.41 <span class="sg-delta-cell pos">+2.5%</span></td><td>0.55 <span class="sg-delta-cell neg">-7.5%</span></td><td>0.64 <span class="sg-delta-cell neg">-4.9%</span></td><td class="sg-mean-col">0.53 <span class="sg-delta-cell neg">-0.4%</span></td><td class="sg-mean-col">0.48 <span class="sg-delta-cell pos">+1.8%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">&pi;<sup>3</sup></td></tr>
+      <tr class="sg-baseline"><td>&pi;<sup>3</sup></td><td>0.42</td><td>0.58</td><td>0.70</td><td>0.79</td><td>0.63</td><td>0.77</td><td>0.74</td><td>0.83</td><td class="sg-mean-col">0.62</td><td class="sg-mean-col">0.74</td></tr>
+      <tr><td>&pi;<sup>3</sup>-TCO</td><td>0.17 <span class="sg-delta-cell neg">-60.1%</span></td><td>0.15 <span class="sg-delta-cell neg">-75.0%</span></td><td>0.48 <span class="sg-delta-cell neg">-31.5%</span></td><td>0.44 <span class="sg-delta-cell neg">-44.3%</span></td><td>0.24 <span class="sg-delta-cell neg">-62.1%</span></td><td>0.34 <span class="sg-delta-cell neg">-55.8%</span></td><td>0.11 <span class="sg-delta-cell neg">-84.9%</span></td><td>0.15 <span class="sg-delta-cell neg">-81.6%</span></td><td class="sg-mean-col">0.25 <span class="sg-delta-cell neg">-60.0%</span></td><td class="sg-mean-col">0.27 <span class="sg-delta-cell neg">-63.7%</span></td></tr>
+      <tr><td>&pi;<sup>3</sup>-Fr</td><td>0.43 <span class="sg-delta-cell pos">+3.1%</span></td><td>0.58 <span class="sg-delta-cell pos">+0.5%</span></td><td>0.71 <span class="sg-delta-cell pos">+1.0%</span></td><td>0.80 <span class="sg-delta-cell pos">+0.2%</span></td><td>0.51 <span class="sg-delta-cell neg">-19.6%</span></td><td>0.77 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.62 <span class="sg-delta-cell neg">-17.1%</span></td><td>0.81 <span class="sg-delta-cell neg">-2.6%</span></td><td class="sg-mean-col">0.56 <span class="sg-delta-cell neg">-9.3%</span></td><td class="sg-mean-col">0.74 <span class="sg-delta-cell neg">-0.6%</span></td></tr>
+      <tr class="sg-ours"><td>&pi;<sup>3</sup>-Ours</td><td>0.46 <span class="sg-delta-cell pos">+10.5%</span></td><td>0.57 <span class="sg-delta-cell neg">-1.0%</span></td><td>0.74 <span class="sg-delta-cell pos">+5.9%</span></td><td>0.81 <span class="sg-delta-cell pos">+2.6%</span></td><td>0.65 <span class="sg-delta-cell pos">+2.2%</span></td><td>0.79 <span class="sg-delta-cell pos">+3.4%</span></td><td>0.77 <span class="sg-delta-cell pos">+3.8%</span></td><td>0.84 <span class="sg-delta-cell pos">+1.3%</span></td><td class="sg-mean-col">0.65 <span class="sg-delta-cell pos">+5.1%</span></td><td class="sg-mean-col">0.76 <span class="sg-delta-cell pos">+1.7%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">DA3-Giant</td></tr>
+      <tr class="sg-baseline"><td>DA3-G</td><td>0.49</td><td>0.56</td><td>0.79</td><td>0.87</td><td>0.78</td><td>0.80</td><td>0.86</td><td>0.95</td><td class="sg-mean-col">0.73</td><td class="sg-mean-col">0.80</td></tr>
+      <tr><td>DA3-G-TCO</td><td>0.51 <span class="sg-delta-cell pos">+3.1%</span></td><td>0.59 <span class="sg-delta-cell pos">+5.5%</span></td><td>0.79 <span class="sg-delta-cell pos">+0.3%</span></td><td>0.87 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.76 <span class="sg-delta-cell neg">-2.8%</span></td><td>0.80 <span class="sg-delta-cell neg">-0.1%</span></td><td>0.84 <span class="sg-delta-cell neg">-2.0%</span></td><td>0.94 <span class="sg-delta-cell neg">-1.3%</span></td><td class="sg-mean-col">0.73 <span class="sg-delta-cell neg">-0.7%</span></td><td class="sg-mean-col">0.80 <span class="sg-delta-cell pos">+0.6%</span></td></tr>
+      <tr><td>DA3-G-Fr</td><td>0.51 <span class="sg-delta-cell pos">+2.2%</span></td><td>0.56 <span class="sg-delta-cell neg">-0.9%</span></td><td>0.79 <span class="sg-delta-cell pos">+0.6%</span></td><td>0.87 <span class="sg-delta-cell neg">-0.7%</span></td><td>0.78 <span class="sg-delta-cell neg">-0.1%</span></td><td>0.80 <span class="sg-delta-cell">0.0%</span></td><td>0.86 <span class="sg-delta-cell pos">+0.7%</span></td><td>0.94 <span class="sg-delta-cell neg">-1.4%</span></td><td class="sg-mean-col">0.74 <span class="sg-delta-cell pos">+0.7%</span></td><td class="sg-mean-col">0.79 <span class="sg-delta-cell neg">-0.8%</span></td></tr>
+      <tr class="sg-ours"><td>DA3-G-Ours</td><td>0.51 <span class="sg-delta-cell pos">+2.8%</span></td><td>0.57 <span class="sg-delta-cell pos">+1.5%</span></td><td>0.78 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.87 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.79 <span class="sg-delta-cell pos">+0.4%</span></td><td>0.81 <span class="sg-delta-cell pos">+0.5%</span></td><td>0.87 <span class="sg-delta-cell pos">+1.2%</span></td><td>0.95 <span class="sg-delta-cell neg">-0.5%</span></td><td class="sg-mean-col">0.74 <span class="sg-delta-cell pos">+0.9%</span></td><td class="sg-mean-col">0.80 <span class="sg-delta-cell pos">+0.3%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">DA3-Large</td></tr>
+      <tr class="sg-baseline"><td>DA3-L</td><td>0.51</td><td>0.48</td><td>0.69</td><td>0.75</td><td>0.69</td><td>0.76</td><td>0.69</td><td>0.88</td><td class="sg-mean-col">0.65</td><td class="sg-mean-col">0.72</td></tr>
+      <tr><td>DA3-L-TCO</td><td>0.51 <span class="sg-delta-cell neg">-0.7%</span></td><td>0.48 <span class="sg-delta-cell pos">+1.3%</span></td><td>0.68 <span class="sg-delta-cell neg">-1.4%</span></td><td>0.75 <span class="sg-delta-cell">0.0%</span></td><td>0.65 <span class="sg-delta-cell neg">-5.5%</span></td><td>0.76 <span class="sg-delta-cell neg">-0.9%</span></td><td>0.74 <span class="sg-delta-cell pos">+7.5%</span></td><td>0.83 <span class="sg-delta-cell neg">-5.2%</span></td><td class="sg-mean-col">0.65 <span class="sg-delta-cell">0.0%</span></td><td class="sg-mean-col">0.71 <span class="sg-delta-cell neg">-1.6%</span></td></tr>
+      <tr><td>DA3-L-Fr</td><td>0.53 <span class="sg-delta-cell pos">+3.5%</span></td><td>0.48 <span class="sg-delta-cell neg">-0.5%</span></td><td>0.68 <span class="sg-delta-cell neg">-2.7%</span></td><td>0.76 <span class="sg-delta-cell pos">+0.8%</span></td><td>0.69 <span class="sg-delta-cell pos">+0.6%</span></td><td>0.76 <span class="sg-delta-cell">0.0%</span></td><td>0.57 <span class="sg-delta-cell neg">-17.3%</span></td><td>0.77 <span class="sg-delta-cell neg">-12.5%</span></td><td class="sg-mean-col">0.62 <span class="sg-delta-cell neg">-4.5%</span></td><td class="sg-mean-col">0.69 <span class="sg-delta-cell neg">-3.7%</span></td></tr>
+      <tr class="sg-ours"><td>DA3-L-Ours</td><td>0.51 <span class="sg-delta-cell pos">+0.4%</span></td><td>0.47 <span class="sg-delta-cell neg">-1.3%</span></td><td>0.69 <span class="sg-delta-cell neg">-1.1%</span></td><td>0.75 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.69 <span class="sg-delta-cell pos">+0.5%</span></td><td>0.76 <span class="sg-delta-cell pos">+0.1%</span></td><td>0.72 <span class="sg-delta-cell pos">+4.3%</span></td><td>0.88 <span class="sg-delta-cell neg">-0.1%</span></td><td class="sg-mean-col">0.65 <span class="sg-delta-cell pos">+1.1%</span></td><td class="sg-mean-col">0.72 <span class="sg-delta-cell neg">-0.2%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">DA3-Base</td></tr>
+      <tr class="sg-baseline"><td>DA3-B</td><td>0.50</td><td>0.50</td><td>0.49</td><td>0.66</td><td>0.48</td><td>0.67</td><td>0.23</td><td>0.72</td><td class="sg-mean-col">0.42</td><td class="sg-mean-col">0.64</td></tr>
+      <tr><td>DA3-B-TCO</td><td>0.48 <span class="sg-delta-cell neg">-3.8%</span></td><td>0.51 <span class="sg-delta-cell pos">+2.6%</span></td><td>0.49 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.68 <span class="sg-delta-cell pos">+2.7%</span></td><td>0.44 <span class="sg-delta-cell neg">-7.5%</span></td><td>0.67 <span class="sg-delta-cell neg">-0.1%</span></td><td>0.26 <span class="sg-delta-cell pos">+11.3%</span></td><td>0.65 <span class="sg-delta-cell neg">-9.7%</span></td><td class="sg-mean-col">0.42 <span class="sg-delta-cell neg">-1.8%</span></td><td class="sg-mean-col">0.63 <span class="sg-delta-cell neg">-1.5%</span></td></tr>
+      <tr><td>DA3-B-Fr</td><td>0.49 <span class="sg-delta-cell neg">-2.0%</span></td><td>0.50 <span class="sg-delta-cell neg">-0.5%</span></td><td>0.50 <span class="sg-delta-cell pos">+1.3%</span></td><td>0.66 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.48 <span class="sg-delta-cell pos">+1.2%</span></td><td>0.68 <span class="sg-delta-cell pos">+0.5%</span></td><td>0.19 <span class="sg-delta-cell neg">-18.4%</span></td><td>0.68 <span class="sg-delta-cell neg">-5.4%</span></td><td class="sg-mean-col">0.41 <span class="sg-delta-cell neg">-2.4%</span></td><td class="sg-mean-col">0.63 <span class="sg-delta-cell neg">-1.5%</span></td></tr>
+      <tr class="sg-ours"><td>DA3-B-Ours</td><td>0.50 <span class="sg-delta-cell pos">+0.2%</span></td><td>0.50 <span class="sg-delta-cell neg">-0.8%</span></td><td>0.50 <span class="sg-delta-cell pos">+1.9%</span></td><td>0.67 <span class="sg-delta-cell pos">+0.8%</span></td><td>0.48 <span class="sg-delta-cell pos">+0.2%</span></td><td>0.67 <span class="sg-delta-cell pos">+0.3%</span></td><td>0.43 <span class="sg-delta-cell pos">+85.2%</span></td><td>0.72 <span class="sg-delta-cell pos">+0.4%</span></td><td class="sg-mean-col">0.48 <span class="sg-delta-cell pos">+12.2%</span></td><td class="sg-mean-col">0.64 <span class="sg-delta-cell pos">+0.3%</span></td></tr>
+      <tr class="sg-group"><td colspan="11">DA3-Small</td></tr>
+      <tr class="sg-baseline"><td>DA3-S</td><td>0.39</td><td>0.47</td><td>0.37</td><td>0.64</td><td>0.33</td><td>0.53</td><td>0.18</td><td>0.51</td><td class="sg-mean-col">0.32</td><td class="sg-mean-col">0.54</td></tr>
+      <tr><td>DA3-S-TCO</td><td>0.39 <span class="sg-delta-cell neg">-1.1%</span></td><td>0.47 <span class="sg-delta-cell pos">+0.7%</span></td><td>0.38 <span class="sg-delta-cell pos">+2.0%</span></td><td>0.66 <span class="sg-delta-cell pos">+3.1%</span></td><td>0.30 <span class="sg-delta-cell neg">-7.9%</span></td><td>0.53 <span class="sg-delta-cell neg">-0.9%</span></td><td>0.21 <span class="sg-delta-cell pos">+13.8%</span></td><td>0.42 <span class="sg-delta-cell neg">-17.6%</span></td><td class="sg-mean-col">0.32 <span class="sg-delta-cell pos">+0.2%</span></td><td class="sg-mean-col">0.52 <span class="sg-delta-cell neg">-3.4%</span></td></tr>
+      <tr><td>DA3-S-Fr</td><td>0.41 <span class="sg-delta-cell pos">+4.5%</span></td><td>0.47 <span class="sg-delta-cell neg">-0.1%</span></td><td>0.49 <span class="sg-delta-cell pos">+31.5%</span></td><td>0.64 <span class="sg-delta-cell pos">+1.3%</span></td><td>0.33 <span class="sg-delta-cell pos">+0.8%</span></td><td>0.53 <span class="sg-delta-cell neg">-0.2%</span></td><td>0.16 <span class="sg-delta-cell neg">-12.1%</span></td><td>0.51 <span class="sg-delta-cell neg">-0.8%</span></td><td class="sg-mean-col">0.35 <span class="sg-delta-cell pos">+9.1%</span></td><td class="sg-mean-col">0.54 <span class="sg-delta-cell pos">+0.1%</span></td></tr>
+      <tr class="sg-ours"><td>DA3-S-Ours</td><td>0.38 <span class="sg-delta-cell neg">-2.1%</span></td><td>0.47 <span class="sg-delta-cell pos">+1.4%</span></td><td>0.41 <span class="sg-delta-cell pos">+11.0%</span></td><td>0.65 <span class="sg-delta-cell pos">+2.1%</span></td><td>0.34 <span class="sg-delta-cell pos">+4.4%</span></td><td>0.53 <span class="sg-delta-cell pos">+0.4%</span></td><td>0.31 <span class="sg-delta-cell pos">+70.4%</span></td><td>0.55 <span class="sg-delta-cell pos">+7.0%</span></td><td class="sg-mean-col">0.36 <span class="sg-delta-cell pos">+13.9%</span></td><td class="sg-mean-col">0.55 <span class="sg-delta-cell pos">+2.7%</span></td></tr>
+      </tbody>
+    </table>
+            </div>
+            <p class="sg-tbl-caption">
+                <strong>Table III.</strong> Geometry Estimation results (F1-score &uarr;) under unposed
+                (<code>w/o p.</code>) and posed (<code>w/ p.</code>) modes on the same four benchmarks.
+                Same row layout as Table II.
+            </p>
         </div>
     </section>
 
-    <!-- Qualitative Results (static) -->
+    <div class="sg-divider-soft"></div>
+
+    <!-- Qualitative Results -->
     <section id="qualitative" class="sg-content-section">
         <div class="container">
-            <h2 class="section-title">Qualitative Results</h2>
+            <span class="sg-eyebrow">Qualitative Comparison</span>
+            <h2 class="section-title">Against TCO and Free-Geometry</h2>
             <p class="sg-section-desc">
                 Static side-by-side comparison across representative scenes. Compared with Original,
                 <em>TCO</em>, and <em>Free-Geometry</em>, our proposed <em>Self-Geometry</em> substantially
@@ -299,21 +421,12 @@
         </div>
     </section>
 
-    <!-- Acknowledgment -->
-    <section id="acknowledgment" class="sg-content-section">
-        <div class="container">
-            <h2 class="section-title">Acknowledgment</h2>
-            <p class="sg-section-desc" style="max-width:900px; text-align: justify;">
-                This work was supported by the National Research Foundation of Korea (NRF) grant funded by the Korea government (MSIT) (RS-2025-23524035, 25%).
-                This research was supported by the MSIT (Ministry of Science and ICT), Korea, under the Graduate School of Virtual Convergence support program (RS-2024-00418847, 50%) supervised by the IITP (Institute for Information &amp; Communications Technology Planning &amp; Evaluation).
-                This work was partly supported by Institute of Information &amp; Communications Technology Planning &amp; Evaluation (IITP, AI Computing Support Project for R&amp;D) grant funded by the Korea government (MSIT) (RS-2026-25505492, High-Performance Research AI Computing Infrastructure Support at the 2 PFLOPS Scale, 25%).
-            </p>
-        </div>
-    </section>
+    <div class="sg-divider-soft"></div>
 
     <!-- Citation / BibTeX -->
     <section id="citation" class="citation">
         <div class="container">
+            <span class="sg-eyebrow">Cite</span>
             <h2 class="section-title">BibTeX</h2>
             <div class="citation-box">
                 <pre><code>@article{youn2026selfgeometry,
@@ -331,10 +444,19 @@
     <footer class="footer">
         <div class="container">
             <p>&copy; 2026 CMLab &middot; Chung-Ang University. Page template adapted from Depth Anything 3.</p>
+
+            <!-- Visitor counter -->
+            <div class="sg-visitor-bar">
+                <span class="sg-vlabel">Pageviews</span>
+                <a href="https://visitorbadge.io/status?path=selfgeometry.cmlab.project" target="_blank" rel="noopener">
+                    <img src="https://api.visitorbadge.io/api/visitors?path=selfgeometry.cmlab.project&label=visitors&countColor=%230D207F&style=flat-square"
+                         alt="visitor counter">
+                </a>
+            </div>
         </div>
     </footer>
 
     <script src="script.js"></script>
-    <script src="selfgeom.js" defer></script>
+    <script src="selfgeom.js?v=2" defer></script>
 </body>
 </html>

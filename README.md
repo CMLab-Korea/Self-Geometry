@@ -28,7 +28,6 @@ This repository is the official PyTorch implementation of
 ## News
 
 - **2026.08.07**: Self-Geometry [Project page](https://cmlab-korea.github.io/Self-Geometry/) is initially released.
-- **arXiv release, code release, and acceptance updates coming soon.**
 
 ---
 
@@ -97,8 +96,6 @@ We also thank the authors of [LightGlue](https://github.com/cvg/LightGlue) and
 [LoRA](https://github.com/microsoft/LoRA) for their excellent foundational tools.
 
 Our project-page template is adapted from [Depth Anything 3](https://depth-anything-3.github.io/).
-
-This work was supported by the National Research Foundation of Korea (NRF) grant funded by the Korea government (MSIT) (RS-2025-23524035), the MSIT under the Graduate School of Virtual Convergence support program (RS-2024-00418847) supervised by the IITP, and the IITP AI Computing Support Project for R&D (RS-2026-25505492).
 
 ---
 
