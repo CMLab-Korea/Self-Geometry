@@ -1223,7 +1223,7 @@
     },
     "pi3": {
       "display": "π³",
-      "variant": "pi3-enc+dec_lr5e-5_clip5_main",
+      "variant": "pi3-enc_lr5e-5_clip5_main",
       "scenes": {
         "7scenes": [
           {
@@ -1676,6 +1676,155 @@
         ],
         "hiroom": [
           {
+            "scene": "20241230/828769/cam_sampled_11",
+            "scene_dirname": "20241230__828769__cam_sampled_11",
+            "glb": {
+              "baseline": {
+                "rgb": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/baseline_rgb.glb",
+                "error": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/baseline_error.glb"
+              },
+              "ours": {
+                "rgb": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/ours_rgb.glb",
+                "error": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/ours_error.glb"
+              }
+            },
+            "baseline_fscore": 0.5236524303071145,
+            "ours_fscore": 0.925295895321409,
+            "delta_fscore": 0.4016434650142945,
+            "depth": {
+              "frames": [
+                {
+                  "idx": 1,
+                  "img_name": "10.jpg",
+                  "rank": 0,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/01_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/01_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/01_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/01_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.022227520123124123,
+                  "mae_ours": 0.017603674903512,
+                  "delta_mae": 0.004623845219612122
+                },
+                {
+                  "idx": 12,
+                  "img_name": "23.jpg",
+                  "rank": 1,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/12_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/12_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/12_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/12_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.014694234356284142,
+                  "mae_ours": 0.010247517377138138,
+                  "delta_mae": 0.004446716979146004
+                },
+                {
+                  "idx": 14,
+                  "img_name": "3.jpg",
+                  "rank": 2,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/14_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/14_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/14_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/14_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.030467933043837547,
+                  "mae_ours": 0.02656623162329197,
+                  "delta_mae": 0.003901701420545578
+                },
+                {
+                  "idx": 13,
+                  "img_name": "25.jpg",
+                  "rank": 3,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/13_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/13_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/13_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/13_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.01595884934067726,
+                  "mae_ours": 0.0121999466791749,
+                  "delta_mae": 0.0037589026615023613
+                },
+                {
+                  "idx": 5,
+                  "img_name": "15.jpg",
+                  "rank": 4,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/05_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/05_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/05_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/05_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.0240995604544878,
+                  "mae_ours": 0.02074263244867325,
+                  "delta_mae": 0.0033569280058145523
+                },
+                {
+                  "idx": 17,
+                  "img_name": "8.jpg",
+                  "rank": 5,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/17_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/17_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/17_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/17_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.01930842734873295,
+                  "mae_ours": 0.01662469282746315,
+                  "delta_mae": 0.0026837345212697983
+                },
+                {
+                  "idx": 2,
+                  "img_name": "12.jpg",
+                  "rank": 6,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/02_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/02_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/02_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/02_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.016553804278373718,
+                  "mae_ours": 0.014325223863124847,
+                  "delta_mae": 0.002228580415248871
+                },
+                {
+                  "idx": 4,
+                  "img_name": "14.jpg",
+                  "rank": 7,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/04_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/04_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/04_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/04_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.02151465229690075,
+                  "mae_ours": 0.019370324909687042,
+                  "delta_mae": 0.002144327387213707
+                }
+              ]
+            }
+          },
+          {
             "scene": "20241230/828757/cam_sampled_06",
             "scene_dirname": "20241230__828757__cam_sampled_06",
             "glb": {
@@ -1689,8 +1838,8 @@
               }
             },
             "baseline_fscore": 0.5355987243733193,
-            "ours_fscore": 0.9205037191014003,
-            "delta_fscore": 0.38490499472808093,
+            "ours_fscore": 0.9311066312765667,
+            "delta_fscore": 0.39550790690324733,
             "depth": {
               "frames": [
                 {
@@ -1706,8 +1855,8 @@
                     "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/08_ours_error.jpg"
                   },
                   "mae_baseline": 0.029226627200841904,
-                  "mae_ours": 0.023564623668789864,
-                  "delta_mae": 0.00566200353205204
+                  "mae_ours": 0.022634383291006088,
+                  "delta_mae": 0.006592243909835815
                 },
                 {
                   "idx": 9,
@@ -1722,8 +1871,8 @@
                     "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/09_ours_error.jpg"
                   },
                   "mae_baseline": 0.023924915120005608,
-                  "mae_ours": 0.018685584887862206,
-                  "delta_mae": 0.005239330232143402
+                  "mae_ours": 0.018669163808226585,
+                  "delta_mae": 0.005255751311779022
                 },
                 {
                   "idx": 6,
@@ -1738,29 +1887,13 @@
                     "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/06_ours_error.jpg"
                   },
                   "mae_baseline": 0.022794464603066444,
-                  "mae_ours": 0.018627919256687164,
-                  "delta_mae": 0.00416654534637928
-                },
-                {
-                  "idx": 0,
-                  "img_name": "1.jpg",
-                  "rank": 3,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/00_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/00_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/00_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/00_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.043008044362068176,
-                  "mae_ours": 0.03919637203216553,
-                  "delta_mae": 0.003811672329902649
+                  "mae_ours": 0.01763061247766018,
+                  "delta_mae": 0.005163852125406265
                 },
                 {
                   "idx": 4,
                   "img_name": "19.jpg",
-                  "rank": 4,
+                  "rank": 3,
                   "baseline": {
                     "vis": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/04_baseline_depth.jpg",
                     "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/04_baseline_error.jpg"
@@ -1770,8 +1903,24 @@
                     "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/04_ours_error.jpg"
                   },
                   "mae_baseline": 0.02719336934387684,
-                  "mae_ours": 0.023711543530225754,
-                  "delta_mae": 0.003481825813651085
+                  "mae_ours": 0.02307109534740448,
+                  "delta_mae": 0.004122273996472359
+                },
+                {
+                  "idx": 7,
+                  "img_name": "3.jpg",
+                  "rank": 4,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/07_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/07_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/07_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/07_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.038164570927619934,
+                  "mae_ours": 0.035250499844551086,
+                  "delta_mae": 0.0029140710830688477
                 },
                 {
                   "idx": 3,
@@ -1786,8 +1935,8 @@
                     "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/03_ours_error.jpg"
                   },
                   "mae_baseline": 0.023057589307427406,
-                  "mae_ours": 0.020041240379214287,
-                  "delta_mae": 0.0030163489282131195
+                  "mae_ours": 0.020389029756188393,
+                  "delta_mae": 0.0026685595512390137
                 },
                 {
                   "idx": 1,
@@ -1802,477 +1951,163 @@
                     "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/01_ours_error.jpg"
                   },
                   "mae_baseline": 0.01765330694615841,
-                  "mae_ours": 0.015071992762386799,
-                  "delta_mae": 0.0025813141837716103
+                  "mae_ours": 0.015429137274622917,
+                  "delta_mae": 0.002224169671535492
                 },
-                {
-                  "idx": 5,
-                  "img_name": "2.jpg",
-                  "rank": 7,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/05_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/05_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/05_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/05_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.03169702738523483,
-                  "mae_ours": 0.02949278987944126,
-                  "delta_mae": 0.0022042375057935715
-                }
-              ]
-            }
-          },
-          {
-            "scene": "20241230/828769/cam_sampled_11",
-            "scene_dirname": "20241230__828769__cam_sampled_11",
-            "glb": {
-              "baseline": {
-                "rgb": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/baseline_rgb.glb",
-                "error": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/baseline_error.glb"
-              },
-              "ours": {
-                "rgb": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/ours_rgb.glb",
-                "error": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/ours_error.glb"
-              }
-            },
-            "baseline_fscore": 0.5236524303071145,
-            "ours_fscore": 0.8599630972624399,
-            "delta_fscore": 0.3363106669553254,
-            "depth": {
-              "frames": [
-                {
-                  "idx": 12,
-                  "img_name": "23.jpg",
-                  "rank": 0,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/12_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/12_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/12_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/12_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.014694234356284142,
-                  "mae_ours": 0.01074735913425684,
-                  "delta_mae": 0.003946875222027302
-                },
-                {
-                  "idx": 5,
-                  "img_name": "15.jpg",
-                  "rank": 1,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/05_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/05_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/05_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/05_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.0240995604544878,
-                  "mae_ours": 0.020217986777424812,
-                  "delta_mae": 0.0038815736770629883
-                },
-                {
-                  "idx": 14,
-                  "img_name": "3.jpg",
-                  "rank": 2,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/14_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/14_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/14_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/14_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.030467933043837547,
-                  "mae_ours": 0.0272960364818573,
-                  "delta_mae": 0.0031718965619802475
-                },
-                {
-                  "idx": 1,
-                  "img_name": "10.jpg",
-                  "rank": 3,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/01_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/01_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/01_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/01_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.022227520123124123,
-                  "mae_ours": 0.01920333318412304,
-                  "delta_mae": 0.0030241869390010834
-                },
-                {
-                  "idx": 4,
-                  "img_name": "14.jpg",
-                  "rank": 4,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/04_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/04_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/04_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/04_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.02151465229690075,
-                  "mae_ours": 0.01894606091082096,
-                  "delta_mae": 0.002568591386079788
-                },
-                {
-                  "idx": 3,
-                  "img_name": "13.jpg",
-                  "rank": 5,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/03_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/03_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/03_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/03_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.0180134866386652,
-                  "mae_ours": 0.016340240836143494,
-                  "delta_mae": 0.0016732458025217056
-                },
-                {
-                  "idx": 17,
-                  "img_name": "8.jpg",
-                  "rank": 6,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/17_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/17_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/17_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/17_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.01930842734873295,
-                  "mae_ours": 0.01767076924443245,
-                  "delta_mae": 0.001637658104300499
-                },
-                {
-                  "idx": 10,
-                  "img_name": "21.jpg",
-                  "rank": 7,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/10_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/10_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/10_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828769__cam_sampled_11/frames/10_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.012392728589475155,
-                  "mae_ours": 0.010851875878870487,
-                  "delta_mae": 0.0015408527106046677
-                }
-              ]
-            }
-          },
-          {
-            "scene": "20241230/828786/cam_sampled_10",
-            "scene_dirname": "20241230__828786__cam_sampled_10",
-            "glb": {
-              "baseline": {
-                "rgb": "assets/pointmap/pi3/hiroom/20241230__828786__cam_sampled_10/baseline_rgb.glb",
-                "error": "assets/pointmap/pi3/hiroom/20241230__828786__cam_sampled_10/baseline_error.glb"
-              },
-              "ours": {
-                "rgb": "assets/pointmap/pi3/hiroom/20241230__828786__cam_sampled_10/ours_rgb.glb",
-                "error": "assets/pointmap/pi3/hiroom/20241230__828786__cam_sampled_10/ours_error.glb"
-              }
-            },
-            "baseline_fscore": 0.6955735344156088,
-            "ours_fscore": 0.9289539321810248,
-            "delta_fscore": 0.23338039776541608,
-            "depth": {
-              "frames": [
                 {
                   "idx": 0,
                   "img_name": "1.jpg",
+                  "rank": 7,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/00_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/00_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/00_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828757__cam_sampled_06/frames/00_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.043008044362068176,
+                  "mae_ours": 0.04083836451172829,
+                  "delta_mae": 0.0021696798503398895
+                }
+              ]
+            }
+          },
+          {
+            "scene": "20241230/828760/cam_sampled_04",
+            "scene_dirname": "20241230__828760__cam_sampled_04",
+            "glb": {
+              "baseline": {
+                "rgb": "assets/pointmap/pi3/hiroom/20241230__828760__cam_sampled_04/baseline_rgb.glb",
+                "error": "assets/pointmap/pi3/hiroom/20241230__828760__cam_sampled_04/baseline_error.glb"
+              },
+              "ours": {
+                "rgb": "assets/pointmap/pi3/hiroom/20241230__828760__cam_sampled_04/ours_rgb.glb",
+                "error": "assets/pointmap/pi3/hiroom/20241230__828760__cam_sampled_04/ours_error.glb"
+              }
+            },
+            "baseline_fscore": 0.32839438610125027,
+            "ours_fscore": 0.5819861294183887,
+            "delta_fscore": 0.2535917433171384,
+            "depth": {
+              "frames": [
+                {
+                  "idx": 4,
+                  "img_name": "16.jpg",
                   "rank": 0,
                   "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/00_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/00_baseline_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/04_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/04_baseline_error.jpg"
                   },
                   "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/00_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/00_ours_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/04_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/04_ours_error.jpg"
                   },
-                  "mae_baseline": 0.021658821031451225,
-                  "mae_ours": 0.018852928653359413,
-                  "delta_mae": 0.002805892378091812
+                  "mae_baseline": 0.019018612802028656,
+                  "mae_ours": 0.014971291646361351,
+                  "delta_mae": 0.004047321155667305
                 },
                 {
-                  "idx": 8,
-                  "img_name": "5.jpg",
+                  "idx": 6,
+                  "img_name": "18.jpg",
                   "rank": 1,
                   "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/08_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/08_baseline_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/06_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/06_baseline_error.jpg"
                   },
                   "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/08_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/08_ours_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/06_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/06_ours_error.jpg"
                   },
-                  "mae_baseline": 0.016518985852599144,
-                  "mae_ours": 0.013935386203229427,
-                  "delta_mae": 0.0025835996493697166
+                  "mae_baseline": 0.018564632162451744,
+                  "mae_ours": 0.016560222953557968,
+                  "delta_mae": 0.002004409208893776
                 },
                 {
-                  "idx": 3,
-                  "img_name": "13.jpg",
+                  "idx": 9,
+                  "img_name": "9.jpg",
                   "rank": 2,
                   "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/03_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/03_baseline_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/09_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/09_baseline_error.jpg"
                   },
                   "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/03_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/03_ours_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/09_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/09_ours_error.jpg"
                   },
-                  "mae_baseline": 0.018818151205778122,
-                  "mae_ours": 0.01645086146891117,
-                  "delta_mae": 0.002367289736866951
+                  "mae_baseline": 0.019039230421185493,
+                  "mae_ours": 0.017329206690192223,
+                  "delta_mae": 0.0017100237309932709
+                },
+                {
+                  "idx": 5,
+                  "img_name": "17.jpg",
+                  "rank": 3,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/05_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/05_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/05_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/05_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.015500765293836594,
+                  "mae_ours": 0.014054447412490845,
+                  "delta_mae": 0.001446317881345749
                 },
                 {
                   "idx": 1,
                   "img_name": "10.jpg",
-                  "rank": 3,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/01_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/01_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/01_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/01_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.01121942326426506,
-                  "mae_ours": 0.008853832259774208,
-                  "delta_mae": 0.0023655910044908524
-                },
-                {
-                  "idx": 6,
-                  "img_name": "2.jpg",
                   "rank": 4,
                   "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/06_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/06_baseline_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/01_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/01_baseline_error.jpg"
                   },
                   "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/06_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/06_ours_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/01_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/01_ours_error.jpg"
                   },
-                  "mae_baseline": 0.029163584113121033,
-                  "mae_ours": 0.02721976488828659,
-                  "delta_mae": 0.0019438192248344421
+                  "mae_baseline": 0.013947521336376667,
+                  "mae_ours": 0.012554916553199291,
+                  "delta_mae": 0.0013926047831773758
                 },
                 {
-                  "idx": 9,
-                  "img_name": "6.jpg",
+                  "idx": 7,
+                  "img_name": "2.jpg",
                   "rank": 5,
                   "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/09_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/09_baseline_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/07_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/07_baseline_error.jpg"
                   },
                   "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/09_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/09_ours_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/07_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/07_ours_error.jpg"
                   },
-                  "mae_baseline": 0.02429036609828472,
-                  "mae_ours": 0.022399479523301125,
-                  "delta_mae": 0.0018908865749835968
+                  "mae_baseline": 0.013016296550631523,
+                  "mae_ours": 0.011893745511770248,
+                  "delta_mae": 0.0011225510388612747
                 },
                 {
                   "idx": 2,
                   "img_name": "12.jpg",
                   "rank": 6,
                   "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/02_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/02_baseline_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/02_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/02_baseline_error.jpg"
                   },
                   "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/02_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/02_ours_error.jpg"
+                    "vis": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/02_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/hiroom/20241230__828760__cam_sampled_04/frames/02_ours_error.jpg"
                   },
-                  "mae_baseline": 0.01968243345618248,
-                  "mae_ours": 0.01783469133079052,
-                  "delta_mae": 0.0018477421253919601
-                },
-                {
-                  "idx": 7,
-                  "img_name": "3.jpg",
-                  "rank": 7,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/07_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/07_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/07_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/hiroom/20241230__828786__cam_sampled_10/frames/07_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.024058280512690544,
-                  "mae_ours": 0.024041661992669106,
-                  "delta_mae": 1.66185200214386e-05
+                  "mae_baseline": 0.013084471225738525,
+                  "mae_ours": 0.012229293584823608,
+                  "delta_mae": 0.000855177640914917
                 }
               ]
             }
           }
         ],
         "scannetpp": [
-          {
-            "scene": "38d58a7a31",
-            "scene_dirname": "38d58a7a31",
-            "glb": {
-              "baseline": {
-                "rgb": "assets/pointmap/pi3/scannetpp/38d58a7a31/baseline_rgb.glb",
-                "error": "assets/pointmap/pi3/scannetpp/38d58a7a31/baseline_error.glb"
-              },
-              "ours": {
-                "rgb": "assets/pointmap/pi3/scannetpp/38d58a7a31/ours_rgb.glb",
-                "error": "assets/pointmap/pi3/scannetpp/38d58a7a31/ours_error.glb"
-              }
-            },
-            "baseline_fscore": 0.43785011455455364,
-            "ours_fscore": 0.7522591191878041,
-            "delta_fscore": 0.31440900463325044,
-            "depth": {
-              "frames": [
-                {
-                  "idx": 93,
-                  "img_name": "frame_011379.jpg",
-                  "rank": 0,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.1357015073299408,
-                  "mae_ours": 0.08996447175741196,
-                  "delta_mae": 0.04573703557252884
-                },
-                {
-                  "idx": 71,
-                  "img_name": "frame_008460.jpg",
-                  "rank": 1,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/71_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/71_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/71_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/71_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.09918917715549469,
-                  "mae_ours": 0.08485784381628036,
-                  "delta_mae": 0.014331333339214325
-                },
-                {
-                  "idx": 12,
-                  "img_name": "frame_001280.jpg",
-                  "rank": 2,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/12_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/12_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/12_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/12_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.08617192506790161,
-                  "mae_ours": 0.07310580462217331,
-                  "delta_mae": 0.013066120445728302
-                },
-                {
-                  "idx": 61,
-                  "img_name": "frame_007366.jpg",
-                  "rank": 3,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/61_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/61_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/61_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/61_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.07220058888196945,
-                  "mae_ours": 0.06162505969405174,
-                  "delta_mae": 0.01057552918791771
-                },
-                {
-                  "idx": 11,
-                  "img_name": "frame_001120.jpg",
-                  "rank": 4,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/11_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/11_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/11_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/11_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.04489070922136307,
-                  "mae_ours": 0.034424420446157455,
-                  "delta_mae": 0.010466288775205612
-                },
-                {
-                  "idx": 50,
-                  "img_name": "frame_005840.jpg",
-                  "rank": 5,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/50_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/50_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/50_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/50_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.062148090451955795,
-                  "mae_ours": 0.053281210362911224,
-                  "delta_mae": 0.008866880089044571
-                },
-                {
-                  "idx": 23,
-                  "img_name": "frame_002455.jpg",
-                  "rank": 6,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/23_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/23_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/23_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/23_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.10345401614904404,
-                  "mae_ours": 0.0946090891957283,
-                  "delta_mae": 0.008844926953315735
-                },
-                {
-                  "idx": 89,
-                  "img_name": "frame_011028.jpg",
-                  "rank": 7,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/89_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/89_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/89_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/89_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.10427980870008469,
-                  "mae_ours": 0.09567651897668839,
-                  "delta_mae": 0.008603289723396301
-                }
-              ]
-            }
-          },
           {
             "scene": "f3d64c30f8",
             "scene_dirname": "f3d64c30f8",
@@ -2287,8 +2122,8 @@
               }
             },
             "baseline_fscore": 0.537159796119413,
-            "ours_fscore": 0.8460219254514444,
-            "delta_fscore": 0.3088621293320314,
+            "ours_fscore": 0.8472897845960091,
+            "delta_fscore": 0.3101299884765961,
             "depth": {
               "frames": [
                 {
@@ -2304,8 +2139,8 @@
                     "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/60_ours_error.jpg"
                   },
                   "mae_baseline": 0.07566361129283905,
-                  "mae_ours": 0.04724564775824547,
-                  "delta_mae": 0.028417963534593582
+                  "mae_ours": 0.047949712723493576,
+                  "delta_mae": 0.027713898569345474
                 },
                 {
                   "idx": 36,
@@ -2320,8 +2155,8 @@
                     "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/36_ours_error.jpg"
                   },
                   "mae_baseline": 0.0795675590634346,
-                  "mae_ours": 0.05141459405422211,
-                  "delta_mae": 0.028152965009212494
+                  "mae_ours": 0.05237896367907524,
+                  "delta_mae": 0.02718859538435936
                 },
                 {
                   "idx": 37,
@@ -2336,8 +2171,8 @@
                     "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/37_ours_error.jpg"
                   },
                   "mae_baseline": 0.0730384960770607,
-                  "mae_ours": 0.04749307408928871,
-                  "delta_mae": 0.025545421987771988
+                  "mae_ours": 0.04856966808438301,
+                  "delta_mae": 0.02446882799267769
                 },
                 {
                   "idx": 38,
@@ -2352,13 +2187,29 @@
                     "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/38_ours_error.jpg"
                   },
                   "mae_baseline": 0.055446915328502655,
-                  "mae_ours": 0.03274860978126526,
-                  "delta_mae": 0.022698305547237396
+                  "mae_ours": 0.033157240599393845,
+                  "delta_mae": 0.02228967472910881
+                },
+                {
+                  "idx": 66,
+                  "img_name": "frame_005483.jpg",
+                  "rank": 4,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/66_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/66_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/66_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/66_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.6216440796852112,
+                  "mae_ours": 0.6000091433525085,
+                  "delta_mae": 0.021634936332702637
                 },
                 {
                   "idx": 39,
                   "img_name": "frame_003434.jpg",
-                  "rank": 4,
+                  "rank": 5,
                   "baseline": {
                     "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/39_baseline_depth.jpg",
                     "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/39_baseline_error.jpg"
@@ -2368,13 +2219,13 @@
                     "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/39_ours_error.jpg"
                   },
                   "mae_baseline": 0.055811356753110886,
-                  "mae_ours": 0.03491588309407234,
-                  "delta_mae": 0.020895473659038544
+                  "mae_ours": 0.035043954849243164,
+                  "delta_mae": 0.02076740190386772
                 },
                 {
                   "idx": 40,
                   "img_name": "frame_003450.jpg",
-                  "rank": 5,
+                  "rank": 6,
                   "baseline": {
                     "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/40_baseline_depth.jpg",
                     "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/40_baseline_error.jpg"
@@ -2384,40 +2235,173 @@
                     "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/40_ours_error.jpg"
                   },
                   "mae_baseline": 0.08037588745355606,
-                  "mae_ours": 0.06149816885590553,
-                  "delta_mae": 0.018877718597650528
+                  "mae_ours": 0.06153257191181183,
+                  "delta_mae": 0.018843315541744232
                 },
                 {
-                  "idx": 84,
-                  "img_name": "frame_008778.jpg",
-                  "rank": 6,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/84_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/84_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/84_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/84_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.10248877108097076,
-                  "mae_ours": 0.08772977441549301,
-                  "delta_mae": 0.014758996665477753
-                },
-                {
-                  "idx": 74,
-                  "img_name": "frame_006888.jpg",
+                  "idx": 65,
+                  "img_name": "frame_005469.jpg",
                   "rank": 7,
                   "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/74_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/74_baseline_error.jpg"
+                    "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/65_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/65_baseline_error.jpg"
                   },
                   "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/74_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/74_ours_error.jpg"
+                    "vis": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/65_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/f3d64c30f8/frames/65_ours_error.jpg"
                   },
-                  "mae_baseline": 0.05285553261637688,
-                  "mae_ours": 0.0394086018204689,
-                  "delta_mae": 0.013446930795907974
+                  "mae_baseline": 0.9349731206893921,
+                  "mae_ours": 0.9175446033477783,
+                  "delta_mae": 0.01742851734161377
+                }
+              ]
+            }
+          },
+          {
+            "scene": "38d58a7a31",
+            "scene_dirname": "38d58a7a31",
+            "glb": {
+              "baseline": {
+                "rgb": "assets/pointmap/pi3/scannetpp/38d58a7a31/baseline_rgb.glb",
+                "error": "assets/pointmap/pi3/scannetpp/38d58a7a31/baseline_error.glb"
+              },
+              "ours": {
+                "rgb": "assets/pointmap/pi3/scannetpp/38d58a7a31/ours_rgb.glb",
+                "error": "assets/pointmap/pi3/scannetpp/38d58a7a31/ours_error.glb"
+              }
+            },
+            "baseline_fscore": 0.43785011455455364,
+            "ours_fscore": 0.7092059184907624,
+            "delta_fscore": 0.2713558039362088,
+            "depth": {
+              "frames": [
+                {
+                  "idx": 93,
+                  "img_name": "frame_011379.jpg",
+                  "rank": 0,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.1357015073299408,
+                  "mae_ours": 0.08818341046571732,
+                  "delta_mae": 0.04751809686422348
+                },
+                {
+                  "idx": 71,
+                  "img_name": "frame_008460.jpg",
+                  "rank": 1,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/71_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/71_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/71_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/71_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.09918917715549469,
+                  "mae_ours": 0.08360688388347626,
+                  "delta_mae": 0.015582293272018433
+                },
+                {
+                  "idx": 12,
+                  "img_name": "frame_001280.jpg",
+                  "rank": 2,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/12_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/12_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/12_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/12_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.08617192506790161,
+                  "mae_ours": 0.0721726045012474,
+                  "delta_mae": 0.013999320566654205
+                },
+                {
+                  "idx": 51,
+                  "img_name": "frame_006210.jpg",
+                  "rank": 3,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/51_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/51_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/51_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/51_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.12393426150083542,
+                  "mae_ours": 0.11227812618017197,
+                  "delta_mae": 0.011656135320663452
+                },
+                {
+                  "idx": 61,
+                  "img_name": "frame_007366.jpg",
+                  "rank": 4,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/61_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/61_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/61_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/61_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.07220058888196945,
+                  "mae_ours": 0.06146823242306709,
+                  "delta_mae": 0.010732356458902359
+                },
+                {
+                  "idx": 11,
+                  "img_name": "frame_001120.jpg",
+                  "rank": 5,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/11_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/11_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/11_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/11_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.04489070922136307,
+                  "mae_ours": 0.034461650997400284,
+                  "delta_mae": 0.010429058223962784
+                },
+                {
+                  "idx": 50,
+                  "img_name": "frame_005840.jpg",
+                  "rank": 6,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/50_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/50_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/50_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/50_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.062148090451955795,
+                  "mae_ours": 0.052607834339141846,
+                  "delta_mae": 0.00954025611281395
+                },
+                {
+                  "idx": 25,
+                  "img_name": "frame_002580.jpg",
+                  "rank": 7,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/25_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/25_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/25_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/25_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.09760821610689163,
+                  "mae_ours": 0.08846144378185272,
+                  "delta_mae": 0.00914677232503891
                 }
               ]
             }
@@ -2436,8 +2420,8 @@
               }
             },
             "baseline_fscore": 0.28342871682031673,
-            "ours_fscore": 0.496435553951592,
-            "delta_fscore": 0.21300683713127527,
+            "ours_fscore": 0.400613818676973,
+            "delta_fscore": 0.11718510185665626,
             "depth": {
               "frames": [
                 {
@@ -2453,13 +2437,29 @@
                     "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/19_ours_error.jpg"
                   },
                   "mae_baseline": 0.04137161374092102,
-                  "mae_ours": 0.025614699348807335,
-                  "delta_mae": 0.015756914392113686
+                  "mae_ours": 0.0202313382178545,
+                  "delta_mae": 0.02114027552306652
+                },
+                {
+                  "idx": 74,
+                  "img_name": "frame_005247.jpg",
+                  "rank": 1,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/74_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/74_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/74_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/74_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.023014318197965622,
+                  "mae_ours": 0.012674792669713497,
+                  "delta_mae": 0.010339525528252125
                 },
                 {
                   "idx": 68,
                   "img_name": "frame_005145.jpg",
-                  "rank": 1,
+                  "rank": 2,
                   "baseline": {
                     "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/68_baseline_depth.jpg",
                     "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/68_baseline_error.jpg"
@@ -2469,29 +2469,45 @@
                     "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/68_ours_error.jpg"
                   },
                   "mae_baseline": 0.02915770933032036,
-                  "mae_ours": 0.016380269080400467,
-                  "delta_mae": 0.012777440249919891
+                  "mae_ours": 0.01987835206091404,
+                  "delta_mae": 0.009279357269406319
                 },
                 {
-                  "idx": 67,
-                  "img_name": "frame_005138.jpg",
-                  "rank": 2,
+                  "idx": 78,
+                  "img_name": "frame_005307.jpg",
+                  "rank": 3,
                   "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/67_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/67_baseline_error.jpg"
+                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/78_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/78_baseline_error.jpg"
                   },
                   "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/67_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/67_ours_error.jpg"
+                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/78_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/78_ours_error.jpg"
                   },
-                  "mae_baseline": 0.03375371918082237,
-                  "mae_ours": 0.021373379975557327,
-                  "delta_mae": 0.012380339205265045
+                  "mae_baseline": 0.062639020383358,
+                  "mae_ours": 0.05555754527449608,
+                  "delta_mae": 0.007081475108861923
+                },
+                {
+                  "idx": 24,
+                  "img_name": "frame_000960.jpg",
+                  "rank": 4,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/24_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/24_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/24_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/24_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.039241112768650055,
+                  "mae_ours": 0.032371897250413895,
+                  "delta_mae": 0.00686921551823616
                 },
                 {
                   "idx": 69,
                   "img_name": "frame_005151.jpg",
-                  "rank": 3,
+                  "rank": 5,
                   "baseline": {
                     "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/69_baseline_depth.jpg",
                     "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/69_baseline_error.jpg"
@@ -2501,13 +2517,29 @@
                     "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/69_ours_error.jpg"
                   },
                   "mae_baseline": 0.02414107322692871,
-                  "mae_ours": 0.015474050305783749,
-                  "delta_mae": 0.008667022921144962
+                  "mae_ours": 0.01795244961977005,
+                  "delta_mae": 0.006188623607158661
+                },
+                {
+                  "idx": 72,
+                  "img_name": "frame_005231.jpg",
+                  "rank": 6,
+                  "baseline": {
+                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/72_baseline_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/72_baseline_error.jpg"
+                  },
+                  "ours": {
+                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/72_ours_depth.jpg",
+                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/72_ours_error.jpg"
+                  },
+                  "mae_baseline": 0.016939528286457062,
+                  "mae_ours": 0.010761701501905918,
+                  "delta_mae": 0.006177826784551144
                 },
                 {
                   "idx": 23,
                   "img_name": "frame_000930.jpg",
-                  "rank": 4,
+                  "rank": 7,
                   "baseline": {
                     "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/23_baseline_depth.jpg",
                     "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/23_baseline_error.jpg"
@@ -2517,56 +2549,8 @@
                     "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/23_ours_error.jpg"
                   },
                   "mae_baseline": 0.04142782464623451,
-                  "mae_ours": 0.032878436148166656,
-                  "delta_mae": 0.008549388498067856
-                },
-                {
-                  "idx": 0,
-                  "img_name": "frame_000000.jpg",
-                  "rank": 5,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/00_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/00_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/00_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/00_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.024483319371938705,
-                  "mae_ours": 0.017135420814156532,
-                  "delta_mae": 0.007347898557782173
-                },
-                {
-                  "idx": 14,
-                  "img_name": "frame_000450.jpg",
-                  "rank": 6,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/14_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/14_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/14_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/14_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.056171681731939316,
-                  "mae_ours": 0.04920932278037071,
-                  "delta_mae": 0.0069623589515686035
-                },
-                {
-                  "idx": 3,
-                  "img_name": "frame_000030.jpg",
-                  "rank": 7,
-                  "baseline": {
-                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/03_baseline_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/03_baseline_error.jpg"
-                  },
-                  "ours": {
-                    "vis": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/03_ours_depth.jpg",
-                    "error": "assets/depthmap/pi3/scannetpp/1ada7a0617/frames/03_ours_error.jpg"
-                  },
-                  "mae_baseline": 0.023253461346030235,
-                  "mae_ours": 0.016863863915205002,
-                  "delta_mae": 0.0063895974308252335
+                  "mae_ours": 0.03556298092007637,
+                  "delta_mae": 0.005864843726158142
                 }
               ]
             }

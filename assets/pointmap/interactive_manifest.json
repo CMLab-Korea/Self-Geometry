@@ -37,19 +37,19 @@
       "backbone_display": "π³",
       "dataset": "hiroom",
       "dataset_display": "HiRoom",
-      "scene": "20241230/828757/cam_sampled_06",
-      "scene_label": "828757",
-      "baseline_fscore": 0.5355987243733193,
-      "ours_fscore": 0.9205037191014003,
-      "delta_fscore": 0.38490499472808093,
+      "scene": "20241230/828769/cam_sampled_11",
+      "scene_label": "828769",
+      "baseline_fscore": 0.5236524303071145,
+      "ours_fscore": 0.925295895321409,
+      "delta_fscore": 0.4016434650142945,
       "glb": {
         "baseline": {
-          "rgb": "assets/pointmap/pi3/hiroom/20241230__828757__cam_sampled_06/baseline_rgb.glb",
-          "error": "assets/pointmap/pi3/hiroom/20241230__828757__cam_sampled_06/baseline_error.glb"
+          "rgb": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/baseline_rgb.glb",
+          "error": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/baseline_error.glb"
         },
         "ours": {
-          "rgb": "assets/pointmap/pi3/hiroom/20241230__828757__cam_sampled_06/ours_rgb.glb",
-          "error": "assets/pointmap/pi3/hiroom/20241230__828757__cam_sampled_06/ours_error.glb"
+          "rgb": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/ours_rgb.glb",
+          "error": "assets/pointmap/pi3/hiroom/20241230__828769__cam_sampled_11/ours_error.glb"
         }
       }
     },
@@ -123,20 +123,20 @@
       "backbone_display": "VGGT",
       "dataset": "hiroom",
       "dataset_display": "HiRoom",
-      "scene": "20241230/828811/cam_sampled_02",
-      "scene_label": "828811",
-      "frame_idx": 2,
-      "img_name": "11.jpg",
-      "mae_baseline": 0.17344677448272705,
-      "mae_ours": 0.04111184924840927,
-      "delta_mae": 0.13233492523431778,
+      "scene": "20241230/828805/cam_sampled_06",
+      "scene_label": "828805",
+      "frame_idx": 8,
+      "img_name": "20.jpg",
+      "mae_baseline": 0.0482916384935379,
+      "mae_ours": 0.036190591752529144,
+      "delta_mae": 0.012101046741008759,
       "baseline": {
-        "vis": "assets/depthmap/vggt/hiroom/20241230__828811__cam_sampled_02/frames/02_baseline_depth.jpg",
-        "error": "assets/depthmap/vggt/hiroom/20241230__828811__cam_sampled_02/frames/02_baseline_error.jpg"
+        "vis": "assets/depthmap/vggt/hiroom/20241230__828805__cam_sampled_06/frames/08_baseline_depth.jpg",
+        "error": "assets/depthmap/vggt/hiroom/20241230__828805__cam_sampled_06/frames/08_baseline_error.jpg"
       },
       "ours": {
-        "vis": "assets/depthmap/vggt/hiroom/20241230__828811__cam_sampled_02/frames/02_ours_depth.jpg",
-        "error": "assets/depthmap/vggt/hiroom/20241230__828811__cam_sampled_02/frames/02_ours_error.jpg"
+        "vis": "assets/depthmap/vggt/hiroom/20241230__828805__cam_sampled_06/frames/08_ours_depth.jpg",
+        "error": "assets/depthmap/vggt/hiroom/20241230__828805__cam_sampled_06/frames/08_ours_error.jpg"
       }
     },
     {
@@ -149,8 +149,8 @@
       "frame_idx": 93,
       "img_name": "frame_011379.jpg",
       "mae_baseline": 0.1357015073299408,
-      "mae_ours": 0.08996447175741196,
-      "delta_mae": 0.04573703557252884,
+      "mae_ours": 0.08818341046571732,
+      "delta_mae": 0.04751809686422348,
       "baseline": {
         "vis": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_baseline_depth.jpg",
         "error": "assets/depthmap/pi3/scannetpp/38d58a7a31/frames/93_baseline_error.jpg"
