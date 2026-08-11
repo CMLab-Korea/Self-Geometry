@@ -99,25 +99,110 @@ body {
     pointer-events: none;
 }
 
-/* Inline lab logos inside the affiliation line (hero) */
+/* -----------------------------------------------------------------
+   Inline lab / university logos on the affiliation line (hero)
+   -----------------------------------------------------------------
+   Base = shared white-card look (background, radius, shadow).
+   Per-logo modifier = size + internal padding + baseline align,
+   tuned to how much whitespace each source image bakes in.
+
+   Padding summary (padding = extra whitespace inside the white card):
+   ┌──────────────┬──────────┬──────────────┬──────────────┐
+   │ Modifier     │ Source   │ height  vpad │ hpad  valign │
+   ├──────────────┼──────────┼──────────────┼──────────────┤
+   │ --cmlab      │ png      │ 22px    2px  │ 4px   -6px   │
+   │ --enc        │ png      │ 22px    4px  │ 8px   -6px   │
+   │ --cau        │ png      │ 26px    4px  │ 6px   -8px   │
+   │ --khu        │ svg      │ 26px    2px  │ 4px   -8px   │
+   └──────────────┴──────────┴──────────────┴──────────────┘
+   Lab wordmarks (--cmlab, --enc) sit at 22px so they don't dominate
+   the surrounding text; university crests (--cau, --khu) go to 26px.
+   The KHU SVG is tightly cropped, so it takes less card padding
+   than the CAU PNG which has visible whitespace baked in.
+*/
 .sg-affil-inline-logo {
-    height: 22px;
     width: auto;
-    vertical-align: -6px;
-    margin: 0 6px 0 2px;
     background: #ffffff;
-    padding: 2px 4px;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
 }
-.sg-affil-inline-logo--enc {
-    padding: 4px 8px;
+.sg-affil-inline-logo--cmlab {
+    height: 22px;
+    padding: 2px 4px;
+    vertical-align: -6px;
+    margin: 0 6px 0 2px;
 }
-.sg-affil-inline-logo--uni {
+.sg-affil-inline-logo--enc {
+    height: 22px;
+    padding: 4px 8px;
+    vertical-align: -6px;
+    margin: 0 6px 0 2px;
+}
+.sg-affil-inline-logo--cau {
     height: 26px;
     padding: 4px 6px;
     vertical-align: -8px;
-    margin: 0 4px 0 4px;
+    margin: 0 4px;
+}
+.sg-affil-inline-logo--khu {
+    height: 26px;
+    padding: 2px 4px;
+    vertical-align: -8px;
+    margin: 0 4px;
+}
+
+/* ---------- Author / Affiliation / Logo blocks (PrimEdit-style) ---------- */
+/* Override styles.css .authors margin so subsequent blocks flow tightly. */
+.banner-text .authors {
+    margin: 8px 0 10px;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.7em 0.9em;
+}
+
+.banner-text .affiliations {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 0.6em 1.6em;
+    font-size: 0.95rem;
+    line-height: 1.9;
+    margin-top: 4px;
+    opacity: 0.95;
+}
+.banner-text .affiliations span {
+    display: inline-block;
+    white-space: normal;
+}
+
+.banner-text .equal-contribution {
+    font-size: 0.9rem;
+    margin-top: 8px;
+    opacity: 0.85;
+}
+
+.banner-text .affiliation-logos {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 44px;
+    margin: 40px 0 28px;
+}
+.banner-text .affiliation-logos img {
+    height: 90px;
+    width: auto;
+    max-width: 100%;
+    object-fit: contain;
+}
+@media (max-width: 960px) {
+    .banner-text .affiliation-logos {
+        gap: 26px;
+    }
+    .banner-text .affiliation-logos img {
+        height: 60px;
+    }
 }
 
 /* ---------- Hero stat pills (three big numbers) ---------- */
