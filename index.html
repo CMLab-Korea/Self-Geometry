@@ -7,7 +7,7 @@
     <meta name="description" content="Self-Geometry: a GT-free and plug-and-play test-time adaptation pipeline that imposes explicit multi-view geometric constraints on pretrained 3D Vision Foundation Models (VGGT, pi^3, DA3-G/L/B/S).">
     <link rel="icon" type="image/png" href="assets/icon.png">
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="styles-selfgeom.css?v=3">
+    <link rel="stylesheet" href="styles-selfgeom.css?v=4">
     <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 </head>
@@ -78,6 +78,34 @@
                     </a>
                 </div>
 
+            </div>
+        </div>
+    </section>
+
+    <!-- Main demo video (DA3-style: own section, container-wrapped) -->
+    <section class="main-demo">
+        <div class="container">
+            <div class="demo-video-container">
+                <div class="video-loader" id="mainVideoLoader">
+                    <div class="loader-spinner"></div>
+                    <div class="loader-text">Loading video...</div>
+                    <div class="loader-progress">
+                        <div class="progress-bar" id="mainVideoProgress"></div>
+                    </div>
+                </div>
+                <video
+                    class="main-video lazy-video"
+                    id="mainVideo"
+                    playsinline
+                    muted
+                    autoplay
+                    loop
+                    preload="metadata"
+                    data-src="./assets/main_final.mp4"
+                    poster="./assets/main_final_poster.jpg">
+                    <source data-src="./assets/main_final.mp4" type="video/mp4">
+                    Your browser does not support video playback.
+                </video>
             </div>
         </div>
     </section>
@@ -455,6 +483,6 @@
     </footer>
 
     <script src="script.js"></script>
-    <script src="selfgeom.js?v=3" defer></script>
+    <script src="selfgeom.js?v=4" defer></script>
 </body>
 </html>
