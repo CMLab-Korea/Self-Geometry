@@ -110,13 +110,16 @@ body {
    ┌──────────────┬──────────┬──────────────┬──────────────┐
    │ Modifier     │ Source   │ height  vpad │ hpad  valign │
    ├──────────────┼──────────┼──────────────┼──────────────┤
+   │ --sup        │ png/svg  │ 14px    1px  │ 3px   0      │
    │ --cmlab      │ png      │ 22px    2px  │ 4px   -6px   │
    │ --enc        │ png      │ 22px    4px  │ 8px   -6px   │
    │ --cau        │ png      │ 26px    4px  │ 6px   -8px   │
    │ --khu        │ svg      │ 26px    2px  │ 4px   -8px   │
    └──────────────┴──────────┴──────────────┴──────────────┘
-   Lab wordmarks (--cmlab, --enc) sit at 22px so they don't dominate
-   the surrounding text; university crests (--cau, --khu) go to 26px.
+   --sup is the tiny marker used inside <sup> after an author's name
+   (replacing the numeric affiliation index). Lab wordmarks (--cmlab,
+   --enc) sit at 22px on the affiliation line so they don't dominate
+   surrounding text; university crests (--cau, --khu) go to 26px.
    The KHU SVG is tightly cropped, so it takes less card padding
    than the CAU PNG which has visible whitespace baked in.
 */
@@ -125,6 +128,13 @@ body {
     background: #ffffff;
     border-radius: 3px;
     box-shadow: 0 1px 2px rgba(0, 0, 0, 0.12);
+}
+.sg-affil-inline-logo--sup {
+    height: 14px;
+    padding: 1px 3px;
+    vertical-align: 0;
+    margin: 0 2px;
+    border-radius: 2px;
 }
 .sg-affil-inline-logo--cmlab {
     height: 22px;

@@ -15,7 +15,7 @@
 †Corresponding authors
 
 [![Project Page](https://img.shields.io/badge/Project-Page-1E90FF)](https://cmlab-korea.github.io/Self-Geometry/)
-[![arXiv](https://img.shields.io/badge/arXiv-xxxx.xxxxx-b31b1b.svg)](https://arxiv.org/abs/xxxx.xxxxx)
+[![arXiv](https://img.shields.io/badge/arXiv-2608.10708-b31b1b.svg)](https://arxiv.org/abs/2608.10708)
 ![Stars](https://img.shields.io/github/stars/CMLab-Korea/Self-Geometry?style=social)
 
 This repository is the official PyTorch implementation of
