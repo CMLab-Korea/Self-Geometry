@@ -477,12 +477,26 @@
         <div class="container">
             <p>&copy; 2026 CMLab &middot; Chung-Ang University. Page template adapted from Depth Anything 3.</p>
 
-            <!-- Visitor counter -->
+            <!-- Visitor counter.
+                 komarev never counted from this page (unclear why — likely
+                 blocked by an extension or Cloudflare region rule), so we
+                 use visitor-badge.laobi.icu, which serves proper no-cache
+                 headers and is a well-known komarev drop-in. The inline
+                 script appends a per-load cache-buster as belt-and-suspenders
+                 for aggressive intermediate caches. -->
             <div class="sg-visitor-bar">
                 <span class="sg-vlabel">Pageviews</span>
-                <img src="https://komarev.com/ghpvc/?username=cmlab-korea-self-geometry&color=0D207F&style=flat-square&label=Pageviews"
-                     alt="Pageviews">
+                <img id="sg-pageview-counter" alt="Pageviews"
+                     src="https://visitor-badge.laobi.icu/badge?page_id=cmlab-korea.self-geometry&left_text=Pageviews&right_color=%230D207F">
             </div>
+            <script>
+                (function () {
+                    var img = document.getElementById('sg-pageview-counter');
+                    if (!img || !img.src) return;
+                    var base = img.src.split('&_=')[0];
+                    img.src = base + '&_=' + Date.now();
+                })();
+            </script>
         </div>
     </footer>
 
