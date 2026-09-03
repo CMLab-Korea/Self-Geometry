@@ -114,4 +114,12 @@ Our project-page template is adapted from [Depth Anything 3](https://depth-anyth
 
 ## ⭐ Star History
 
-[![Star History Chart](https://api.star-history.com/svg?repos=CMLab-Korea/Self-Geometry&type=Date)](https://www.star-history.com/#CMLab-Korea/Self-Geometry&Date)
+## Star History
+
+<a href="https://www.star-history.com/?repos=CMLab-Korea%2FSelf-Geometry&type=date&legend=top-left">
+ <picture>
+   <source media="(prefers-color-scheme: dark)" srcset="https://api.star-history.com/chart?repos=CMLab-Korea/Self-Geometry&type=date&theme=dark&legend=top-left&sealed_token=Xuf7F1VaXxRUF0S8wX9hhlqk9EMJjPY_-kFMJWXw9hKfujc9OWJXnt_JI3_0MJDZojaQLby7NJuIeKU635L8fv_eqgdZz9BAoyr_qGnPyEsy3_bWMtLZLQ" />
+   <source media="(prefers-color-scheme: light)" srcset="https://api.star-history.com/chart?repos=CMLab-Korea/Self-Geometry&type=date&legend=top-left&sealed_token=Xuf7F1VaXxRUF0S8wX9hhlqk9EMJjPY_-kFMJWXw9hKfujc9OWJXnt_JI3_0MJDZojaQLby7NJuIeKU635L8fv_eqgdZz9BAoyr_qGnPyEsy3_bWMtLZLQ" />
+   <img alt="Star History Chart" src="https://api.star-history.com/chart?repos=CMLab-Korea/Self-Geometry&type=date&legend=top-left&sealed_token=Xuf7F1VaXxRUF0S8wX9hhlqk9EMJjPY_-kFMJWXw9hKfujc9OWJXnt_JI3_0MJDZojaQLby7NJuIeKU635L8fv_eqgdZz9BAoyr_qGnPyEsy3_bWMtLZLQ" />
+ </picture>
+</a>
