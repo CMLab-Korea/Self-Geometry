@@ -5,12 +5,14 @@
 
 **<a href="https://github.com/sh25youn2">Seokhyun Youn</a>**<sup>1</sup>,
 **<a href="https://github.com/rpdahxn">Dahyeon Kye</a>**<sup>1</sup>,
-**<a href="https://scholar.google.com/citations?user=EULut5oAAAAJ&hl=ko">Sung-Ho Bae</a>**<sup>2†</sup>,
+**<a href="https://scholar.google.com/citations?user=RfIHcSoAAAAJ&hl=en">Ziyu Wan</a>**<sup>2</sup>,
+**<a href="https://scholar.google.com/citations?user=EULut5oAAAAJ&hl=ko">Sung-Ho Bae</a>**<sup>3†</sup>,
 **<a href="https://github.com/JihyongOh">Jihyong Oh</a>**<sup>1†</sup>
 <br>
 
 <sup>1</sup>Creative Vision and Multimedia Lab (CMLab), Chung-Ang University
-<sup>2</sup>Efficient Neural Computing Lab (ENC Lab), Kyung Hee University
+<sup>2</sup>Microsoft Research
+<sup>3</sup>Efficient Neural Computing Lab (ENC Lab), Kyung Hee University
 <br>
 †Corresponding authors
 
@@ -104,7 +106,7 @@ Our project-page template is adapted from [Depth Anything 3](https://depth-anyth
 ```bibtex
 @article{youn2026selfgeometry,
   title   = {Self-Geometry: GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models},
-  author  = {Seokhyun Youn and Dahyeon Kye and Sung-Ho Bae and Jihyong Oh},
+  author  = {Seokhyun Youn and Dahyeon Kye and Ziyu Wan and Sung-Ho Bae and Jihyong Oh},
   journal = {arXiv preprint arXiv:2608.10708},
   year    = {2026},
 }
