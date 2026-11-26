@@ -3078,7 +3078,7 @@ body.sg-noscroll { overflow: hidden; }
                      src="https://visitor-badge.laobi.icu/badge?page_id=cmlab-korea.self-geometry&left_text=Pageviews&right_color=%230D207F">
             </div>
             <script>
-                (function {
+                (function () {
                     var img = document.getElementById('sg-pageview-counter');
                     if (!img || !img.src) return;
                     var base = img.src.split('&_=')[0];
@@ -3120,7 +3120,7 @@ document.querySelectorAll('a[href^="#"]').forEach(anchor => {
 });
 
 // Navbar scroll effect
-window.addEventListener('scroll', function {
+window.addEventListener('scroll', function () {
     const navbar = document.querySelector('.navbar');
     if (window.scrollY > 100) {
         navbar.style.background = 'rgba(255, 255, 255, 0.98)';
@@ -3157,7 +3157,7 @@ window.addEventListener('scroll', function {
     const esc = (s) => String(s).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[c]));
 
     // ------------------------------------------------------------------ Interactive Examples
-    const initInteractive = => {
+    const initInteractive = () => {
         const iframe = $('#sgViewer');
         const placeholder = $('#sgViewerPlaceholder');
         if (!iframe) return;
@@ -3177,7 +3177,7 @@ window.addEventListener('scroll', function {
             if (!m) throw new Error(`method ${k} missing in scene ${s.id}`);
             return m;
         };
-        const srcFor = => {
+        const srcFor = () => {
             const L = method(scene, left), R = method(scene, OURS), c = scene.camera;
             const q = new URLSearchParams({
                 right: R.model, left: L.model, labelLeft: L.label, labelRight: R.label,
@@ -3186,7 +3186,7 @@ window.addEventListener('scroll', function {
             });
             return `${VIEWER}?${q.toString()}`;
         };
-        const renderMeta = => {
+        const renderMeta = () => {
             const L = method(scene, left), R = method(scene, OURS);
             $('#sgViewerScene').innerHTML =
                 `<span class="sg-badge sg-badge-bb">${esc(scene.vfm)}</span>` +
@@ -3196,7 +3196,7 @@ window.addEventListener('scroll', function {
                 `<span class="sg-f1-item">${esc(L.label)} <b>${esc(L.f1)}</b></span>` +
                 `<span class="sg-f1-item sg-f1-ours">${esc(R.label)} <b>${esc(R.f1)}</b></span>`;
         };
-        const loadViewer = => {
+        const loadViewer = () => {
             viewerReady = false;
             placeholder.textContent = 'Loading viewer…';
             placeholder.hidden = false;
@@ -3217,9 +3217,9 @@ window.addEventListener('scroll', function {
             renderMeta();
             if (activated) loadViewer();
         };
-        $$('.sg-scene-card').forEach((b) => b.addEventListener('click', => selectScene(b.dataset.scene)));
+        $$('.sg-scene-card').forEach((b) => b.addEventListener('click', () => selectScene(b.dataset.scene)));
 
-        $$('.sg-method-tabs .sg-tab').forEach((b) => b.addEventListener('click', => {
+        $$('.sg-method-tabs .sg-tab').forEach((b) => b.addEventListener('click', () => {
             if (left === b.dataset.method) return;
             left = b.dataset.method;
             setActive($$('.sg-method-tabs .sg-tab'), (x) => x.dataset.method === left);
@@ -3232,7 +3232,7 @@ window.addEventListener('scroll', function {
         }));
 
         // "3D viewer" links in the Qualitative Results rows
-        $$('.sg-qrow-3d').forEach((a) => a.addEventListener('click', => selectScene(a.dataset.scene)));
+        $$('.sg-qrow-3d').forEach((a) => a.addEventListener('click', () => selectScene(a.dataset.scene)));
 
         window.addEventListener('message', (e) => {
             if (e.source !== iframe.contentWindow) return;
@@ -3240,7 +3240,7 @@ window.addEventListener('scroll', function {
             if (d.type !== 'sg-viewer') return;
             if (d.event === 'ready') viewerReady = true;
         });
-        iframe.addEventListener('load', => { placeholder.hidden = true; });
+        iframe.addEventListener('load', () => { placeholder.hidden = true; });
 
         renderMeta();
         const io = new IntersectionObserver((entries, obs) => {
@@ -3254,9 +3254,9 @@ window.addEventListener('scroll', function {
     };
 
     // ------------------------------------------------------------------ Qualitative Results tabs
-    const initQualTabs = => {
+    const initQualTabs = () => {
         const tabs = $$('.sg-qtabs .sg-tab');
-        tabs.forEach((t) => t.addEventListener('click', => {
+        tabs.forEach((t) => t.addEventListener('click', () => {
             const id = t.dataset.qtab;
             tabs.forEach((x) => {
                 const on = x === t;
@@ -3268,12 +3268,12 @@ window.addEventListener('scroll', function {
     };
 
     // ------------------------------------------------------------------ Lightbox
-    const initLightbox = => {
+    const initLightbox = () => {
         const box = $('#sgLightbox');
         if (!box) return;
         const img = $('#sgLightboxImg'), cap = $('#sgLightboxCap');
         let items = [], idx = 0;
-        const show = => {
+        const show = () => {
             const a = items[idx];
             img.src = a.getAttribute('href');
             img.alt = a.dataset.caption;
@@ -3287,7 +3287,7 @@ window.addEventListener('scroll', function {
             document.body.classList.add('sg-noscroll');
             $('.sg-lb-close', box).focus();
         };
-        const close = => {
+        const close = () => {
             box.hidden = true;
             img.removeAttribute('src');
             document.body.classList.remove('sg-noscroll');
@@ -3300,8 +3300,8 @@ window.addEventListener('scroll', function {
             open(a);
         });
         $('.sg-lb-close', box).addEventListener('click', close);
-        $('.sg-lb-prev', box).addEventListener('click', => step(-1));
-        $('.sg-lb-next', box).addEventListener('click', => step(1));
+        $('.sg-lb-prev', box).addEventListener('click', () => step(-1));
+        $('.sg-lb-next', box).addEventListener('click', () => step(1));
         box.addEventListener('click', (e) => { if (e.target === box) close(); });
         document.addEventListener('keydown', (e) => {
             if (box.hidden) return;
@@ -3312,14 +3312,14 @@ window.addEventListener('scroll', function {
     };
 
     // Header icon (animated SVG): shown as a still of its agreed state when the viewer asks for reduced motion.
-    const initIcon = => {
+    const initIcon = () => {
         const icon = document.querySelector('svg.sg-hero-icon');
         if (!icon || !window.matchMedia || !window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
         icon.pauseAnimations();
         icon.setCurrentTime(5.6);
     };
 
-    const init = => { initIcon(); initInteractive(); initQualTabs(); initLightbox(); };
+    const init = () => { initIcon(); initInteractive(); initQualTabs(); initLightbox(); };
     if (document.readyState === 'loading') document.addEventListener('DOMContentLoaded', init);
     else init();
 })();
