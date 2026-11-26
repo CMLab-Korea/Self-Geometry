@@ -112,7 +112,7 @@ Our project-page template is adapted from [Depth Anything 3](https://depth-anyth
 @article{youn2026selfgeometry,
   title   = {Self-Geometry: GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models},
   author  = {Seokhyun Youn and Dahyeon Kye and Ziyu Wan and Sung-Ho Bae and Jihyong Oh},
-  journal = {arXiv preprint arXiv:2608.10708},
+  journal = {arXiv preprint arXiv:TBD},
   year    = {2026},
 }
 ```
