@@ -114,8 +114,6 @@ Our project-page template is adapted from [Depth Anything 3](https://depth-anyth
 
 ---
 
-## ⭐ Star History
-
 ## Star History
 
 <a href="https://www.star-history.com/?repos=CMLab-Korea%2FSelf-Geometry&type=date&legend=top-left">
