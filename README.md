@@ -29,6 +29,7 @@ This repository is the official PyTorch implementation of
 
 ## News
 
+- **2026.11.27**: The [project page](https://cmlab-korea.github.io/Self-Geometry/) is updated with an overview video, a demo video, interactive 3D examples, and qualitative results.
 - **2026.08.07**: Self-Geometry [Project page](https://cmlab-korea.github.io/Self-Geometry/) is initially released.
 
 ---
@@ -37,15 +38,17 @@ This repository is the official PyTorch implementation of
 <summary><b>Abstract</b></summary>
 <br>
 
-Recent **Vision Foundation Models (VFMs)** predict depth, camera pose, and pointmap in a single forward pass without per-scene optimization, achieving strong generalization. However, enforcing explicit multi-view geometric consistency, e.g., through bundle adjustment, is computationally costly and is thus not imposed during VFM pretraining, so such inconsistency can arise. To address this, implicit self-consistency derived from model outputs (e.g., pointmaps, features), though enforced at test-time in prior work, delivers inherently limited performance gain, especially on scenes where the pretrained VFM is highly inaccurate.
+Recent **vision foundation models (VFMs)** predict camera poses and dense scene geometry in a single forward pass without per-scene optimization and achieve strong performance across diverse benchmarks.
+However, these models predict without enforcing explicit multi-view geometric constraints, and **multi-view geometric inconsistency** can therefore arise in their predictions.
+To address this inconsistency, a recent test-time adaptation method adapts the model through feature-level self-distillation, but leaves explicit multi-view geometric constraints unenforced.
+In this paper, we propose **Self-Geometry**, a **plug-and-play test-time adaptation (TTA) pipeline** that directly imposes explicit multi-view geometric constraints using **2D pixel correspondences** as **pseudo ground truth**.
+Our Self-Geometry consists of
 
-In contrast to this implicit signal, we propose **Self-Geometry**, a **plug-and-play test-time adaptation (TTA) pipeline** that directly imposes explicit multi-view geometric constraints using **2D pixel correspondences** as **pseudo ground-truth**. Our proposed Self-Geometry consists of
+- **Geometric Disentanglement Optimization (GDO)**, which combines the *multi-view consistency* and *epipolar consistency* losses with *gradient disentanglement* to resolve the gradient conflict between them;
+- **Frame Angular-Neighbor (FAN)**, a view sampler based on SO(3) geodesic distances that reduces the cost of adaptation;
+- **Lightweight TTA**, which adapts the pretrained models via **low-rank adaptation (LoRA)**.
 
-- **Geometric Disentanglement Optimization (GDO)**, which combines *Multi-View Consistency (MVC)* and *Epipolar Consistency (EC)* losses with *Gradient Disentanglement (GD)* to prevent gradient conflict;
-- **Frame Angular-Neighbor (FAN)**, a view sampler based on *scene-scale-invariant* SO(3) geodesic distances for lightly imposing these constraints;
-- **Lightweight TTA**, which adapts VFMs via **LoRA**.
-
-Our method achieves consistent improvements in both Pose Estimation and Geometry Estimation across **six VFMs** (VGGT, π³, DA3-Giant/Large/Base/Small) and **four benchmarks** (7Scenes, ETH3D, ScanNet++, HiRoom), completing scene-wise adaptation within **two minutes per-scene** on a single NVIDIA RTX PRO 6000.
+Our Self-Geometry improves both pose estimation and geometry estimation on average across **six VFMs** (VGGT, π³, DA3-Giant/Large/Base/Small) and **four benchmarks** (7Scenes, ETH3D, ScanNet++, HiRoom).
 
 </details>
 
@@ -55,13 +58,13 @@ Our method achieves consistent improvements in both Pose Estimation and Geometry
 
 ![pipeline](https://raw.githubusercontent.com/CMLab-Korea/Self-Geometry/gh-pages/assets/figures/pipeline.webp)
 
-Self-Geometry adapts a frozen pretrained VFM to a target scene through three complementary components:
+Self-Geometry imposes explicit multi-view geometric constraints on a pretrained VFM, using 2D pixel correspondences extracted at test time by an external feature matcher (LightGlue) as pseudo ground truth. It consists of three complementary components:
 
 | Component | Name | Description |
 |-----------|------|-------------|
-| **GDO** | Geometric Disentanglement Optimization | Combines the *point-to-point* MVC Loss (Eq. 2) and the *depth-independent point-to-line* EC Loss (Eq. 3) with Gradient Disentanglement (Eq. 4) to prevent the gradient conflict that can arise between the two losses on the camera poses. |
-| **FAN** | Frame Angular-Neighbor | An SO(3)-guided view sampler that selects the target view maximizing SO(3)-bin entropy (*Geometry-Rich View Selection*) using *scene-scale-invariant* SO(3) geodesic distances (Eq. 5), achieving uniform scene coverage. |
-| **Lightweight TTA** | LoRA-based Per-Scene Adaptation | Inserts LoRA only into the QKV weights of the pretrained VFM's attention blocks. The pretrained parameters remain frozen and only LoRA is updated, completing per-scene adaptation within two minutes on a single NVIDIA RTX PRO 6000. |
+| **GDO** | Geometric Disentanglement Optimization | Formulates the constraints as the *point-to-point* MVC Loss (Eq. 2) and the *depth-independent point-to-line* EC Loss (Eq. 3), and applies Gradient Disentanglement (GD, Eq. 4) to resolve the *gradient conflict* that can arise between the two losses. |
+| **FAN** | Frame Angular-Neighbor | Samples a subset of *angularly diverse* views using *scene-scale-invariant* SO(3) geodesic distances (Eq. 5), with the target view selected by *Geometry-Rich View Selection* (GRV, Eq. 6). This reduces the cost of each TTA iteration and maintains uniform coverage of the 3D scene. |
+| **Lightweight TTA** | LoRA-based Per-Scene Adaptation | Inserts LoRA into the QKV weights of the attention blocks of the pretrained VFM. Only the LoRA parameters are updated and the pretrained VFM stays frozen, which preserves the geometric prior acquired during pretraining. Per-scene adaptation completes within a few minutes on a single NVIDIA RTX PRO 6000. |
 
 Together, these components operate as a **GT-free**, **Teacher-free**, **Plug-and-play**, and **Explicit-Geometry** TTA pipeline.
 
@@ -81,9 +84,11 @@ depth-map comparisons, quantitative and qualitative results.
 
 Please visit our [project page](https://cmlab-korea.github.io/Self-Geometry/) for:
 
-- **Interactive Examples**: baseline vs. Self-Geometry pointmap and depth-map slider comparisons across 5 VFM backbones (VGGT, π³, DA3-Giant/Large/Base) and 2 benchmarks (HiRoom, ScanNet++).
-- **Quantitative Results**: pose (AUC@3, AUC@30) and geometry (F1-score) tables across all six VFMs × four benchmarks.
-- **Qualitative Results**: side-by-side depth-error and pointmap-error visualizations against TCO and Free-Geometry.
+- **Overview Video**: the multi-view geometric inconsistency of a pretrained VFM, the 2D pixel correspondences used as pseudo ground truth, and the EC Loss, the MVC Loss, and GD.
+- **Demo Video**: geometry error maps of the six VFMs before and after Self-Geometry, and a comparison with TCO, Free-Geometry, and global alignment (GA).
+- **Interactive Examples**: a side-by-side 3D viewer of geometry error maps on four scenes (ETH3D, HiRoom, ScanNet++), comparing Self-Geometry with the pretrained VFM, TCO, Free-Geometry, and GA.
+- **Qualitative Results**: depth, geometry, and camera pose results on the four benchmarks, with one image per method.
+- **Quantitative Results**: pose (AUC@3, AUC@30) and geometry (F1-score w/o p. / w/ p.) across all six VFMs and four benchmarks.
 
 ---
 
