@@ -1,0 +1,302 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>Side-by-side 3D viewer</title>
+    <!-- This file lies in assets/; every relative URL below and every model path it is given is relative to the page root. -->
+    <base href="../" />
+    <script src="assets/vendor/model-viewer/model-viewer.classic.min.js" onerror="window.__sgViewerScriptFailed = true"></script>
+    <style>
+      html, body { margin: 0; height: 100%; background: #ffffff; overflow: hidden; }
+
+      .cv-wrap {
+        position: relative;
+        width: 100%;
+        height: 100%;
+        user-select: none;
+        -webkit-user-select: none;
+      }
+
+      /* Both viewers are full-size and overlaid. Only the BOTTOM one (#right) owns pointer events; the TOP one
+         (#left) is a visual layer clipped with clip-path. Every drag rotates #right and the camera is copied to
+         #left, so both viewers stay aligned. */
+      #right, #left {
+        position: absolute; inset: 0;
+        width: 100%; height: 100%;
+        background-color: #ffffff;
+      }
+      #right { z-index: 1; }
+      #left  { z-index: 2; pointer-events: none; }
+
+      .cv-label {
+        position: absolute;
+        top: 12px;
+        z-index: 5;
+        padding: 5px 11px;
+        border-radius: 999px;
+        font: 700 13px/1.2 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #fff;
+        pointer-events: none;
+        display: inline-flex;
+        align-items: center;
+        gap: 7px;
+      }
+      .cv-label.left  { left: 12px;  background: rgba(30, 30, 30, 0.85); }
+      .cv-label.right { right: 12px; background: rgba(13, 32, 127, 0.9); }
+      .cv-spin {
+        width: 10px; height: 10px; border-radius: 50%;
+        border: 2px solid rgba(255,255,255,0.35); border-top-color: #fff;
+        animation: cv-spin 0.8s linear infinite;
+        display: none;
+      }
+      .cv-label.busy .cv-spin { display: inline-block; }
+      @keyframes cv-spin { to { transform: rotate(360deg); } }
+
+      .cv-divider {
+        position: absolute;
+        top: 0; bottom: 0;
+        width: 2px;
+        background: #ffffff;
+        box-shadow: 0 0 0 1px rgba(0,0,0,0.35);
+        transform: translateX(-1px);
+        z-index: 4;
+        pointer-events: none;
+      }
+
+      .cv-handle {
+        position: absolute;
+        top: 50%;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        background: #ffffff;
+        border: 2px solid rgba(0,0,0,0.35);
+        transform: translate(-50%, -50%);
+        z-index: 6;
+        cursor: ew-resize;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 2px 6px rgba(0,0,0,0.25);
+        touch-action: none;
+      }
+      .cv-handle::before,
+      .cv-handle::after {
+        content: "";
+        display: block;
+        width: 0;
+        height: 0;
+        border-top: 5px solid transparent;
+        border-bottom: 5px solid transparent;
+      }
+      .cv-handle::before { border-right: 6px solid #0D207F; margin-right: 3px; }
+      .cv-handle::after  { border-left:  6px solid #0D207F; margin-left:  3px; }
+
+      .cv-status {
+        position: absolute; inset: 0; z-index: 8;
+        display: flex; align-items: center; justify-content: center;
+        background: rgba(250, 250, 250, 0.92);
+        font: 500 14px/1.5 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        color: #5a6377; text-align: center; padding: 24px;
+      }
+      .cv-status[hidden] { display: none; }
+      .cv-status.error { color: #a32020; }
+    </style>
+  </head>
+  <body>
+    <div class="cv-wrap" id="wrap">
+      <model-viewer id="right"
+        camera-controls
+        interaction-prompt="none"
+        disable-tap
+        exposure="1.0"
+        shadow-intensity="0"
+        environment-image="neutral"
+        min-field-of-view="10deg"
+        max-field-of-view="70deg"><div slot="progress-bar"></div></model-viewer>
+      <model-viewer id="left"
+        camera-controls
+        interaction-prompt="none"
+        disable-tap
+        exposure="1.0"
+        shadow-intensity="0"
+        environment-image="neutral"
+        min-field-of-view="10deg"
+        max-field-of-view="70deg"><div slot="progress-bar"></div></model-viewer>
+      <div class="cv-label left busy"  id="labelLeft"><span class="cv-spin"></span><span id="labelLeftText"></span></div>
+      <div class="cv-label right busy" id="labelRight"><span class="cv-spin"></span><span id="labelRightText"></span></div>
+      <div class="cv-divider" id="divider"></div>
+      <div class="cv-handle"  id="handle" role="slider"
+           aria-label="Comparison slider" aria-valuemin="0" aria-valuemax="100" aria-valuenow="50"></div>
+      <div class="cv-status" id="status">Loading 3D models&hellip;</div>
+    </div>
+
+    <script>
+      // Parameters (set by selfgeom.js): left/right model script (assets/interactive/<scene>/<method>.glb.js, a classic
+      // script that stores the GLB bytes in base64 under its own path in window.SG_GLB), labels, start view shared by both sides
+      // (orientation, orbit, fov, max radius), camera target of the GT frame and the per-GLB centring offsets.
+      const p = new URLSearchParams(location.search);
+      const vec = (s) => (s || '0,0,0').split(',').map(Number);
+      const view = {
+        orientation: p.get('orientation') || '0rad 0rad 0rad',
+        orbit: p.get('orbit'),
+        fov: p.get('fov'),
+        maxr: p.get('maxr'),
+        target: vec(p.get('target')),
+      };
+      let offRight = vec(p.get('offR'));
+      let offLeft  = vec(p.get('offL'));
+
+      const wrap    = document.getElementById('wrap');
+      const mvLeft  = document.getElementById('left');
+      const mvRight = document.getElementById('right');
+      const handle  = document.getElementById('handle');
+      const divider = document.getElementById('divider');
+      const status  = document.getElementById('status');
+      const labelLeft  = document.getElementById('labelLeft');
+      const labelRight = document.getElementById('labelRight');
+      document.getElementById('labelLeftText').textContent  = p.get('labelLeft')  || '';
+      document.getElementById('labelRightText').textContent = p.get('labelRight') || '';
+
+      const notifyParent = (msg) => { if (window.parent !== window) window.parent.postMessage(msg, '*'); };
+      const showError = (text) => {
+        status.textContent = text;
+        status.classList.add('error');
+        status.hidden = false;
+        notifyParent({ type: 'sg-viewer', event: 'error', text });
+      };
+
+      // Models: each model script is loaded with a <script> element (allowed on pages opened from disk, unlike fetch), its
+      // base64 text decoded once into a Blob and given to model-viewer as a blob: URL. sgViewerModels: path -> {url, blob}.
+      const sgViewerModels = window.sgViewerModels = new Map();
+      const loadModel = (path) => new Promise((resolve, reject) => {
+        if (sgViewerModels.has(path)) { resolve(sgViewerModels.get(path).url); return; }
+        const s = document.createElement('script');
+        s.src = path;
+        s.onerror = () => reject(new Error(`model script failed to load: ${path}`));
+        s.onload = () => {
+          s.remove();
+          const b64 = (window.SG_GLB || {})[path];
+          if (!b64) { reject(new Error(`model data missing in ${path}`)); return; }
+          const bin = atob(b64);
+          const bytes = new Uint8Array(bin.length);
+          for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+          delete window.SG_GLB[path];
+          const blob = new Blob([bytes], { type: 'model/gltf-binary' });
+          const url = URL.createObjectURL(blob);
+          sgViewerModels.set(path, { url, blob });
+          resolve(url);
+        };
+        document.head.appendChild(s);
+      });
+      const request = { left: 0, right: 0 };
+      const show = (mv, side, path) => {
+        const token = ++request[side];
+        mv.dataset.model = '';
+        return loadModel(path).then((url) => {
+          if (token !== request[side]) return;      // a newer request for this side replaced it
+          mv.dataset.model = path;
+          mv.src = url;
+        }).catch((err) => {
+          console.error('[viewer]', err);
+          showError('The 3D model could not be loaded.');
+        });
+      };
+
+      const targetFor = (off) => `${view.target[0] + off[0]}m ${view.target[1] + off[1]}m ${view.target[2] + off[2]}m`;
+      const applyStartView = (mv, off) => {
+        mv.setAttribute('orientation', view.orientation);
+        if (view.orbit) mv.setAttribute('camera-orbit', view.orbit);
+        if (view.fov) mv.setAttribute('field-of-view', view.fov);
+        if (view.maxr) {
+          mv.setAttribute('max-camera-orbit', `Infinity 180deg ${view.maxr}m`);
+          mv.setAttribute('min-camera-orbit', `-Infinity 0deg ${view.maxr / 40}m`);
+        }
+        mv.setAttribute('camera-target', targetFor(off));
+      };
+      applyStartView(mvRight, offRight);
+      applyStartView(mvLeft, offLeft);
+
+      // Slider
+      let exposure = 50;
+      const setExposure = (pct) => {
+        exposure = Math.max(0, Math.min(100, pct));
+        mvLeft.style.clipPath = `inset(0 ${100 - exposure}% 0 0)`;
+        divider.style.left = `${exposure}%`;
+        handle.style.left  = `${exposure}%`;
+        handle.setAttribute('aria-valuenow', Math.round(exposure).toString());
+      };
+      setExposure(exposure);
+      let dragging = false;
+      handle.addEventListener('pointerdown', (e) => { dragging = true; handle.setPointerCapture?.(e.pointerId); e.preventDefault(); });
+      window.addEventListener('pointerup', (e) => { dragging = false; handle.releasePointerCapture?.(e.pointerId); });
+      window.addEventListener('pointercancel', () => { dragging = false; });
+      window.addEventListener('pointermove', (e) => {
+        if (!dragging) return;
+        const r = wrap.getBoundingClientRect();
+        setExposure(((e.clientX - r.left) / r.width) * 100);
+      });
+      handle.tabIndex = 0;
+      handle.addEventListener('keydown', (e) => {
+        const step = e.shiftKey ? 10 : 2;
+        if (e.key === 'ArrowLeft')  { setExposure(exposure - step); e.preventDefault(); }
+        if (e.key === 'ArrowRight') { setExposure(exposure + step); e.preventDefault(); }
+      });
+
+      // Camera sync right -> left (the two GLBs differ by a small centring offset).
+      const copyCamera = () => {
+        if (!mvRight.loaded) return;
+        const orbit  = mvRight.getCameraOrbit();
+        const t      = mvRight.getCameraTarget();
+        const fov    = mvRight.getFieldOfView();
+        mvLeft.cameraOrbit  = `${orbit.theta}rad ${orbit.phi}rad ${orbit.radius}m`;
+        mvLeft.cameraTarget = `${t.x - offRight[0] + offLeft[0]}m ${t.y - offRight[1] + offLeft[1]}m ${t.z - offRight[2] + offLeft[2]}m`;
+        mvLeft.fieldOfView  = `${fov}deg`;
+        mvLeft.jumpCameraToGoal();
+      };
+
+      const markLoaded = (mv, label) => {
+        label.classList.remove('busy');
+        mv.jumpCameraToGoal();
+        if (mv === mvLeft) copyCamera();
+        if (!labelLeft.classList.contains('busy') && !labelRight.classList.contains('busy')) {
+          status.hidden = true;
+          notifyParent({ type: 'sg-viewer', event: 'loaded' });
+        }
+      };
+      mvRight.addEventListener('load', () => { markLoaded(mvRight, labelRight); copyCamera(); });
+      mvLeft.addEventListener('load', () => markLoaded(mvLeft, labelLeft));
+      mvRight.addEventListener('camera-change', copyCamera);
+      [mvLeft, mvRight].forEach((mv) => {
+        mv.addEventListener('error', (ev) => {
+          console.error('[model-viewer] load error', { src: mv.src, detail: ev.detail });
+          showError('The 3D model could not be loaded.');
+        });
+      });
+
+      // The left model is replaced on request of the page (method buttons), the right one stays.
+      window.addEventListener('message', (e) => {
+        const d = e.data || {};
+        if (e.source !== window.parent || d.type !== 'sg-set-left') return;
+        offLeft = d.offset || [0, 0, 0];
+        document.getElementById('labelLeftText').textContent = d.label || '';
+        labelLeft.classList.add('busy');
+        mvLeft.setAttribute('camera-target', targetFor(offLeft));
+        show(mvLeft, 'left', d.src);
+      });
+      notifyParent({ type: 'sg-viewer', event: 'ready' });
+
+      const start = () => {
+        if (window.__sgViewerScriptFailed || !customElements.get('model-viewer')) {
+          showError('The 3D viewer could not be started.');
+          return;
+        }
+        if (p.get('right')) show(mvRight, 'right', p.get('right'));
+        if (p.get('left'))  show(mvLeft, 'left', p.get('left'));
+      };
+      if (document.readyState === 'complete') start();
+      else window.addEventListener('load', start);
+    </script>
+  </body>
+</html>
