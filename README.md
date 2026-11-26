@@ -1,5 +1,5 @@
 <h1>
-  <img src="assets/icon.png" width="30" align="absmiddle">
+  <img src="https://raw.githubusercontent.com/CMLab-Korea/Self-Geometry/gh-pages/assets/icon.png" width="30" align="absmiddle">
   Self-Geometry: GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models
 </h1>
 
@@ -23,7 +23,7 @@
 This repository is the official PyTorch implementation of
 **"Self-Geometry: GT-Free and Plug-and-Play Test-Time Adaptation for Geometrically Consistent 3D Vision Foundation Models."**
 
-![teaser](./assets/teaser.png)
+![teaser](https://raw.githubusercontent.com/CMLab-Korea/Self-Geometry/gh-pages/assets/teaser.webp)
 
 ---
 
@@ -53,7 +53,7 @@ Our method achieves consistent improvements in both Pose Estimation and Geometry
 <summary><b>Method Overview</b></summary>
 <br>
 
-![pipeline](./assets/figures/pipeline.png)
+![pipeline](https://raw.githubusercontent.com/CMLab-Korea/Self-Geometry/gh-pages/assets/figures/pipeline.webp)
 
 Self-Geometry adapts a frozen pretrained VFM to a target scene through three complementary components:
 
